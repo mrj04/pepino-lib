@@ -4,18 +4,16 @@ var ts = require('gulp-typescript');
 var mocha = require('gulp-mocha');
 var watch = require('gulp-watch');
 var clean = require('gulp-clean');
-var cucumber = require('gulp-cucumber');
 var istanbul = require('gulp-istanbul');
 var duration = require('gulp-duration')
 var sourcemaps = require('gulp-sourcemaps');
 var sequence = require('gulp-sequence');
 var bump = require('gulp-bump');
 var debug = require('gulp-debug');
-var insert = require('gulp-insert');
 
 var tsPath = 'src/**/*.ts';
 
-gulp.task('default', sequence('compile', 'add-shell-shebang', 'unit-tests'));
+gulp.task('default', sequence('compile', 'unit-tests'));
 
 gulp.task('clean-build', function(){
     return gulp.src('build/', {read: false})
@@ -63,11 +61,4 @@ gulp.task('bump', function(){
     return gulp.src('./package.json')
         .pipe(bump({version: version}))
         .pipe(gulp.dest('./'));
-});
-
-gulp.task('add-shell-shebang', function(){
-    var folder = './build/src/';
-    return gulp.src(folder + "index.js")        
-        .pipe(insert.prepend("#!/usr/bin/env node\n"))
-        .pipe(gulp.dest(folder));
 });

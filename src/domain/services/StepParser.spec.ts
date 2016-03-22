@@ -1,8 +1,6 @@
 "use strict";
 import chai = require("chai");
 var expect = chai.expect;
-var fs = require('fs');
-var glob = require('glob');
 import * as f from "../../domain/services/StepParser";
 import {Step} from "../../domain/Step";
 
