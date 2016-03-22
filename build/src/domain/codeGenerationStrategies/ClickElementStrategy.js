@@ -1,0 +1,15 @@
+"use strict";
+var StringHelper_1 = require("../helpers/StringHelper");
+class ClickElementStrategy {
+    canGenerate(text) {
+        var lowercase = text.toLowerCase();
+        return lowercase.startsWith("click ");
+    }
+    generate(text) {
+        var element = StringHelper_1.StringHelper.extractTextInGreaterThanLessThan(text);
+        return "this.browser.click(\"" + element + "\");";
+    }
+}
+exports.ClickElementStrategy = ClickElementStrategy;
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRvbWFpbi9jb2RlR2VuZXJhdGlvblN0cmF0ZWdpZXMvQ2xpY2tFbGVtZW50U3RyYXRlZ3kudHMiXSwibmFtZXMiOlsiQ2xpY2tFbGVtZW50U3RyYXRlZ3kiLCJDbGlja0VsZW1lbnRTdHJhdGVneS5jYW5HZW5lcmF0ZSIsIkNsaWNrRWxlbWVudFN0cmF0ZWd5LmdlbmVyYXRlIl0sIm1hcHBpbmdzIjoiQUFBQSxZQUFZLENBQUM7QUFFYiw2QkFBMkIseUJBQXlCLENBQUMsQ0FBQTtBQUVyRDtJQUVJQSxXQUFXQSxDQUFDQSxJQUFZQTtRQUNwQkMsSUFBSUEsU0FBU0EsR0FBR0EsSUFBSUEsQ0FBQ0EsV0FBV0EsRUFBRUEsQ0FBQ0E7UUFDbkNBLE1BQU1BLENBQUNBLFNBQVNBLENBQUNBLFVBQVVBLENBQUNBLFFBQVFBLENBQUNBLENBQUNBO0lBQzFDQSxDQUFDQTtJQUVERCxRQUFRQSxDQUFDQSxJQUFZQTtRQUNqQkUsSUFBSUEsT0FBT0EsR0FBR0EsMkJBQVlBLENBQUNBLGdDQUFnQ0EsQ0FBQ0EsSUFBSUEsQ0FBQ0EsQ0FBQ0E7UUFDbEVBLE1BQU1BLENBQUNBLHVCQUF1QkEsR0FBR0EsT0FBT0EsR0FBR0EsTUFBTUEsQ0FBQ0E7SUFDdERBLENBQUNBO0FBQ0xGLENBQUNBO0FBWFksNEJBQW9CLHVCQVdoQyxDQUFBIiwiZmlsZSI6ImRvbWFpbi9jb2RlR2VuZXJhdGlvblN0cmF0ZWdpZXMvQ2xpY2tFbGVtZW50U3RyYXRlZ3kuanMiLCJzb3VyY2VSb290IjoiL3NyYyJ9

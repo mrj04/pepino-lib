@@ -1,0 +1,9 @@
+I visit the API page
+    Navigate to http://webdriver.io
+    Click <=API>
+
+I search for "$searchText"
+    Type "$searchText" into <input[name='search']>    
+
+I should find "$text" in the results
+    Verify "$text" is in an <a> element

@@ -1,0 +1,51 @@
+{
+  "name": "pepino",
+  "version": "1.0.0",
+  "description": "Pepino's app parses step files into UI automation instructions, sends those instructions to automation services, and reports results.",
+  "main": "build/src/index.js",
+  "scripts": {
+    "test": "gulp tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AcklenAvenue/pepino-app.git"
+  },
+  "author": "Byron Sommardahl",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AcklenAvenue/pepino-app/issues"
+  },
+  "homepage": "https://github.com/AcklenAvenue/pepino-app#readme",
+  "engines": {
+    "node": ">= 0.10"
+  },
+  "bin": {
+    "pepino": "build/src/index.js"
+  },
+  "dependencies": {
+    "bluebird": "^3.3.3",
+    "commander": "^2.9.0",
+    "gherkin": "^3.2.0",
+    "glob": "^7.0.0",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chimp": "^0.28.2",
+    "gulp": "^3.9.1",
+    "gulp-bump": "^2.0.1",
+    "gulp-clean": "^0.3.1",
+    "gulp-cucumber": "0.0.17",
+    "gulp-debug": "^2.1.2",
+    "gulp-duration": "0.0.0",
+    "gulp-insert": "^0.5.0",
+    "gulp-istanbul": "^0.10.3",
+    "gulp-mocha": "^2.2.0",
+    "gulp-sequence": "^0.4.5",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-stats": "0.0.3",
+    "gulp-typescript": "^2.10.0",
+    "gulp-watch": "^4.3.5",
+    "istanbul": "^0.4.2"
+  }
+}

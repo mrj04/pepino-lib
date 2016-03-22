@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for domain/services/CriteriaSegmentMatcher.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">domain/services/</a> CriteriaSegmentMatcher.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>16/16</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">75% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>3/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>3/3</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>16/16</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">36×</span>
+<span class="cline-any cline-yes">36×</span>
+<span class="cline-any cline-yes">36×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">36×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+var _ = require('underscore');
+var StringHelper_1 = require("../../domain/helpers/StringHelper");
+var Pepino;
+(function (Pepino) {
+    class CriteriaSegmentMatcher {
+        get(segmentText, features) {
+            var segments = new Array();
+            _.each(features, (f) =&gt; {
+                _.each(f.scenarios, (s) =&gt; {
+                    _.each(s.segments, (seg) =&gt; {
+                        <span class="missing-if-branch" title="else path not taken" >E</span>if (this.withoutQuotedStrings(segmentText) === this.withoutQuotedStrings(seg.text)) {
+                            segments.push(seg);
+                        }
+                    });
+                });
+            });
+            return segments;
+        }
+        withoutQuotedStrings(text) {
+            var quotedStrings = StringHelper_1.StringHelper.extractTextInQuotes(text);
+            quotedStrings.forEach((s) =&gt; {
+                text = text.replace(s, "");
+            });
+            return text;
+        }
+    }
+    Pepino.CriteriaSegmentMatcher = CriteriaSegmentMatcher;
+})(Pepino = exports.Pepino || (exports.Pepino = {}));
+&nbsp;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRvbWFpbi9zZXJ2aWNlcy9Dcml0ZXJpYVNlZ21lbnRNYXRjaGVyLnRzIl0sIm5hbWVzIjpbIlBlcGlubyIsIlBlcGluby5Dcml0ZXJpYVNlZ21lbnRNYXRjaGVyIiwiUGVwaW5vLkNyaXRlcmlhU2VnbWVudE1hdGNoZXIuZ2V0IiwiUGVwaW5vLkNyaXRlcmlhU2VnbWVudE1hdGNoZXIud2l0aG91dFF1b3RlZFN0cmluZ3MiXSwibWFwcGluZ3MiOiJBQUFBLFlBQVksQ0FBQztBQUdiLElBQVksQ0FBQyxXQUFNLFlBQVksQ0FBQyxDQUFBO0FBQ2hDLDZCQUEyQixtQ0FBbUMsQ0FBQyxDQUFBO0FBRS9ELElBQWMsTUFBTSxDQThCbkI7QUE5QkQsV0FBYyxNQUFNLEVBQUMsQ0FBQztJQU1sQkE7UUFDSUMsR0FBR0EsQ0FBQ0EsV0FBbUJBLEVBQUVBLFFBQXdCQTtZQUU3Q0MsSUFBSUEsUUFBUUEsR0FBR0EsSUFBSUEsS0FBS0EsRUFBbUJBLENBQUNBO1lBQzVDQSxDQUFDQSxDQUFDQSxJQUFJQSxDQUFDQSxRQUFRQSxFQUFFQSxDQUFDQSxDQUFDQTtnQkFDZkEsQ0FBQ0EsQ0FBQ0EsSUFBSUEsQ0FBQ0EsQ0FBQ0EsQ0FBQ0EsU0FBU0EsRUFBRUEsQ0FBQ0EsQ0FBQ0E7b0JBQ2xCQSxDQUFDQSxDQUFDQSxJQUFJQSxDQUFDQSxDQUFDQSxDQUFDQSxRQUFRQSxFQUFFQSxDQUFDQSxHQUFHQTt3QkFDbkJBLEVBQUVBLENBQUFBLENBQUNBLElBQUlBLENBQUNBLG9CQUFvQkEsQ0FBQ0EsV0FBV0EsQ0FBQ0EsS0FBR0EsSUFBSUEsQ0FBQ0Esb0JBQW9CQSxDQUFDQSxHQUFHQSxDQUFDQSxJQUFJQSxDQUFDQSxDQUFDQSxDQUFBQSxDQUFDQTs0QkFDN0VBLFFBQVFBLENBQUNBLElBQUlBLENBQUNBLEdBQUdBLENBQUNBLENBQUNBO3dCQUN2QkEsQ0FBQ0E7b0JBQ0xBLENBQUNBLENBQUNBLENBQUNBO2dCQUNQQSxDQUFDQSxDQUFDQSxDQUFDQTtZQUNQQSxDQUFDQSxDQUFDQSxDQUFDQTtZQUNIQSxNQUFNQSxDQUFDQSxRQUFRQSxDQUFDQTtRQUNwQkEsQ0FBQ0E7UUFFT0Qsb0JBQW9CQSxDQUFDQSxJQUFZQTtZQUNyQ0UsSUFBSUEsYUFBYUEsR0FBR0EsMkJBQVlBLENBQUNBLG1CQUFtQkEsQ0FBQ0EsSUFBSUEsQ0FBQ0EsQ0FBQ0E7WUFDM0RBLGFBQWFBLENBQUNBLE9BQU9BLENBQUNBLENBQUNBLENBQUNBO2dCQUNwQkEsSUFBSUEsR0FBR0EsSUFBSUEsQ0FBQ0EsT0FBT0EsQ0FBQ0EsQ0FBQ0EsRUFBRUEsRUFBRUEsQ0FBQ0EsQ0FBQ0E7WUFDL0JBLENBQUNBLENBQUNBLENBQUNBO1lBQ0hBLE1BQU1BLENBQUNBLElBQUlBLENBQUNBO1FBQ2hCQSxDQUFDQTtJQUNMRixDQUFDQTtJQXZCWUQsNkJBQXNCQSx5QkF1QmxDQSxDQUFBQTtBQUNMQSxDQUFDQSxFQTlCYSxNQUFNLEdBQU4sY0FBTSxLQUFOLGNBQU0sUUE4Qm5CIiwiZmlsZSI6ImRvbWFpbi9zZXJ2aWNlcy9Dcml0ZXJpYVNlZ21lbnRNYXRjaGVyLmpzIiwic291cmNlUm9vdCI6Ii9zcmMifQ==
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Mar 21 2016 18:18:59 GMT-0600 (CST)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>
