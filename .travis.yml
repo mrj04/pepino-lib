@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+- '4.1'
+before_script:
+- npm install -g gulp
+script: 
+- gulp bump
+- gulp
+before_deploy: 
+- rm .gitignore
+deploy:
+  provider: npm
+  skip_cleanup: true
+  email: developers@acklenavenue.com
+  api_key:
+    secure: Mc5zgj91IxAa3NMk7AS3gaV5F3mrLU8yDrMj949umXMLf6BxzNa3Qs3iyEftpn+36mv1UjBG1F7WZGfmBwfgWE/zLzlQYFzGrKegVVbbOIYZ+NWxsV+7A11YWDRvQdejmVuArdJAFDKtXwvtt6U6EJENyinNBxAdK8hdZT1yNkFArKuGAr6b+TGHQZOkg3oQT77sFEk3cGDg2hk3k7nKPsF4S6tkwDk2UuCkYNo4epJS9OfhXgj4jy9LkJNXxmwHPGxjLtkfe3olqSLeMPZT6jo1isN5MLA4/5RhGbCEQcmpnckdR7nkV2uAvGoN1RVHQfLEnhkYd2eu/Sow3XSrMi1ojJ3CFF+5Ke8pk0fuYLn+ErKbYabs9omSK5xASUnOiOt89KAMnOIiQirfd7rb+yCELaerqrYwnQpnBfv50C4drZVJOLPzhYeWe7SgTqHHBgK2AeafCFV2YvYPRBkJFmH8qVbes2s8kIy8xNEDXsgk/Mv9OdbuIrNE5pjithKNFtxD8iJAnKCtv0f5+8NUjx1aH0Ec/nzCzn9BFJqXY6teMLKzh3kypqCOsd8lCgO8/ruHS8d0ABRi4cuuSE84NCz7xQpWlJhtD6HAgyiF4f2flkEwBFd9u34ClmLya3oSWTOMagH6zZl5XTk2PhKF/+yCOyCk7MLIvkFJfOUeg2c=
+  on:
+    tags: false
+    repo: AcklenAvenue/pepino-lib
+    branch: develop
