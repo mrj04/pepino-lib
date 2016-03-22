@@ -1,6 +1,6 @@
 {
   "name": "pepino-lib",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A small library for converting step files written in the pepino language to CucumberJs files.",
   "main": "build/src/index.js",
   "scripts": {
@@ -22,6 +22,10 @@
   "dependencies": {
     "underscore": "^1.8.3"
   },
+  "files" : [
+      "build",
+      "README.md"
+  ],
   "devDependencies": {
     "chai": "^3.5.0",
     "gulp": "^3.9.1",
