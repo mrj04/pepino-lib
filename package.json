@@ -1,5 +1,5 @@
 {
-  "name": "pepino",
+  "name": "pepino-lib",
   "version": "0.0.0",
   "description": "A small library for converting step files written in the pepino language to CucumberJs files.",
   "main": "build/src/index.js",
