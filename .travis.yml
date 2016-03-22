@@ -3,18 +3,18 @@ node_js:
 - '4.1'
 before_script:
 - npm install -g gulp
-script: 
+script:
 - gulp bump
 - gulp
-before_deploy: 
+before_deploy:
 - rm .gitignore
 deploy:
   provider: npm
   skip_cleanup: true
   email: developers@acklenavenue.com
   api_key:
-    secure: Mc5zgj91IxAa3NMk7AS3gaV5F3mrLU8yDrMj949umXMLf6BxzNa3Qs3iyEftpn+36mv1UjBG1F7WZGfmBwfgWE/zLzlQYFzGrKegVVbbOIYZ+NWxsV+7A11YWDRvQdejmVuArdJAFDKtXwvtt6U6EJENyinNBxAdK8hdZT1yNkFArKuGAr6b+TGHQZOkg3oQT77sFEk3cGDg2hk3k7nKPsF4S6tkwDk2UuCkYNo4epJS9OfhXgj4jy9LkJNXxmwHPGxjLtkfe3olqSLeMPZT6jo1isN5MLA4/5RhGbCEQcmpnckdR7nkV2uAvGoN1RVHQfLEnhkYd2eu/Sow3XSrMi1ojJ3CFF+5Ke8pk0fuYLn+ErKbYabs9omSK5xASUnOiOt89KAMnOIiQirfd7rb+yCELaerqrYwnQpnBfv50C4drZVJOLPzhYeWe7SgTqHHBgK2AeafCFV2YvYPRBkJFmH8qVbes2s8kIy8xNEDXsgk/Mv9OdbuIrNE5pjithKNFtxD8iJAnKCtv0f5+8NUjx1aH0Ec/nzCzn9BFJqXY6teMLKzh3kypqCOsd8lCgO8/ruHS8d0ABRi4cuuSE84NCz7xQpWlJhtD6HAgyiF4f2flkEwBFd9u34ClmLya3oSWTOMagH6zZl5XTk2PhKF/+yCOyCk7MLIvkFJfOUeg2c=
+    secure: V0Q0+Z/A/oIT7OFhXA5g3O6tqdpKAcV1aPMmp8lI+xdGdzldA63vj9YiHA/K3U1zxtSRRaoLG5IpLxtcLCCyMDYHchNbbjaYGH8VoC3qBDcA1+ZUSCGawFwVyRjtAxRjbBgJmjyKMHkqbvWvYotdotJ/reLDWqCCz2nHcYMorXX9SeMFhwUxfi/d7Z2EHKue1RjA5ABkuraWMMQLQb69EOTjTyQDbXa8TqtaOqP/ZuwNy42U46nZZ/mKw/wr1yfilhDq+JmkVBSyMMqT4OCa5Mob1l0IVGdn22k79OW6clVniRKpWnvqT4Gmgybfpv3kk0LEAIDEPhJJT2sXOnwYVHRZSiaCH3QfqwusBYDeccXXcE42wFBLBFR2+bpPWU285dG1krZ9HU2eak9u8N6xOoXcsbdR/KiKDaZW+WHoBpdVlSNZzVs69OIETQIypzbUiWMWk7khMR/aRPO3l+h539pTgJTd8e/dv5uCjfPNmsIncBNYbniguvKNHbQXioPRrke6kMRXUMUkTVLr4KBihEp5P36hK97oly7lMQUs3dT+owp7ICN5Np9siOfgSzG3DMHZVBeLgDjMCPQ8TnkTLkukPZ7tZybhGbf3U8QIRD+3ZgYktoJSgQWaAaiScAHqC3edBphw0LK/TYObVL908Ojbv+WLvjncm0P7xxIaxTo=
   on:
     tags: false
     repo: AcklenAvenue/pepino-lib
-    branch: develop
+    branch: develop    
