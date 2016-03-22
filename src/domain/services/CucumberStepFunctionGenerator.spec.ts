@@ -2,12 +2,25 @@
 import chai = require("chai");
 var expect = chai.expect;
 import {Step} from "../../domain/Step";
-import {CriteriaSegment} from "../../domain/CriteriaSegment";
 import {ICodeGenerationStrategy} from "../../domain/ICodeGenerationStrategy";
 import * as PepinoModule from "../../domain/services/CucumberStepFunctionGenerator";
 import {MockStrategy} from "./fakes/MockStrategy";
+import {IllegalStepError} from "./errors/IllegalStepError";
 
 describe("The Cucumber Function Generator", () => {
+
+    describe("when attempting to generate a function with mixed segments", () => {        
+        var generator = new PepinoModule.Pepino.CucumberStepFunctionGenerator(
+            new Array<ICodeGenerationStrategy>());
+        
+        var steps = new Array<Step>(
+            new Step("step 1", "some segment"), 
+            new Step("step 2", "another segment"));
+                    
+        it("should throw an exception", () => {
+            expect(function() {generator.generate(steps);}).to.throw(IllegalStepError);
+        });        
+    });
     
     describe("when generating cucumber code from a feature with steps", () => {
 
@@ -21,12 +34,12 @@ describe("The Cucumber Function Generator", () => {
             new Step("step 1", "some segment"), 
             new Step("step 2", "some segment"));
                     
-        var code = generator.generate("Given", "some segment", steps);
+        var code = generator.generate(steps);
 
         var lines = code.split("\n");
         
         it("should generate the test function signature for the given segment", () => {
-            expect(lines[0]).to.equal("\tthis.Given(/^some segment$/, function() {");
+            expect(lines[0]).to.equal("\tthis.defineStep(/^some segment$/, function() {");
         });
 
         it("should convert the first step text into the correct javascript code", () => {
@@ -51,7 +64,7 @@ describe("The Cucumber Function Generator", () => {
         var steps = new Array<Step>(
             new Step("some step", "some segment"));
                     
-        var code = generator.generate("given", "some segment", steps);
+        var code = generator.generate(steps);
 
         var lines = code.split("\n");
         
@@ -81,14 +94,14 @@ describe("The Cucumber Function Generator", () => {
         var codeGenerationStrategies = new Array<ICodeGenerationStrategy>(mock1);
         
         var generator = new PepinoModule.Pepino.CucumberStepFunctionGenerator(codeGenerationStrategies);
-        var code = generator.generate("Then", "the page title should be \"New Products\"", steps1);
+        var code = generator.generate(steps1);
 
         var lines = code.split("\n");
 
         describe("Generating a segment with variables", () => {
 
             it("should generate the test function signature with a variable", () => {
-                expect(lines[0]).to.equal("\tthis.Then(/^the page title should be \"([^\"]*)\"$/, function(pageTitle) {");
+                expect(lines[0]).to.equal("\tthis.defineStep(/^the page title should be \"([^\"]*)\"$/, function(pageTitle) {");
             });
             
             it("should use the variable in the step", () => {

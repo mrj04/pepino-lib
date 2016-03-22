@@ -1,21 +1,21 @@
 {
   "name": "pepino",
-  "version": "1.0.0",
-  "description": "Pepino's app parses step files into UI automation instructions, sends those instructions to automation services, and reports results.",
+  "version": "0.0.0",
+  "description": "A small library for converting step files written in the pepino language to CucumberJs files.",
   "main": "build/src/index.js",
   "scripts": {
     "test": "gulp tests"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AcklenAvenue/pepino-app.git"
+    "url": "git+https://github.com/AcklenAvenue/pepino-lib.git"
   },
   "author": "Byron Sommardahl",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/AcklenAvenue/pepino-app/issues"
+    "url": "https://github.com/AcklenAvenue/pepino-lib/issues"
   },
-  "homepage": "https://github.com/AcklenAvenue/pepino-app#readme",
+  "homepage": "https://github.com/AcklenAvenue/pepino-lib#readme",
   "engines": {
     "node": ">= 0.10"
   },

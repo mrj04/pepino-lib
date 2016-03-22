@@ -2,7 +2,6 @@
 import chai = require("chai");
 var expect = chai.expect;
 import {Step} from "../../domain/Step";
-import {CriteriaSegment} from "../../domain/CriteriaSegment";
 import {ICodeGenerationStrategy} from "../../domain/ICodeGenerationStrategy";
 import * as PepinoModule from "../../domain/services/CommonJsCucumberStepFileGenerator";
 

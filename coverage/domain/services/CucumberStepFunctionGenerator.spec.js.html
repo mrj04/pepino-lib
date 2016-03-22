@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>41/41</span>
+        <span class='fraction'>48/48</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/0</span>
+        <span class='fraction'>1/1</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>41/41</span>
+        <span class='fraction'>47/47</span>
       </div>
     </div>
   </div>
@@ -109,13 +109,29 @@
 64
 65
 66
-67</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+67
+68
+69
+70
+71
+72
+73
+74
+75</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -181,16 +197,24 @@ var expect = chai.expect;
 var Step_1 = require("../../domain/Step");
 var PepinoModule = require("../../domain/services/CucumberStepFunctionGenerator");
 var MockStrategy_1 = require("./fakes/MockStrategy");
+var IllegalStepError_1 = require("./errors/IllegalStepError");
 describe("The Cucumber Function Generator", () =&gt; {
+    describe("when attempting to generate a function with mixed segments", () =&gt; {
+        var generator = new PepinoModule.Pepino.CucumberStepFunctionGenerator(new Array());
+        var steps = new Array(new Step_1.Step("step 1", "some segment"), new Step_1.Step("step 2", "another segment"));
+        it("should throw an exception", () =&gt; {
+            expect(function () { generator.generate(steps); }).to.throw(IllegalStepError_1.IllegalStepError);
+        });
+    });
     describe("when generating cucumber code from a feature with steps", () =&gt; {
         var mock1 = new MockStrategy_1.MockStrategy("step 1", "byron");
         var mock2 = new MockStrategy_1.MockStrategy("step 2", "javascript");
         var generator = new PepinoModule.Pepino.CucumberStepFunctionGenerator(new Array(mock1, mock2));
         var steps = new Array(new Step_1.Step("step 1", "some segment"), new Step_1.Step("step 2", "some segment"));
-        var code = generator.generate("Given", "some segment", steps);
+        var code = generator.generate(steps);
         var lines = code.split("\n");
         it("should generate the test function signature for the given segment", () =&gt; {
-            expect(lines[0]).to.equal("\tthis.Given(/^some segment$/, function() {");
+            expect(lines[0]).to.equal("\tthis.defineStep(/^some segment$/, function() {");
         });
         it("should convert the first step text into the correct javascript code", () =&gt; {
             expect(lines[1]).to.equal("\t\tbyron");
@@ -206,7 +230,7 @@ describe("The Cucumber Function Generator", () =&gt; {
         var no_matching_strategies = new Array();
         var generator = new PepinoModule.Pepino.CucumberStepFunctionGenerator(no_matching_strategies);
         var steps = new Array(new Step_1.Step("some step", "some segment"));
-        var code = generator.generate("given", "some segment", steps);
+        var code = generator.generate(steps);
         var lines = code.split("\n");
         it("should return the code in commented form", () =&gt; {
             expect(lines[1]).to.equal("\t\t//some step");
@@ -227,11 +251,11 @@ describe("The Cucumber Function Generator", () =&gt; {
         var mock1 = new MockStrategy_1.MockStrategy("Verify page title is \"$pageTitle\"", "assert(title, pageTitle);");
         var codeGenerationStrategies = new Array(mock1);
         var generator = new PepinoModule.Pepino.CucumberStepFunctionGenerator(codeGenerationStrategies);
-        var code = generator.generate("Then", "the page title should be \"New Products\"", steps1);
+        var code = generator.generate(steps1);
         var lines = code.split("\n");
         describe("Generating a segment with variables", () =&gt; {
             it("should generate the test function signature with a variable", () =&gt; {
-                expect(lines[0]).to.equal("\tthis.Then(/^the page title should be \"([^\"]*)\"$/, function(pageTitle) {");
+                expect(lines[0]).to.equal("\tthis.defineStep(/^the page title should be \"([^\"]*)\"$/, function(pageTitle) {");
             });
             it("should use the variable in the step", () =&gt; {
                 expect(lines[1]).to.equal("\t\tassert(title, pageTitle);");
@@ -240,14 +264,14 @@ describe("The Cucumber Function Generator", () =&gt; {
     });
 });
 &nbsp;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRvbWFpbi9zZXJ2aWNlcy9DdWN1bWJlclN0ZXBGdW5jdGlvbkdlbmVyYXRvci5zcGVjLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLFlBQVksQ0FBQztBQUNiLElBQU8sSUFBSSxXQUFXLE1BQU0sQ0FBQyxDQUFDO0FBQzlCLElBQUksTUFBTSxHQUFHLElBQUksQ0FBQyxNQUFNLENBQUM7QUFDekIscUJBQW1CLG1CQUFtQixDQUFDLENBQUE7QUFHdkMsSUFBWSxZQUFZLFdBQU0scURBQXFELENBQUMsQ0FBQTtBQUNwRiw2QkFBMkIsc0JBQXNCLENBQUMsQ0FBQTtBQUVsRCxRQUFRLENBQUMsaUNBQWlDLEVBQUU7SUFFeEMsUUFBUSxDQUFDLHlEQUF5RCxFQUFFO1FBRWhFLElBQUksS0FBSyxHQUFHLElBQUksMkJBQVksQ0FBQyxRQUFRLEVBQUUsT0FBTyxDQUFDLENBQUM7UUFDaEQsSUFBSSxLQUFLLEdBQUcsSUFBSSwyQkFBWSxDQUFDLFFBQVEsRUFBRSxZQUFZLENBQUMsQ0FBQztRQUVyRCxJQUFJLFNBQVMsR0FBRyxJQUFJLFlBQVksQ0FBQyxNQUFNLENBQUMsNkJBQTZCLENBQ2pFLElBQUksS0FBSyxDQUEwQixLQUFLLEVBQUUsS0FBSyxDQUFDLENBQUMsQ0FBQztRQUV0RCxJQUFJLEtBQUssR0FBRyxJQUFJLEtBQUssQ0FDakIsSUFBSSxXQUFJLENBQUMsUUFBUSxFQUFFLGNBQWMsQ0FBQyxFQUNsQyxJQUFJLFdBQUksQ0FBQyxRQUFRLEVBQUUsY0FBYyxDQUFDLENBQUMsQ0FBQztRQUV4QyxJQUFJLElBQUksR0FBRyxTQUFTLENBQUMsUUFBUSxDQUFDLE9BQU8sRUFBRSxjQUFjLEVBQUUsS0FBSyxDQUFDLENBQUM7UUFFOUQsSUFBSSxLQUFLLEdBQUcsSUFBSSxDQUFDLEtBQUssQ0FBQyxJQUFJLENBQUMsQ0FBQztRQUU3QixFQUFFLENBQUMsbUVBQW1FLEVBQUU7WUFDcEUsTUFBTSxDQUFDLEtBQUssQ0FBQyxDQUFDLENBQUMsQ0FBQyxDQUFDLEVBQUUsQ0FBQyxLQUFLLENBQUMsNkNBQTZDLENBQUMsQ0FBQztRQUM3RSxDQUFDLENBQUMsQ0FBQztRQUVILEVBQUUsQ0FBQyxxRUFBcUUsRUFBRTtZQUN0RSxNQUFNLENBQUMsS0FBSyxDQUFDLENBQUMsQ0FBQyxDQUFDLENBQUMsRUFBRSxDQUFDLEtBQUssQ0FBQyxXQUFXLENBQUMsQ0FBQztRQUMzQyxDQUFDLENBQUMsQ0FBQztRQUVILEVBQUUsQ0FBQyxzRUFBc0UsRUFBRTtZQUN2RSxNQUFNLENBQUMsS0FBSyxDQUFDLENBQUMsQ0FBQyxDQUFDLENBQUMsRUFBRSxDQUFDLEtBQUssQ0FBQyxnQkFBZ0IsQ0FBQyxDQUFDO1FBQ2hELENBQUMsQ0FBQyxDQUFDO1FBRUgsRUFBRSxDQUFDLDRCQUE0QixFQUFFO1lBQzdCLE1BQU0sQ0FBQyxLQUFLLENBQUMsQ0FBQyxDQUFDLENBQUMsQ0FBQyxFQUFFLENBQUMsS0FBSyxDQUFDLE9BQU8sQ0FBQyxDQUFDO1FBQ3ZDLENBQUMsQ0FBQyxDQUFDO0lBQ1AsQ0FBQyxDQUFDLENBQUM7SUFFSCxRQUFRLENBQUMsZ0VBQWdFLEVBQUU7UUFFdkUsSUFBSSxzQkFBc0IsR0FBRyxJQUFJLEtBQUssRUFBMkIsQ0FBQztRQUNsRSxJQUFJLFNBQVMsR0FBRyxJQUFJLFlBQVksQ0FBQyxNQUFNLENBQUMsNkJBQTZCLENBQ2pFLHNCQUFzQixDQUFDLENBQUM7UUFFNUIsSUFBSSxLQUFLLEdBQUcsSUFBSSxLQUFLLENBQ2pCLElBQUksV0FBSSxDQUFDLFdBQVcsRUFBRSxjQUFjLENBQUMsQ0FBQyxDQUFDO1FBRTNDLElBQUksSUFBSSxHQUFHLFNBQVMsQ0FBQyxRQUFRLENBQUMsT0FBTyxFQUFFLGNBQWMsRUFBRSxLQUFLLENBQUMsQ0FBQztRQUU5RCxJQUFJLEtBQUssR0FBRyxJQUFJLENBQUMsS0FBSyxDQUFDLElBQUksQ0FBQyxDQUFDO1FBRTdCLEVBQUUsQ0FBQywwQ0FBMEMsRUFBRTtZQUMzQyxNQUFNLENBQUMsS0FBSyxDQUFDLENBQUMsQ0FBQyxDQUFDLENBQUMsRUFBRSxDQUFDLEtBQUssQ0FBQyxpQkFBaUIsQ0FBQyxDQUFDO1FBQ2pELENBQUMsQ0FBQyxDQUFDO0lBQ1AsQ0FBQyxDQUFDLENBQUM7SUFFSCxRQUFRLENBQUMseURBQXlELEVBQUU7UUFFaEUsV0FBVztRQUNYLGdDQUFnQztRQUNoQyxrQ0FBa0M7UUFDbEMsaUVBQWlFO1FBQ2pFLDRDQUE0QztRQUM1Qyw0REFBNEQ7UUFDNUQsMkRBQTJEO1FBRTNELFFBQVE7UUFDUiwrQ0FBK0M7UUFDL0Msd0NBQXdDO1FBRXhDLElBQUksTUFBTSxHQUFHLElBQUksS0FBSyxDQUFPLElBQUksV0FBSSxDQUFDLHFDQUFxQyxFQUNuQyx5Q0FBeUMsQ0FBQyxDQUFDLENBQUM7UUFFcEYsSUFBSSxLQUFLLEdBQUcsSUFBSSwyQkFBWSxDQUFDLHFDQUFxQyxFQUFFLDJCQUEyQixDQUFDLENBQUM7UUFDakcsSUFBSSx3QkFBd0IsR0FBRyxJQUFJLEtBQUssQ0FBMEIsS0FBSyxDQUFDLENBQUM7UUFFekUsSUFBSSxTQUFTLEdBQUcsSUFBSSxZQUFZLENBQUMsTUFBTSxDQUFDLDZCQUE2QixDQUFDLHdCQUF3QixDQUFDLENBQUM7UUFDaEcsSUFBSSxJQUFJLEdBQUcsU0FBUyxDQUFDLFFBQVEsQ0FBQyxNQUFNLEVBQUUsMkNBQTJDLEVBQUUsTUFBTSxDQUFDLENBQUM7UUFFM0YsSUFBSSxLQUFLLEdBQUcsSUFBSSxDQUFDLEtBQUssQ0FBQyxJQUFJLENBQUMsQ0FBQztRQUU3QixRQUFRLENBQUMscUNBQXFDLEVBQUU7WUFFNUMsRUFBRSxDQUFDLDZEQUE2RCxFQUFFO2dCQUM5RCxNQUFNLENBQUMsS0FBSyxDQUFDLENBQUMsQ0FBQyxDQUFDLENBQUMsRUFBRSxDQUFDLEtBQUssQ0FBQyw4RUFBOEUsQ0FBQyxDQUFDO1lBQzlHLENBQUMsQ0FBQyxDQUFDO1lBRUgsRUFBRSxDQUFDLHFDQUFxQyxFQUFFO2dCQUN0QyxNQUFNLENBQUMsS0FBSyxDQUFDLENBQUMsQ0FBQyxDQUFDLENBQUMsRUFBRSxDQUFDLEtBQUssQ0FBQywrQkFBK0IsQ0FBQyxDQUFDO1lBQy9ELENBQUMsQ0FBQyxDQUFDO1FBQ1AsQ0FBQyxDQUFDLENBQUM7SUFDUCxDQUFDLENBQUMsQ0FBQztBQUNQLENBQUMsQ0FBQyxDQUFDIiwiZmlsZSI6ImRvbWFpbi9zZXJ2aWNlcy9DdWN1bWJlclN0ZXBGdW5jdGlvbkdlbmVyYXRvci5zcGVjLmpzIiwic291cmNlUm9vdCI6Ii9zcmMifQ==
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRvbWFpbi9zZXJ2aWNlcy9DdWN1bWJlclN0ZXBGdW5jdGlvbkdlbmVyYXRvci5zcGVjLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLFlBQVksQ0FBQztBQUNiLElBQU8sSUFBSSxXQUFXLE1BQU0sQ0FBQyxDQUFDO0FBQzlCLElBQUksTUFBTSxHQUFHLElBQUksQ0FBQyxNQUFNLENBQUM7QUFDekIscUJBQW1CLG1CQUFtQixDQUFDLENBQUE7QUFFdkMsSUFBWSxZQUFZLFdBQU0scURBQXFELENBQUMsQ0FBQTtBQUNwRiw2QkFBMkIsc0JBQXNCLENBQUMsQ0FBQTtBQUNsRCxpQ0FBK0IsMkJBQTJCLENBQUMsQ0FBQTtBQUUzRCxRQUFRLENBQUMsaUNBQWlDLEVBQUU7SUFFeEMsUUFBUSxDQUFDLDREQUE0RCxFQUFFO1FBQ25FLElBQUksU0FBUyxHQUFHLElBQUksWUFBWSxDQUFDLE1BQU0sQ0FBQyw2QkFBNkIsQ0FDakUsSUFBSSxLQUFLLEVBQTJCLENBQUMsQ0FBQztRQUUxQyxJQUFJLEtBQUssR0FBRyxJQUFJLEtBQUssQ0FDakIsSUFBSSxXQUFJLENBQUMsUUFBUSxFQUFFLGNBQWMsQ0FBQyxFQUNsQyxJQUFJLFdBQUksQ0FBQyxRQUFRLEVBQUUsaUJBQWlCLENBQUMsQ0FBQyxDQUFDO1FBRTNDLEVBQUUsQ0FBQywyQkFBMkIsRUFBRTtZQUM1QixNQUFNLENBQUMsY0FBWSxTQUFTLENBQUMsUUFBUSxDQUFDLEtBQUssQ0FBQyxDQUFDLENBQUEsQ0FBQyxDQUFDLENBQUMsRUFBRSxDQUFDLEtBQUssQ0FBQyxtQ0FBZ0IsQ0FBQyxDQUFDO1FBQy9FLENBQUMsQ0FBQyxDQUFDO0lBQ1AsQ0FBQyxDQUFDLENBQUM7SUFFSCxRQUFRLENBQUMseURBQXlELEVBQUU7UUFFaEUsSUFBSSxLQUFLLEdBQUcsSUFBSSwyQkFBWSxDQUFDLFFBQVEsRUFBRSxPQUFPLENBQUMsQ0FBQztRQUNoRCxJQUFJLEtBQUssR0FBRyxJQUFJLDJCQUFZLENBQUMsUUFB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QkFBNkIsQ0FBQyx3QkFBd0IsQ0FBQyxDQUFDO1FBQ2hHLElBQUksSUFBSSxHQUFHLFNBQVMsQ0FBQyxRQUFRLENBQUMsTUFBTSxDQUFDLENBQUM7UUFFdEMsSUFBSSxLQUFLLEdBQUcsSUFBSSxDQUFDLEtBQUssQ0FBQyxJQUFJLENBQUMsQ0FBQztRQUU3QixRQUFRLENBQUMscUNBQXFDLEVBQUU7WUFFNUMsRUFBRSxDQUFDLDZEQUE2RCxFQUFFO2dCQUM5RCxNQUFNLENBQUMsS0FBSyxDQUFDLENBQUMsQ0FBQyxDQUFDLENBQUMsRUFBRSxDQUFDLEtBQUssQ0FBQyxvRkFBb0YsQ0FBQyxDQUFDO1lBQ3BILENBQUMsQ0FBQyxDQUFDO1lBRUgsRUFBRSxDQUFDLHFDQUFxQyxFQUFFO2dCQUN0QyxNQUFNLENBQUMsS0FBSyxDQUFDLENBQUMsQ0FBQyxDQUFDLENBQUMsRUFBRSxDQUFDLEtBQUssQ0FBQywrQkFBK0IsQ0FBQyxDQUFDO1lBQy9ELENBQUMsQ0FBQyxDQUFDO1FBQ1AsQ0FBQyxDQUFDLENBQUM7SUFDUCxDQUFDLENBQUMsQ0FBQztBQUNQLENBQUMsQ0FBQyxDQUFDIiwiZmlsZSI6ImRvbWFpbi9zZXJ2aWNlcy9DdWN1bWJlclN0ZXBGdW5jdGlvbkdlbmVyYXRvci5zcGVjLmpzIiwic291cmNlUm9vdCI6Ii9zcmMifQ==
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Mar 21 2016 18:18:59 GMT-0600 (CST)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Mar 22 2016 11:25:41 GMT-0600 (CST)
 </div>
 </div>
 <script src="../../prettify.js"></script>

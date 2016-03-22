@@ -3,7 +3,6 @@ import chai = require("chai");
 var expect = chai.expect;
 var fs = require('fs');
 var glob = require('glob');
-import {Feature} from "../../domain/Feature";
 import * as f from "../../domain/services/StepParser";
 import {Step} from "../../domain/Step";
 

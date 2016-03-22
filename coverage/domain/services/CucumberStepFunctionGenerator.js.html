@@ -22,22 +22,22 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>29/29</span>
+        <span class='fraction'>34/34</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">83.33% </span>
+        <span class="strong">87.5% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>5/6</span>
+        <span class='fraction'>7/8</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>6/6</span>
+        <span class='fraction'>7/7</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>28/28</span>
+        <span class='fraction'>33/33</span>
       </div>
     </div>
   </div>
@@ -95,11 +95,21 @@
 50
 51
 52
-53</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
@@ -107,10 +117,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
 <span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3×</span>
@@ -128,7 +147,6 @@
 <span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -150,6 +168,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
 var StringHelper_1 = require("../../domain/helpers/StringHelper");
 var _ = require('underscore');
+var IllegalStepError_1 = require("./errors/IllegalStepError");
 var Pepino;
 (function (Pepino) {
     class NullCodeGenerationStrategy {
@@ -161,14 +180,23 @@ var Pepino;
         constructor(codeGenerationStrategies) {
             this._codeGenerators = codeGenerationStrategies;
         }
-        generate(segmentType, criteriaSegmentText, steps) {
-            return this.generateEntireFunction(segmentType, steps);
+        generate(steps) {
+            this.EnsureStepsOnlyHaveOneSegment(steps);
+            return this.generateEntireFunction(steps);
         }
-        generateEntireFunction(segmentType, steps) {
+        EnsureStepsOnlyHaveOneSegment(steps) {
+            var groups = _.unique(steps, (step) =&gt; {
+                return step.segment;
+            });
+            if (groups.length &gt; 1) {
+                throw new IllegalStepError_1.IllegalStepError(groups[1].segment);
+            }
+        }
+        generateEntireFunction(steps) {
             const tab = "\t";
             var stepSegmentText = _.first(steps).segment;
             var variables = StringHelper_1.StringHelper.extractTextInQuotes(stepSegmentText);
-            var lines = [tab + this.generateFunctionSignature(segmentType, stepSegmentText, variables)];
+            var lines = [tab + this.generateFunctionSignature(stepSegmentText, variables)];
             _.each(steps, (step) =&gt; {
                 var gen = _.find(this._codeGenerators, (g) =&gt; { return g.canGenerate(step.text); })
                     || new NullCodeGenerationStrategy();
@@ -179,8 +207,7 @@ var Pepino;
             lines.push("");
             return lines.join('\n');
         }
-        generateFunctionSignature(type, stepSegmentText, variables) {
-            var formattedType = StringHelper_1.StringHelper.capitalizeFirstLetter(type);
+        generateFunctionSignature(stepSegmentText, variables) {
             const anyString = "\"([^\"]*)\"";
             var args = _.map(variables, (v) =&gt; {
                 return v.replace("$", "");
@@ -191,21 +218,21 @@ var Pepino;
                     doctoredText = doctoredText.replace("\"" + v + "\"", anyString);
                 }
             });
-            return "this." + formattedType + "(/^" + doctoredText + "$/, function(" + args + ") {";
+            return "this.defineStep(/^" + doctoredText + "$/, function(" + args + ") {";
         }
         ;
     }
     Pepino.CucumberStepFunctionGenerator = CucumberStepFunctionGenerator;
 })(Pepino = exports.Pepino || (exports.Pepino = {}));
 &nbsp;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRvbWFpbi9zZXJ2aWNlcy9DdWN1bWJlclN0ZXBGdW5jdGlvbkdlbmVyYXRvci50cyJdLCJuYW1lcyI6WyJQZXBpbm8iLCJQZXBpbm8uTnVsbENvZGVHZW5lcmF0aW9uU3RyYXRlZ3kiLCJQZXBpbm8uTnVsbENvZGVHZW5lcmF0aW9uU3RyYXRlZ3kuZ2VuZXJhdGUiLCJQZXBpbm8uQ3VjdW1iZXJTdGVwRnVuY3Rpb25HZW5lcmF0b3IiLCJQZXBpbm8uQ3VjdW1iZXJTdGVwRnVuY3Rpb25HZW5lcmF0b3IuY29uc3RydWN0b3IiLCJQZXBpbm8uQ3VjdW1iZXJTdGVwRnVuY3Rpb25HZW5lcmF0b3IuZ2VuZXJhdGUiLCJQZXBpbm8uQ3VjdW1iZXJTdGVwRnVuY3Rpb25HZW5lcmF0b3IuZ2VuZXJhdGVFbnRpcmVGdW5jdGlvbiIsIlBlcGluby5DdWN1bWJlclN0ZXBGdW5jdGlvbkdlbmVyYXRvci5nZW5lcmF0ZUZ1bmN0aW9uU2lnbmF0dXJlIl0sIm1hcHBpbmdzIjoiQUFBQSxZQUFZLENBQUM7QUFLYiw2QkFBMkIsbUNBQW1DLENBQUMsQ0FBQTtBQUMvRCxJQUFZLENBQUMsV0FBTSxZQUFZLENBQUMsQ0FBQTtBQUVoQyxJQUFjLE1BQU0sQ0EwRG5CO0FBMURELFdBQWMsTUFBTSxFQUFDLENBQUM7SUFFbEJBO1FBQ0lDLFFBQVFBLENBQUNBLElBQVlBO1lBQ2pCQyxNQUFNQSxDQUFDQSxJQUFJQSxHQUFHQSxJQUFJQSxDQUFDQTtRQUN2QkEsQ0FBQ0E7SUFDTEQsQ0FBQ0E7SUFFREQ7UUFJSUcsWUFBWUEsd0JBQXdEQTtZQUNoRUMsSUFBSUEsQ0FBQ0EsZUFBZUEsR0FBR0Esd0JBQXdCQSxDQUFDQTtRQUNwREEsQ0FBQ0E7UUFFREQsUUFBUUEsQ0FBQ0EsV0FBbUJBLEVBQUVBLG1CQUEyQkEsRUFBRUEsS0FBa0JBO1lBQ3pFRSxNQUFNQSxDQUFDQSxJQUFJQSxDQUFDQSxzQkFBc0JBLENBQUNBLFdBQVdBLEVBQUVBLEtBQUtBLENBQUNBLENBQUNBO1FBQzNEQSxD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
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRvbWFpbi9zZXJ2aWNlcy9DdWN1bWJlclN0ZXBGdW5jdGlvbkdlbmVyYXRvci50cyJdLCJuYW1lcyI6WyJQZXBpbm8iLCJQZXBpbm8uTnVsbENvZGVHZW5lcmF0aW9uU3RyYXRlZ3kiLCJQZXBpbm8uTnVsbENvZGVHZW5lcmF0aW9uU3RyYXRlZ3kuZ2VuZXJhdGUiLCJQZXBpbm8uQ3VjdW1iZXJTdGVwRnVuY3Rpb25HZW5lcmF0b3IiLCJQZXBpbm8uQ3VjdW1iZXJTdGVwRnVuY3Rpb25HZW5lcmF0b3IuY29uc3RydWN0b3IiLCJQZXBpbm8uQ3VjdW1iZXJTdGVwRnVuY3Rpb25HZW5lcmF0b3IuZ2VuZXJhdGUiLCJQZXBpbm8uQ3VjdW1iZXJTdGVwRnVuY3Rpb25HZW5lcmF0b3IuRW5zdXJlU3RlcHNPbmx5SGF2ZU9uZVNlZ21lbnQiLCJQZXBpbm8uQ3VjdW1iZXJTdGVwRnVuY3Rpb25HZW5lcmF0b3IuZ2VuZXJhdGVFbnRpcmVGdW5jdGlvbiIsIlBlcGluby5DdWN1bWJlclN0ZXBGdW5jdGlvbkdlbmVyYXRvci5nZW5lcmF0ZUZ1bmN0aW9uU2lnbmF0dXJlIl0sIm1hcHBpbmdzIjoiQUFBQSxZQUFZLENBQUM7QUFJYiw2QkFBMkIsbUNBQW1DLENBQUMsQ0FBQTtBQUMvRCxJQUFZLENBQUMsV0FBTSxZQUFZLENBQUMsQ0FBQTtBQUNoQyxpQ0FBK0IsMkJBQTJCLENBQUMsQ0FBQTtBQUUzRCxJQUFjLE1BQU0sQ0FtRW5CO0FBbkVELFdBQWMsTUFBTSxFQUFDLENBQUM7SUFFbEJBO1FBQ0lDLFFBQVFBLENBQUNBLElBQVlBO1lBQ2pCQyxNQUFNQSxDQUFDQSxJQUFJQSxHQUFHQSxJQUFJQSxDQUFDQTtRQUN2QkEsQ0FBQ0E7SUFDTEQsQ0FBQ0E7SUFFREQ7UUFJSUcsWUFBWUEsd0JBQXdEQTtZQUNoRUMsSUFBSUEsQ0FBQ0EsZUFBZUEsR0FBR0Esd0JBQXdCQSxDQUFDQTtRQUNwREEsQ0FBQ0E7UUFFREQsUUFBUUEsQ0FBQ0EsS0FBa0JBO1lBQ3ZCRSxJQUFJQSxDQUFDQSw2QkFBNkJBLENBQUNBLEtBQUtBLENBQUNBLENBQUNBO1lBQzFDQSxNQUFNQSxDQUFDQSxJQUFJQSxDQUFDQSxzQkFBc0JBLENBQUNBLEtBQUtBLENBQUNBLENBQUNBO1FBQzlDQSxDQUFDQTtRQUVPRiw2QkFBNkJBLENBQUNBLEtBQWtCQTtZQUNwREcsSUFBSUEsTUFBTUEsR0FBR0EsQ0FBQ0EsQ0FBQ0EsTUFBTUEsQ0FBQ0EsS0FBS0EsRUFBRUEsQ0FBQ0EsSUFBSUE7Z0JBQzlCQSxNQUFNQSxDQUFDQSxJQUFJQSxDQUFDQSxPQUFPQSxDQUFDQTtZQUN4QkEsQ0FBQ0EsQ0FBQ0EsQ0FBQ0E7WUFDSEEsRUFBRUEsQ0FBQUEsQ0FBQ0EsTUFBTUEsQ0FBQ0EsTUFBTUEsR0FBR0EsQ0FBQ0EsQ0FBQ0EsQ0FBQ0EsQ0FBQ0E7Z0JBQ25CQSxNQUFNQSxJQUFJQSxtQ0FBZ0JBLENBQUNBLE1BQU1BLENBQUNBLENBQUNBLENBQUNBLENBQUNBLE9BQU9BLENBQUNBLENBQUNBO1lBQ2xEQSxDQUFDQTtRQUNMQSxDQUFDQTtRQUVPSCxzQkFBc0JBLENBQUNBLEtBQWtCQTtZQUM3Q0ksTUFBTUEsR0FBR0EsR0FBR0EsSUFBSUEsQ0FBQ0E7WUFFakJBLElBQUlBLGVBQWVBLEdBQUdBLENBQUNBLENBQUNBLEtBQUtBLENBQUNBLEtBQUtBLENBQUNBLENBQUNBLE9BQU9BLENBQUNBO1lBQzdDQSxJQUFJQSxTQUFTQSxHQUFHQSwyQkFBWUEsQ0FBQ0EsbUJBQW1CQSxDQUFDQSxlQUFlQSxDQUFDQSxDQUFDQTtZQUNsRUEsSUFBSUEsS0FBS0EsR0FBR0EsQ0FBQ0EsR0FBR0EsR0FBR0EsSUFBSUEsQ0FBQ0EseUJBQXlCQSxDQUFDQSxlQUFlQSxFQUFFQSxTQUFTQSxDQUFDQSxDQUFDQSxDQUFDQTtZQUUvRUEsQ0FBQ0EsQ0FBQ0EsSUFBSUEsQ0FBQ0EsS0FBS0EsRUFBRUEsQ0FBQ0EsSUFBSUE7Z0JBQ2ZBLElBQUlBLEdBQUdBLEdBQUdBLENBQUNBLENBQUNBLElBQUlBLENBQUNBLElBQUlBLENBQUNBLGVBQWVBLEVBQUVBLENBQUNBLENBQUNBLE9BQU9BLE1BQU1BLENBQUNBLENBQUNBLENBQUNBLFdBQVdBLENBQUNBLElBQUlBLENBQUNBLElBQUlBLENBQUNBLENBQUFBLENBQUNBLENBQUNBLENBQUNBO3VCQUMzRUEsSUFBSUEsMEJBQTBCQSxFQUFFQSxDQUFDQTtnQkFFeENBLElBQUlBLGFBQWFBLEdBQUdBLEdBQUdBLENBQUNBLFFBQVFBLENBQUNBLElBQUlBLENBQUNBLElBQUlBLENBQUNBLENBQUNBO2dCQUM1Q0EsS0FBS0EsQ0FBQ0EsSUFBSUEsQ0FBQ0EsR0FBR0EsR0FBR0EsR0FBR0EsR0FBR0EsYUFBYUEsQ0FBQ0EsQ0FBQ0E7WUFFMUNBLENBQUNBLENBQUNBLENBQUNBO1lBRUhBLEtBQUtBLENBQUNBLElBQUlBLENBQUNBLEdBQUdBLEdBQUdBLEtBQUtBLENBQUNBLENBQUNBO1lBQ3hCQSxLQUFLQSxDQUFDQSxJQUFJQSxDQUFDQSxFQUFFQSxDQUFDQSxDQUFDQTtZQUVmQSxNQUFNQSxDQUFDQSxLQUFLQSxDQUFDQSxJQUFJQSxDQUFDQSxJQUFJQSxDQUFDQSxDQUFDQTtRQUM1QkEsQ0FBQ0E7UUFFT0oseUJBQXlCQSxDQUFDQSxlQUF1QkEsRUFBRUEsU0FBd0JBO1lBQy9FSyxNQUFNQSxTQUFTQSxHQUFXQSxjQUFjQSxDQUFDQTtZQUN6Q0EsSUFBSUEsSUFBSUEsR0FBR0EsQ0FBQ0EsQ0FBQ0EsR0FBR0EsQ0FBQ0EsU0FBU0EsRUFBRUEsQ0FBQ0EsQ0FBQ0E7Z0JBQzFCQSxNQUFNQSxDQUFDQSxDQUFDQSxDQUFDQSxPQUFPQSxDQUFDQSxHQUFHQSxFQUFFQSxFQUFFQSxDQUFDQSxDQUFDQTtZQUM5QkEsQ0FBQ0EsQ0FBQ0EsQ0FBQ0EsSUFBSUEsQ0FBQ0EsSUFBSUEsQ0FBQ0EsQ0FBQ0E7WUFDZEEsSUFBSUEsWUFBWUEsR0FBR0EsZUFBZUEsQ0FBQ0E7WUFDbkNBLFNBQVNBLENBQUNBLE9BQU9BLENBQUNBLENBQUNBLENBQUNBO2dCQUNoQkEsRUFBRUEsQ0FBQUEsQ0FBQ0EsQ0FBQ0EsQ0FBQ0EsVUFBVUEsQ0FBQ0EsR0FBR0EsQ0FBQ0EsQ0FBQ0EsQ0FBQ0EsQ0FBQ0E7b0JBQ25CQSxZQUFZQSxHQUFHQSxZQUFZQSxDQUFDQSxPQUFPQSxDQUFDQSxJQUFJQSxHQUFHQSxDQUFDQSxHQUFHQSxJQUFJQSxFQUFFQSxTQUFTQSxDQUFDQSxDQUFDQTtnQkFDcEVBLENBQUNBO1lBQ0xBLENBQUNBLENBQUNBLENBQUNBO1lBRUhBLE1BQU1BLENBQUNBLG9CQUFvQkEsR0FBR0EsWUFBWUEsR0FBR0EsZUFBZUEsR0FBR0EsSUFBSUEsR0FBR0EsS0FBS0EsQ0FBQ0E7UUFDaEZBLENBQUNBOztJQUNMTCxDQUFDQTtJQTFEWUgsb0NBQTZCQSxnQ0EwRHpDQSxDQUFBQTtBQUNMQSxDQUFDQSxFQW5FYSxNQUFNLEdBQU4sY0FBTSxLQUFOLGNBQU0sUUFtRW5CIiwiZmlsZSI6ImRvbWFpbi9zZXJ2aWNlcy9DdWN1bWJlclN0ZXBGdW5jdGlvbkdlbmVyYXRvci5qcyIsInNvdXJjZVJvb3QiOiIvc3JjIn0=
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Mar 21 2016 18:18:59 GMT-0600 (CST)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Mar 22 2016 11:25:41 GMT-0600 (CST)
 </div>
 </div>
 <script src="../../prettify.js"></script>
