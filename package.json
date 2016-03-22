@@ -19,9 +19,6 @@
   "engines": {
     "node": ">= 0.10"
   },
-  "bin": {
-    "pepino": "build/src/index.js"
-  },
   "dependencies": {
     "underscore": "^1.8.3"
   },
