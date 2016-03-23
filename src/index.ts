@@ -31,7 +31,7 @@ class converter {
                 private stepGenerator: PepinoModule.Pepino.IStepFunctionGenerator){        
     }
     
-    converter(pepinoStepFile: string): string {
+    convert(pepinoStepFile: string): string {
         var steps = this.parser.parse(pepinoStepFile);
         
         var stepsBySegment = _.groupBy(steps, (step) => {

@@ -38,7 +38,7 @@ gulp.task('compile', ['clean-build'],function(){
 });
 
 gulp.task('pre-test', function () {
-  return gulp.src(['build/**/*.js', '!build/src/features/**/*', '!build/src/index.js'])
+  return gulp.src(['build/**/*.js', '!build/src/features/**/*'])
     .pipe(istanbul({includeUntested: true}))
     .pipe(istanbul.hookRequire());
 });
