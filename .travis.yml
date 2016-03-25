@@ -16,3 +16,6 @@ deploy:
     tags: false
     repo: AcklenAvenue/pepino-lib
     branch: develop
+cache:
+  directories:
+    - node_modules
