@@ -19,6 +19,13 @@ describe("The Variable Helper",  () => {
             it("should return the variable name", () => {
                 expect(VariableHelper.getString("$someVariable")).to.equal("someVariable");                
             });            
+        });
+        
+        describe("with undefined", () => {
+            
+            it("should return an empty string", () => {
+                expect(VariableHelper.getString(undefined)).to.equal("");                
+            });            
         });                   
     });    
 });

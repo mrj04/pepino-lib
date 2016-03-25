@@ -1,5 +1,7 @@
 "use strict";
 import {ICodeGenerationStrategy} from "../ICodeGenerationStrategy";
+import {VariableHelper} from "../helpers/VariableHelper";
+import {StringHelper} from "../helpers/StringHelper";
 
 export class NavigateStrategy implements ICodeGenerationStrategy {
     
@@ -8,7 +10,8 @@ export class NavigateStrategy implements ICodeGenerationStrategy {
     }            
     
     generate(text: string): string {
-        var url = text.toLowerCase().replace("navigate to ", "");
-        return "this.browser.url(\"" + url + "\");";        
+        var urls = StringHelper.extractTextInQuotes(text);
+        var contents = VariableHelper.getString(urls[0]);        
+        return "this.browser.url(" + contents + ");";        
     }
 }

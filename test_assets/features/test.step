@@ -1,5 +1,5 @@
 I visit the API page
-    Navigate to http://webdriver.io
+    Navigate to "http://webdriver.io"
     Click <=API>
 
 I search for "$searchText"
@@ -7,3 +7,12 @@ I search for "$searchText"
 
 I should find "$text" in the results
     Verify "$text" is in an <a> element
+    
+I visit "$url"
+    Navigate to "$url"
+    
+I select "$optionLabel" from "$selectElement"
+    Select option named "$optionLabel" from <$selectElement>
+
+the value of "$selectElement" should be "$elementValue"
+    Verify the value of <$selectElement> is "$elementValue"

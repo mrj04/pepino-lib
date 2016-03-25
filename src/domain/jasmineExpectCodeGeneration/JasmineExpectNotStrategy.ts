@@ -13,9 +13,8 @@ export class JasmineExpectNotStrategy implements ICodeGenerationStrategy {
     }
 
     generate(text: string): string {
-        var shouldEqual = StringHelper.extractTextInQuotes(text);
-        var element = StringHelper.extractTextInGreaterThanLessThan(text);
-        var contents = VariableHelper.getString(shouldEqual[0]);
-        return "expect(browser.getText(\"" + element + "\").join()).toNotContain(" + contents + ");";        
+        var element = VariableHelper.getString(StringHelper.extractTextInGreaterThanLessThan(text)[0]);
+        var contents = VariableHelper.getString(StringHelper.extractTextInQuotes(text)[0]);
+        return "expect(browser.getText(" + element + ").join()).toNotContain(" + contents + ");";        
     }
 }

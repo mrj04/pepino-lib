@@ -6,9 +6,10 @@ import {JasmineExpectNotStrategy} from "./JasmineExpectNotStrategy";
 
 describe("when converting pepino-lang instructions to a jasmine-style expect not assertion", () => {
         
+    var strategy = new JasmineExpectNotStrategy();
+        
     describe("without variables", () => {
 
-        var strategy = new JasmineExpectNotStrategy();
         var instructions = "Verify \"something\" is not in <#results> element";
         
         it("should be able to generate typing instructions", () => {
@@ -30,14 +31,22 @@ describe("when converting pepino-lang instructions to a jasmine-style expect not
         });               
     });
 
-    describe("with variables", () => {
+    describe("with variable in the contents", () => {
         
-        var strategy = new JasmineExpectNotStrategy();
         var instructions = "Verify \"$someString\" is not in <#results> element";
         
         it("should convert the assert to jasmine expect code with correct variable name", () => {
             expect(strategy.generate(instructions))
                 .to.equal("expect(browser.getText(\"#results\").join()).toNotContain(someString);");
+        });  
+    });
+    
+    describe("with variable in the element", () => {
+        var instructions = "Verify \"someString\" is in <$someElement> element";
+        
+        it("should convert the assert to jasmine expect code with correct variable element", () => {
+            expect(strategy.generate(instructions))
+                .to.equal("expect(browser.getText(someElement).join()).toNotContain(\"someString\");");
         });  
     });
 });

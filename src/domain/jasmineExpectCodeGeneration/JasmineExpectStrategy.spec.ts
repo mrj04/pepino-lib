@@ -29,13 +29,23 @@ describe("when converting pepino-lang instructions to a jasmine-style expect ass
         });  
     });
     
-    describe("with variables", () => {
+    describe("with variable in the contents", () => {
         var strategy = new JasmineExpectStrategy();
         var instructions = "Verify \"$someString\" is in <#results> element";
         
-        it("should convert the assert to jasmine expect code with correct variable name", () => {
+        it("should convert the assert to jasmine expect code with correct variable contents", () => {
             expect(strategy.generate(instructions))
                 .to.equal("expect(browser.getText(\"#results\").join()).toContain(someString);");
+        });  
+    });
+    
+    describe("with variable in the element", () => {
+        var strategy = new JasmineExpectStrategy();
+        var instructions = "Verify \"someString\" is in <$someElement> element";
+        
+        it("should convert the assert to jasmine expect code with correct variable element", () => {
+            expect(strategy.generate(instructions))
+                .to.equal("expect(browser.getText(someElement).join()).toContain(\"someString\");");
         });  
     });             
 });

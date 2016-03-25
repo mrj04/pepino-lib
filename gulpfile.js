@@ -72,7 +72,8 @@ gulp.task('run-chimp', function(done) {
     const execFile = require('child_process').execFile;
     execFile('chimp', ["--path=./test_assets/features"], (error, stdout, stderr) => {
         if (error) {
-            throw error;
+            console.log(stderr);
+            throw error;            
         }
         console.log(stdout);
         done();
