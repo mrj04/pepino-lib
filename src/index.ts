@@ -11,6 +11,7 @@ import {ClickElementStrategy} from './domain/codeGenerationStrategies/ClickEleme
 import {NavigateStrategy} from './domain/codeGenerationStrategies/NavigateStrategy';
 import {TypeTextWithElementStrategy} from './domain/codeGenerationStrategies/TypeTextWithElementStrategy';
 import {TypeTextWithoutElementStrategy} from './domain/codeGenerationStrategies/TypeTextWithoutElementStrategy';
+import {WaitForElementStrategy} from './domain/codeGenerationStrategies/WaitForElementStrategy';
 import {JasmineExpectStrategy} from './domain/jasmineExpectCodeGeneration/JasmineExpectStrategy';
 import * as PepinoModule from "./domain/services/IStepFunctionGenerator";
 
@@ -20,6 +21,7 @@ var codeGenerator = new g.Pepino.CucumberStepFunctionGenerator(new Array<ICodeGe
     new NavigateStrategy(),
     new TypeTextWithElementStrategy(),
     new TypeTextWithoutElementStrategy(),
+    new WaitForElementStrategy(),
     new JasmineExpectStrategy()
 ));
 var stepFileGenerator = new fileGen.Pepino.CommonJsCucumberStepFileGenerator();
@@ -28,7 +30,7 @@ class converter {
     
     constructor(private fileGenerator: fileGen.Pepino.IStepFileGenerator, 
                 private parser: p.Pepino.IStepParser,
-                private stepGenerator: PepinoModule.Pepino.IStepFunctionGenerator){        
+                private stepGenerator: PepinoModule.Pepino.IStepFunctionGenerator){                
     }
     
     convert(pepinoStepFile: string): string {
@@ -46,6 +48,7 @@ class converter {
         
         return commonJsFile;
     }
+    
 }
 
 export = new converter(stepFileGenerator, stepParser, codeGenerator);

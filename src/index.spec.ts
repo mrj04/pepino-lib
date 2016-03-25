@@ -23,6 +23,6 @@ describe("The index", () => {
         
         it("should generate a the cucumberJs code", () => {
             expect(cucumberJs).to.contain("defineStep(/^I have navigated to the search screen");
-        });                
+        });                        
     });
 });
