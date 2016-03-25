@@ -22,15 +22,17 @@
   "dependencies": {
     "underscore": "^1.8.3"
   },
-  "files" : [
-      "build",
-      "README.md"
+  "files": [
+    "build",
+    "README.md"
   ],
   "devDependencies": {
     "chai": "^3.5.0",
+    "chimp": "^0.31.1",
     "gulp": "^3.9.1",
     "gulp-bump": "^2.0.1",
     "gulp-clean": "^0.3.1",
+    "gulp-cucumber": "0.0.18",
     "gulp-debug": "^2.1.2",
     "gulp-duration": "0.0.0",
     "gulp-istanbul": "^0.10.3",
@@ -39,7 +41,6 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-stats": "0.0.3",
     "gulp-typescript": "^2.10.0",
-    "gulp-watch": "^4.3.5",
     "istanbul": "^0.4.2"
   }
 }

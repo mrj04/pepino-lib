@@ -10,6 +10,9 @@ var sourcemaps = require('gulp-sourcemaps');
 var sequence = require('gulp-sequence');
 var bump = require('gulp-bump');
 var debug = require('gulp-debug');
+var Chimp = require('chimp');
+var pepino = require('./build/src/index');
+var fs = require('fs');
 
 var tsPath = 'src/**/*.ts';
 
@@ -62,3 +65,24 @@ gulp.task('bump', function(){
         .pipe(bump({version: version}))
         .pipe(gulp.dest('./'));
 });
+
+gulp.task('run', sequence('compile', 'convert-steps', 'run-chimp'));
+
+gulp.task('run-chimp', function(done) {
+    const execFile = require('child_process').execFile;
+    execFile('chimp', ["--path=./test_assets/features"], (error, stdout, stderr) => {
+        if (error) {
+            throw error;
+        }
+        console.log(stdout);
+        done();
+    });
+});
+
+gulp.task('convert-steps', function(done){
+    var folder = "./test_assets/features/";
+    var pepinoLang = fs.readFileSync(folder + "test.step", 'utf8');
+    var js = pepino.convert(pepinoLang);
+    fs.writeFileSync(folder + "test.step.js", js);
+    done();
+});    
