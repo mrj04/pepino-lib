@@ -11,6 +11,10 @@ export class StringHelper {
         return this.getArrayOfMatches(str, /\<(.*?)\>/g);        
     }
     
+    static escapeQuotes(str: string): string {
+        return str.replace(new RegExp("\"", 'g'), "\\\"");        
+    }
+    
     private static getArrayOfMatches(str: string, exp: RegExp): Array<string>{
         var matches = new Array<string>();
         var match = exp.exec(str);
@@ -18,7 +22,7 @@ export class StringHelper {
             matches.push(match[1]);
             match = exp.exec(str);            
         }
-        return matches;
+        return _.map(matches, (m) => { return this.escapeQuotes(m); });
     }
     
     static capitalizeFirstLetter(str: string) : string {

@@ -6,9 +6,10 @@ import {TypeTextWithElementStrategy} from "./TypeTextWithElementStrategy";
 
 describe("when converting pepino-lang instructions to type text with no target element", () => {
 
+    var strategy = new TypeTextWithElementStrategy();
+        
     describe("without variable", () => {
             
-        var strategy = new TypeTextWithElementStrategy();
         var instructions = "Type \"some text\" into <#element>";
         
         it("should be able to generate typing instructions", () => {
@@ -25,9 +26,18 @@ describe("when converting pepino-lang instructions to type text with no target e
         });          
     });      
     
+    describe("with element that contains quotes", () => {
+        
+        var instructions = "Type \"$someText\" into <input[name=\"something\"]>";
+        
+        it("should escape the quotes", () => {
+            expect(strategy.generate(instructions))
+                .to.equal("this.browser.setValue(\"input[name=\\\"something\\\"]\", someText);");
+        });
+    });
+    
     describe("with variable", () => {
             
-        var strategy = new TypeTextWithElementStrategy();
         var instructions = "Type \"$someText\" into <#element>";
         
         it("should convert the step to cucumberjs code", () => {

@@ -13,11 +13,11 @@ export class TypeTextWithElementStrategy implements ICodeGenerationStrategy {
 
     generate(text: string): string {
         var keys = StringHelper.extractTextInQuotes(text);
-        var element = StringHelper.extractTextInGreaterThanLessThan(text);
+        var element = StringHelper.extractTextInGreaterThanLessThan(text)[0];
         
         var contents = keys[0].startsWith("$") 
             ? keys[0].replace("$","") 
-            : "\"" + keys + "\"";
+            : "\"" + keys[0] + "\"";
         
         return "this.browser.setValue(\"" + element + "\", " + contents + ");";
     }    

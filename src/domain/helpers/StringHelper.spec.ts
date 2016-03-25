@@ -17,6 +17,13 @@ describe("The String Helper",  () => {
         });    
     });
     
+    describe("when escaping quotes", () => {
+        
+        it("should return the same string with escaped quotes", () => {
+            expect(StringHelper.escapeQuotes("Some \"string\" in quotes")).to.equal("Some \\\"string\\\" in quotes");
+        });    
+    });
+    
     describe("when extracting text between greater than and less than symbols", () => {
 
         it("should be able to extract one word", (done) => {
