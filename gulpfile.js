@@ -66,7 +66,7 @@ gulp.task('bump', function(){
         .pipe(gulp.dest('./'));
 });
 
-gulp.task('run', sequence('compile', 'convert-steps', 'run-chimp'));
+gulp.task('run', sequence('convert-steps', 'run-chimp'));
 
 gulp.task('run-chimp', function(done) {
     const execFile = require('child_process').execFile;
@@ -80,7 +80,7 @@ gulp.task('run-chimp', function(done) {
     });
 });
 
-gulp.task('convert-steps', function(done){
+gulp.task('convert-steps', ['compile'], function(done){
     var folder = "./test_assets/features/";
     var pepinoLang = fs.readFileSync(folder + "test.step", 'utf8');
     var js = pepino.convert(pepinoLang);

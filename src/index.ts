@@ -10,9 +10,11 @@ import {ICodeGenerationStrategy} from './domain/ICodeGenerationStrategy';
 import {ClickElementStrategy} from './domain/codeGenerationStrategies/ClickElementStrategy';
 import {NavigateStrategy} from './domain/codeGenerationStrategies/NavigateStrategy';
 import {TypeTextWithElementStrategy} from './domain/codeGenerationStrategies/TypeTextWithElementStrategy';
+import {SelectOptionByVisibleTextStrategy} from './domain/codeGenerationStrategies/SelectOptionByVisibleTextStrategy';
 import {TypeTextWithoutElementStrategy} from './domain/codeGenerationStrategies/TypeTextWithoutElementStrategy';
 import {WaitForElementStrategy} from './domain/codeGenerationStrategies/WaitForElementStrategy';
 import {JasmineExpectStrategy} from './domain/jasmineExpectCodeGeneration/JasmineExpectStrategy';
+import {JasmineExpectSelectionStrategy} from './domain/jasmineExpectCodeGeneration/JasmineExpectSelectionStrategy'
 import * as PepinoModule from "./domain/services/IStepFunctionGenerator";
 
 var stepParser = new p.Pepino.PepinoLangStepParser();
@@ -22,7 +24,9 @@ var codeGenerator = new g.Pepino.CucumberStepFunctionGenerator(new Array<ICodeGe
     new TypeTextWithElementStrategy(),
     new TypeTextWithoutElementStrategy(),
     new WaitForElementStrategy(),
-    new JasmineExpectStrategy()
+    new SelectOptionByVisibleTextStrategy(),
+    new JasmineExpectStrategy(),
+    new JasmineExpectSelectionStrategy()
 ));
 var stepFileGenerator = new fileGen.Pepino.CommonJsCucumberStepFileGenerator();
 

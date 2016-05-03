@@ -28,4 +28,19 @@ export class StringHelper {
     static capitalizeFirstLetter(str: string) : string {
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
+    
+    static textContains(text: string, contents: string){ 
+        var textContains = text.indexOf(contents) > -1;
+        if(!textContains) return false;
+        
+        var tokens = this.extractTextInQuotes(text);       
+        
+        var matchingTokens = _.find(tokens, (t) => {
+            return t.indexOf(contents) > -1;
+        });
+        
+        var hasContentsInQuotes = matchingTokens && matchingTokens.length > 0;
+        
+        return textContains && !hasContentsInQuotes;
+    }
 }

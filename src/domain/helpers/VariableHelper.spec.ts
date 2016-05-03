@@ -21,6 +21,20 @@ describe("The Variable Helper",  () => {
             });            
         });
         
+        describe("with variable and additional text to include inside quotes", () => {
+            
+            it("should return the variable name with the option", () => {
+                expect(VariableHelper.getString("$someVariable", " option:checked")).to.equal("someVariable + \" option:checked\"");                
+            });            
+        });
+        
+        describe("without variable but with additional text to include inside quotes", () => {
+            
+            it("should return the variable name with the option", () => {
+                expect(VariableHelper.getString("something", " option:checked")).to.equal("\"something option:checked\"");                
+            });            
+        });
+        
         describe("with undefined", () => {
             
             it("should return an empty string", () => {

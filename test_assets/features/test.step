@@ -14,5 +14,8 @@ I visit "$url"
 I select "$optionLabel" from "$selectElement"
     Select option named "$optionLabel" from <$selectElement>
 
+the selected option of "$selectElement" should be "$elementValue"
+    Verify "$elementValue" is selected in <$selectElement>
+    
 the value of "$selectElement" should be "$elementValue"
-    Verify the value of <$selectElement> is "$elementValue"
+    Verify the value "$elementValue" is selected in <$selectElement>
