@@ -3,19 +3,19 @@ I visit the API page
     Click <=API>
 
 I search for "$searchText"
-    Type "$searchText" into <input[name='search']>    
+    Type "$searchText" into <input[name='search']>
 
 I should find "$text" in the results
     Verify "$text" is in an <a> element
-    
+
 I visit "$url"
     Navigate to "$url"
-    
+
 I select "$optionLabel" from "$selectElement"
     Select option named "$optionLabel" from <$selectElement>
 
 the value of "$selectElement" should be "$elementValue"
     Verify the value "$elementValue" is selected in <$selectElement>
-    
+
 the selected option of "$selectElement" should be "$elementValue"
     Verify "$elementValue" is selected in <$selectElement>
