@@ -41,6 +41,7 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-stats": "0.0.3",
     "gulp-typescript": "^2.10.0",
+    "gulp-watch": "^4.3.5",
     "istanbul": "^0.4.2"
   }
 }
