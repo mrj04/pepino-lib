@@ -20,3 +20,5 @@ deploy:
 cache:
   directories:
     - node_modules
+notifications:
+  slack: acklen:vUEWGNCb3ZnIbAt0JZJDYJuD
