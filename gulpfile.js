@@ -11,7 +11,6 @@ var sequence = require('gulp-sequence');
 var bump = require('gulp-bump');
 var debug = require('gulp-debug');
 var Chimp = require('chimp');
-var pepino = require('./build/src/index');
 var fs = require('fs');
 
 var tsPath = 'src/**/*.ts';
@@ -20,24 +19,24 @@ gulp.task('default', sequence('compile', 'unit-tests'));
 
 gulp.task('clean-build', function(){
     return gulp.src('build/', {read: false})
-        .pipe(clean());    
+        .pipe(clean());
 });
 
 gulp.task('clean-coverage', function(){
     return gulp.src('coverage/', {read: false})
-        .pipe(clean());    
+        .pipe(clean());
 });
 
 gulp.task('compile', ['clean-build'],function(){
-    var tsProject = ts.createProject('tsconfig.json');    
-    var compilePipeline = 
+    var tsProject = ts.createProject('tsconfig.json');
+    var compilePipeline =
         gulp.src(['src/index.ts', 'src/**/*.ts', 'typings/main/**/*', 'typings/main.d.ts', 'typings/custom/**/*.ts'])
             .pipe(sourcemaps.init())
             .pipe(ts(tsProject)).js
             .pipe(sourcemaps.write({sourceRoot: '/src', includeContent: false}))
             .pipe(gulp.dest('build/src'));
-        
-    return compilePipeline;        
+
+    return compilePipeline;
 });
 
 gulp.task('pre-test', function () {
@@ -48,7 +47,7 @@ gulp.task('pre-test', function () {
 
 gulp.task('unit-tests', ['clean-coverage', 'pre-test'], function(){
     return gulp.src(['build/src/**/*.spec.js'])
-        .pipe(mocha({reporter: 'spec'})) 
+        .pipe(mocha({reporter: 'spec'}))
         .pipe(istanbul.writeReports({
             dir: './coverage',
             reportOpts: {
@@ -56,7 +55,7 @@ gulp.task('unit-tests', ['clean-coverage', 'pre-test'], function(){
             },
             reporters: ['text-summary', 'html']
         }))
-        .pipe(istanbul.enforceThresholds({ thresholds: { global: 80 } }));             
+        .pipe(istanbul.enforceThresholds({ thresholds: { global: 80 } }));
 });
 
 gulp.task('bump', function(){
@@ -73,7 +72,7 @@ gulp.task('run-chimp', function(done) {
     execFile('chimp', ["--path=./test_assets/features"], (error, stdout, stderr) => {
         if (error) {
             console.log(stderr);
-            throw error;            
+            throw error;
         }
         console.log(stdout);
         done();
@@ -83,7 +82,7 @@ gulp.task('run-chimp', function(done) {
 gulp.task('convert-steps', ['compile'], function(done){
     var folder = "./test_assets/features/";
     var pepinoLang = fs.readFileSync(folder + "test.step", 'utf8');
-    var js = pepino.convert(pepinoLang);
+    var js = require('./build/src/index').convert(pepinoLang);
     fs.writeFileSync(folder + "test.step.js", js);
     done();
-});    
+});
