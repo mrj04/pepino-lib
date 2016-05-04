@@ -24,8 +24,13 @@ describe("when converting pepino-lang instructions to a jasmine-style expect sel
             expect(strategy.canGenerate(similar_instructions)).to.be.false;    
         });
         
-        it("should pass on instructions to verify option value", () => {
+        it("should pass on instructions to verify option value without variables", () => {
             var similar_instructions = "Verify the value \"something\" is selected in <#results> element";    
+            expect(strategy.canGenerate(similar_instructions)).to.be.false;    
+        });
+        
+        it("should pass on instructions to verify option value with variables", () => {
+            var similar_instructions = "Verify the value \"$something\" is selected in <$results> element";    
             expect(strategy.canGenerate(similar_instructions)).to.be.false;    
         });
         
@@ -39,6 +44,10 @@ describe("when converting pepino-lang instructions to a jasmine-style expect sel
         
         var instructions = "Verify \"$something\" is selected in <#results> element";
         
+        it("should be able to generate instructions", () => {
+            expect(strategy.canGenerate(instructions)).to.be.true;    
+        });
+        
         it("should convert the assert to jasmine expect code with correct variable contents", () => {
             expect(strategy.generate(instructions))
                 .to.equal("expect(browser.getText(\"#results option:checked\")).toContain(something);");
@@ -49,10 +58,28 @@ describe("when converting pepino-lang instructions to a jasmine-style expect sel
         
         var instructions = "Verify \"something\" is selected in <$results> element";
         
+        it("should be able to generate instructions", () => {
+            expect(strategy.canGenerate(instructions)).to.be.true;    
+        });
+                
         it("should convert the assert to jasmine expect code with correct variable element", () => {
             expect(strategy.generate(instructions))
                 .to.equal("expect(browser.getText(results + \" option:checked\")).toContain(\"something\");");
         });  
     });
-                
+    
+    describe("with variables in the element and content", () => {
+        
+        var instructions = "Verify \"$elementValue\" is selected in <$selectElement>";
+        
+        it("should be able to generate instructions", () => {
+            expect(strategy.canGenerate(instructions)).to.be.true;    
+        });
+        
+        it("should convert the assert to jasmine expect code with correct variable element", () => {
+            expect(strategy.generate(instructions))
+                .to.equal("expect(browser.getText(selectElement + \" option:checked\")).toContain(elementValue);");
+        });  
+    });
+    
 });

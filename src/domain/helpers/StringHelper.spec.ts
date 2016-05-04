@@ -8,22 +8,22 @@ describe("The String Helper",  () => {
     describe("when checking a string for non-token contents where does not contain string", () =>  {
         
         it("should return false when it can't find a simple string inside the text", () => {
-            expect(StringHelper.textContains("something", "blue")).to.be.false;            
+            expect(StringHelper.containsNonTokenText("something", "blue")).to.be.false;            
         });
     });
     
     describe("when checking a string for non-token contents", () =>  {
         
         it("should be able to find a simple string inside the text", () => {
-            expect(StringHelper.textContains("something", "some")).to.be.true;            
+            expect(StringHelper.containsNonTokenText("something", "some")).to.be.true;            
         });
         
         it("should return true when contents is outside a quoted token", () => {
-            expect(StringHelper.textContains("hey, something is \"here\"", "some")).to.be.true;            
+            expect(StringHelper.containsNonTokenText("hey, something is \"here\"", "some")).to.be.true;            
         });
         
         it("should return false when contents is inside a quoted token", () => {
-            expect(StringHelper.textContains("hey, something is \"here\"", "here")).to.be.false;            
+            expect(StringHelper.containsNonTokenText("hey, something is \"here\"", "here")).to.be.false;            
         });                      
     });
     

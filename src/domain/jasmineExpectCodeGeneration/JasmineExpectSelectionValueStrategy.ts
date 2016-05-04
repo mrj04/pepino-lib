@@ -7,14 +7,14 @@ export class JasmineExpectSelectionValueStrategy implements ICodeGenerationStrat
 
     canGenerate(text: string): boolean {
         var lowercase = text.toLowerCase();
-        var isVerifyingOption = lowercase.indexOf("selected in") > -1;
-        var isVerifyingValue = lowercase.indexOf("value") > -1;
-        return lowercase.startsWith("verify ") && isVerifyingOption && isVerifyingValue;        
+        var isVerifyingOption = StringHelper.containsNonTokenText(lowercase, "selected");
+        var isVerifyingValue = StringHelper.containsNonTokenText(lowercase, "value");
+        return lowercase.startsWith("verify ") && isVerifyingOption && isVerifyingValue;
     }
 
     generate(text: string): string {
-        var element = VariableHelper.getString(StringHelper.extractTextInGreaterThanLessThan(text)[0], " option:checked");        
-        var contents = VariableHelper.getString(StringHelper.extractTextInQuotes(text)[0]);        
-        return "expect(browser.getValue(" + element + ")).toContain(" + contents + ");";        
+        var element = VariableHelper.getString(StringHelper.extractTextInGreaterThanLessThan(text)[0], " option:checked");
+        var contents = VariableHelper.getString(StringHelper.extractTextInQuotes(text)[0]);
+        return "expect(browser.getValue(" + element + ")).toContain(" + contents + ");";
     }
 }

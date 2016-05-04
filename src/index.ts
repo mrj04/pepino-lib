@@ -1,7 +1,7 @@
 "use strict";
 
 import * as _ from 'underscore';
-import * as Promise from 'bluebird'; 
+import * as Promise from 'bluebird';
 import * as p from './domain/services/StepParser';
 import * as g from './domain/services/CucumberStepFunctionGenerator';
 import * as fileGen from './domain/services/CommonJsCucumberStepFileGenerator';
@@ -14,7 +14,9 @@ import {SelectOptionByVisibleTextStrategy} from './domain/codeGenerationStrategi
 import {TypeTextWithoutElementStrategy} from './domain/codeGenerationStrategies/TypeTextWithoutElementStrategy';
 import {WaitForElementStrategy} from './domain/codeGenerationStrategies/WaitForElementStrategy';
 import {JasmineExpectStrategy} from './domain/jasmineExpectCodeGeneration/JasmineExpectStrategy';
-import {JasmineExpectSelectionStrategy} from './domain/jasmineExpectCodeGeneration/JasmineExpectSelectionStrategy'
+import {JasmineExpectSelectionStrategy} from './domain/jasmineExpectCodeGeneration/JasmineExpectSelectionStrategy';
+import {JasmineExpectSelectionValueStrategy} from './domain/jasmineExpectCodeGeneration/JasmineExpectSelectionValueStrategy';
+
 import * as PepinoModule from "./domain/services/IStepFunctionGenerator";
 
 var stepParser = new p.Pepino.PepinoLangStepParser();
@@ -26,33 +28,34 @@ var codeGenerator = new g.Pepino.CucumberStepFunctionGenerator(new Array<ICodeGe
     new WaitForElementStrategy(),
     new SelectOptionByVisibleTextStrategy(),
     new JasmineExpectStrategy(),
-    new JasmineExpectSelectionStrategy()
+    new JasmineExpectSelectionStrategy(),
+    new JasmineExpectSelectionValueStrategy()
 ));
 var stepFileGenerator = new fileGen.Pepino.CommonJsCucumberStepFileGenerator();
 
 class converter {
-    
-    constructor(private fileGenerator: fileGen.Pepino.IStepFileGenerator, 
+
+    constructor(private fileGenerator: fileGen.Pepino.IStepFileGenerator,
                 private parser: p.Pepino.IStepParser,
-                private stepGenerator: PepinoModule.Pepino.IStepFunctionGenerator){                
+                private stepGenerator: PepinoModule.Pepino.IStepFunctionGenerator){
     }
-    
+
     convert(pepinoStepFile: string): string {
         var steps = this.parser.parse(pepinoStepFile);
-        
+
         var stepsBySegment = _.groupBy(steps, (step) => {
             return step.segment;
         });
-        
+
         var functions = _.map(Object.keys(stepsBySegment), (key) => {
             return this.stepGenerator.generate(stepsBySegment[key]);
         });
-        
+
         var commonJsFile = this.fileGenerator.generate(functions);
-        
+
         return commonJsFile;
     }
-    
+
 }
 
 export = new converter(stepFileGenerator, stepParser, codeGenerator);
