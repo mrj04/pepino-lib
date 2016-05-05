@@ -7,7 +7,7 @@ export class TypeTextWithoutElementStrategy implements ICodeGenerationStrategy {
 
     canGenerate(text: string): boolean {
         var lowercase = text.toLowerCase();
-        return lowercase.startsWith("type ") 
+        return lowercase.startsWith("type ")
             && lowercase.indexOf("into") === -1;
     }
 
