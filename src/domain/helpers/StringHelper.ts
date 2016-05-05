@@ -9,7 +9,7 @@ export class StringHelper {
         return this.getArrayOfMatches(str, this.textInQuotes);
     }
 
-    static extractTextInGreaterThanLessThan(str: string) : Array<string> {
+    static extractTextInGreaterThanLessThan(str: string): Array<string> {
         return this.getArrayOfMatches(str, /\<(.*?)\>/g);
     }
 
@@ -17,22 +17,22 @@ export class StringHelper {
         return str.replace(new RegExp("\"", 'g'), "\\\"");
     }
 
-    private static getArrayOfMatches(str: string, exp: RegExp): Array<string>{
+    private static getArrayOfMatches(str: string, exp: RegExp): Array<string> {
         var matches = new Array<string>();
         var match = exp.exec(str);
-        while(match !== null){
+        while (match !== null) {
             matches.push(match[1]);
             match = exp.exec(str);
         }
         return _.map(matches, (m) => { return this.escapeQuotes(m); });
     }
 
-    static capitalizeFirstLetter(str: string) : string {
+    static capitalizeFirstLetter(str: string): string {
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
     static containsNonTokenText(text: string, contents: string) {
         var textWithoutTokens = text.replace(this.textInQuotes, "");
-        return textWithoutTokens.indexOf(contents) > -1;
+        return textWithoutTokens.toLowerCase().indexOf(contents.toLowerCase()) > -1;
     }
 }
