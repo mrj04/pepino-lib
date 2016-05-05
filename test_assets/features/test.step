@@ -20,3 +20,13 @@ the value of "$selectElement" should be "$elementValue"
 
 the selected option of "$selectElement" should be "$elementValue"
     Verify "$elementValue" is selected in <$selectElement>
+
+there is an alert box waiting for input
+    Click <input[value='Try it now']>
+
+I dismiss the alert
+    Dismiss alert
+
+I should be able to do other things on the site
+    Click <a[href='startpag.htm']>
+    Verify "Welcome to JavaScript FAQ home page!" is in a <p> element
