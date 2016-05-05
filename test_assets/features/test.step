@@ -27,6 +27,9 @@ there is an alert box waiting for input
 I dismiss the alert
     Dismiss alert
 
+I accept the alert
+    Accept alert
+
 I should be able to do other things on the site
     Click <a[href='startpag.htm']>
     Verify "Welcome to JavaScript FAQ home page!" is in a <p> element

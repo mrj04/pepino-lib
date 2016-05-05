@@ -14,8 +14,14 @@ Scenario: Selecting options from a dropdown
     Then the selected option of "article#wikiArticle p select" should be "Value 3"
     And the value of "article#wikiArticle p select" should be "value3"
 
-Scenario: Working with built-in javascript popup alerts
+Scenario: Dismissing a js alert
     Given I visit "http://www.javascripter.net/faq/alert.htm"
     And there is an alert box waiting for input
     When I dismiss the alert
+    Then I should be able to do other things on the site
+
+Scenario: Accepting a js alert
+    Given I visit "http://www.javascripter.net/faq/alert.htm"
+    And there is an alert box waiting for input
+    When I accept the alert
     Then I should be able to do other things on the site
