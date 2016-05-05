@@ -18,5 +18,4 @@ Scenario: Working with built-in javascript popup alerts
     Given I visit "http://www.javascripter.net/faq/alert.htm"
     And there is an alert box waiting for input
     When I dismiss the alert
-    Then the alert should disappear
-    And I should be able to do other things on the site
+    Then I should be able to do other things on the site

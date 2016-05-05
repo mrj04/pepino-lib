@@ -11,6 +11,6 @@ export class DismissAlertStrategy implements ICodeGenerationStrategy {
     }
 
     generate(text: string): string {
-        return "this.browser.switchTo().alert().dismiss();";
+        return "this.browser.alertDismiss();";
     }
 }

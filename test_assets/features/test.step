@@ -1,6 +1,5 @@
 I visit the API page
     Navigate to "http://webdriver.io"
-    Wait 15 seconds
     Click <=API>
 
 I search for "$searchText"
@@ -22,7 +21,8 @@ the selected option of "$selectElement" should be "$elementValue"
     Verify "$elementValue" is selected in <$selectElement>
 
 there is an alert box waiting for input
-    Click <input[value='Try it now']>
+    Click <input[type=button]>
+    Wait 2 seconds
 
 I dismiss the alert
     Dismiss alert

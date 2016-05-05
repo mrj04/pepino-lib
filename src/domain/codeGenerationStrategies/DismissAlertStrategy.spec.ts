@@ -23,6 +23,6 @@ describe("when converting pepino-lang instructions to click an element", () => {
 
     it("should convert the step to cucumberjs code", () => {
         expect(strategy.generate(instructions))
-            .to.equal("this.browser.switchTo().alert().dismiss();");
+            .to.equal("this.browser.alertDismiss();");
     });
 });
