@@ -25,3 +25,9 @@ Scenario: Accepting a js alert
     And there is an alert box waiting for input
     When I accept the alert
     Then I should be able to do other things on the site
+
+@focus
+Scenario: Logging in with google single-signon
+    Given I visit "https://www.udemy.com/"
+    When I attempt to log in using my google account
+    Then I should be logged in with my profile
