@@ -6,7 +6,7 @@ export class WaitSecondsStrategy implements ICodeGenerationStrategy {
 
     canGenerate(text: string): boolean {
         var isWait = StringHelper.containsNonTokenText(text, "wait");
-        var isSeconds = StringHelper.containsNonTokenText(text, "seconds");
+        var isSeconds = StringHelper.containsNonTokenText(text, "second");
         var numbers = text.match( /\d+/g );
         var hasNumericSeconds = numbers !== null && numbers.length > 0;
         return isWait && isSeconds && hasNumericSeconds;

@@ -18,8 +18,11 @@ import {JasmineExpectSelectionStrategy} from './domain/jasmineExpectCodeGenerati
 import {JasmineExpectSelectionValueStrategy} from './domain/jasmineExpectCodeGeneration/JasmineExpectSelectionValueStrategy';
 import {WaitSecondsStrategy} from './domain/codeGenerationStrategies/WaitSecondsStrategy';
 import {DismissAlertStrategy} from './domain/codeGenerationStrategies/DismissAlertStrategy';
+<<<<<<< HEAD
 import {AcceptAlertStrategy} from './domain/codeGenerationStrategies/AcceptAlertStrategy';
+=======
 import {SwitchTabStrategy} from './domain/codeGenerationStrategies/SwitchTabStrategy';
+>>>>>>> Tab switching accomplished.
 
 import * as PepinoModule from "./domain/services/IStepFunctionGenerator";
 
@@ -36,8 +39,11 @@ var codeGenerator = new g.Pepino.CucumberStepFunctionGenerator(new Array<ICodeGe
     new JasmineExpectSelectionValueStrategy(),
     new WaitSecondsStrategy(),
     new DismissAlertStrategy(),
-    new AcceptAlertStrategy(),
+<<<<<<< HEAD
+    new AcceptAlertStrategy()
+=======
     new SwitchTabStrategy()
+>>>>>>> Tab switching accomplished.
 ));
 var stepFileGenerator = new fileGen.Pepino.CommonJsCucumberStepFileGenerator();
 
