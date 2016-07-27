@@ -13,8 +13,8 @@ export class JasmineExpectStrategy implements ICodeGenerationStrategy {
     }
 
     generate(text: string): string {
-        var element = VariableHelper.getString(StringHelper.extractTextInGreaterThanLessThan(text)[0]);        
-        var contents = VariableHelper.getString(StringHelper.extractTextInQuotes(text)[0]);        
+        var element = VariableHelper.getString(StringHelper.extractTextInGreaterThanLessThan(text)[0]);
+        var contents = VariableHelper.getString(StringHelper.extractTextInQuotes(text)[0]);
         return "expect(browser.getText(" + element + ").join()).toContain(" + contents + ");";
     }
 }

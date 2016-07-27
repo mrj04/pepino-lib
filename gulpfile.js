@@ -69,7 +69,7 @@ gulp.task('run', sequence('convert-steps', 'run-chimp'));
 
 gulp.task('run-chimp', function(done) {
     const execFile = require('child_process').execFile;
-    execFile('chimp', ["--path=./test_assets/features"], (error, stdout, stderr) => {
+    execFile('chimp', ["--path=./test_assets/features", "--watch"], (error, stdout, stderr) => {
         if (error) {
             console.log(stderr);
             throw error;
