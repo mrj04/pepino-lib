@@ -38,4 +38,25 @@ describe("when switching to another tab", ()=> {
         });
     });
 
+    describe("the function to switch tabs by name", () => {
+
+        it("should find the correct tab and switch", () => {
+            var text = "Switch to \"tab3\" tab";
+            var code = strategy.generate(text)
+            var tabIds = ['tab1', 'tab2', 'tab3'];
+            var currentTabId = 'tab1';
+            this.browser = {
+                getCurrentTabId: () => { return currentTabId; },
+                switchTab: (tabId: string) => {
+                    currentTabId = tabId;
+                },
+                getTitle: () => { return currentTabId; },
+                getTabIds: () => { return tabIds; },
+            };
+            eval(code);
+
+            expect(this.browser.getCurrentTabId()).to.equal('tab3');
+        });
+
+    })
 });
