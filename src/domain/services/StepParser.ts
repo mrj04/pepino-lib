@@ -12,12 +12,12 @@ export module Pepino {
         parse(s: string) {
             var lines = s.split("\n");
             var steps = new Array<Step>();
-                    
+
             for (var i = 0; i < lines.length - 1; i++) {
-                
-                if (lines[i].length > 0) {                    
-                                        
-                    var segment: any = lines[i].trim();                    
+
+                if (lines[i].length > 0) {
+
+                    var segment: any = lines[i].trim();
                     while(segment){
                         i++;
                         if(i>=lines.length) break;
@@ -26,15 +26,15 @@ export module Pepino {
                             segment = false;
                         }
                         else{
-                            steps.push(new Step(stepText, segment))    
-                        }                            
+                            steps.push(new Step(stepText, segment))
+                        }
                     }
                     var line = lines[i];
-                                                                               
+
                 }
             }
 
             return steps;
-        }               
+        }
     }
 }

@@ -1,6 +1,6 @@
 "use strict";
 
 export class IllegalStepError {
-    constructor(public segment: string){        
-    }    
+    constructor(public segment: string){
+    }
 }

@@ -17,7 +17,7 @@ export class SwitchTabStrategy implements ICodeGenerationStrategy {
 
         var nameOfFunction = "fn" + new Date().getTime() + "_switchTab";
 
-        var switchTab = function(browser, tabTitle) {
+        var code = `function(browser, tabTitle) {
             var currentTabId = browser.getCurrentTabId();
             browser.getTabIds().forEach((id) => {
                 browser.switchTab(id);
@@ -28,8 +28,8 @@ export class SwitchTabStrategy implements ICodeGenerationStrategy {
                     browser.switchTab(currentTabId);
                 }
             });
-        }
+        }`;
 
-        return "var " + nameOfFunction + " = " + switchTab.toString() + "; " + nameOfFunction + "(this.browser, " + contents + ");";
+        return "var " + nameOfFunction + " = " + code + "; " + nameOfFunction + "(this.browser, " + contents + ");";
     }
 }

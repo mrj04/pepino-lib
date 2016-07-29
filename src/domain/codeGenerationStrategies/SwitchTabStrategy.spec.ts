@@ -53,6 +53,7 @@ describe("when switching to another tab", ()=> {
                 getTitle: () => { return currentTabId; },
                 getTabIds: () => { return tabIds; },
             };
+
             eval(code);
 
             expect(this.browser.getCurrentTabId()).to.equal('tab3');

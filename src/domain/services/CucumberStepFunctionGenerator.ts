@@ -24,7 +24,7 @@ export module Pepino {
 
         generate(steps: Array<Step>): string {
             this.EnsureStepsOnlyHaveOneSegment(steps);
-            return this.generateEntireFunction(steps);                        
+            return this.generateEntireFunction(steps);
         }
 
         private EnsureStepsOnlyHaveOneSegment(steps: Array<Step>){
@@ -33,20 +33,20 @@ export module Pepino {
             });
             if(groups.length > 1) {
                 throw new IllegalStepError(groups[1].segment);
-            }            
+            }
         }
-        
+
         private generateEntireFunction(steps: Array<Step>): string {
             const tab = "\t";
-            
+
             var stepSegmentText = _.first(steps).segment;
-            var variables = StringHelper.extractTextInQuotes(stepSegmentText);                       
+            var variables = StringHelper.extractTextInQuotes(stepSegmentText);
             var lines = [tab + this.generateFunctionSignature(stepSegmentText, variables)];
 
             _.each(steps, (step) => {
                 var gen = _.find(this._codeGenerators, (g) => { return g.canGenerate(step.text) })
                     || new NullCodeGenerationStrategy();
-                    
+
                 var generatedCode = gen.generate(step.text);
                 lines.push(tab + tab + generatedCode);
 
@@ -62,14 +62,14 @@ export module Pepino {
             const anyString: string = "\"([^\"]*)\"";
             var args = _.map(variables, (v) => {
                 return v.replace("$", "");
-            }).join(", ");            
+            }).join(", ");
             var doctoredText = stepSegmentText;
             variables.forEach((v)=> {
                 if(v.startsWith("$")) {
                     doctoredText = doctoredText.replace("\"" + v + "\"", anyString);
                 }
             });
-            
+
             return "this.defineStep(/^" + doctoredText + "$/, function(" + args + ") {";
         };
     }
