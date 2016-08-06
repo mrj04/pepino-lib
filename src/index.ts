@@ -20,6 +20,7 @@ import {WaitSecondsStrategy} from './domain/codeGenerationStrategies/WaitSeconds
 import {DismissAlertStrategy} from './domain/codeGenerationStrategies/DismissAlertStrategy';
 import {AcceptAlertStrategy} from './domain/codeGenerationStrategies/AcceptAlertStrategy';
 import {SwitchTabStrategy} from './domain/codeGenerationStrategies/SwitchTabStrategy';
+import {ScrollToSelectorStrategy} from './domain/codeGenerationStrategies/ScrollToSelectorStrategy';
 
 import * as PepinoModule from "./domain/services/IStepFunctionGenerator";
 
@@ -37,7 +38,8 @@ var codeGenerator = new g.Pepino.CucumberStepFunctionGenerator(new Array<ICodeGe
     new WaitSecondsStrategy(),
     new DismissAlertStrategy(),
     new AcceptAlertStrategy(),
-    new SwitchTabStrategy()
+    new SwitchTabStrategy(),
+    new ScrollToSelectorStrategy()
 ));
 var stepFileGenerator = new fileGen.Pepino.CommonJsCucumberStepFileGenerator();
 
