@@ -1,30 +1,24 @@
 var gulp = require('gulp');
 require('gulp-stats')(gulp);
-var ts = require('gulp-typescript');
-var mocha = require('gulp-mocha');
-var watch = require('gulp-watch');
-var del = require('gulp-clean');
-var istanbul = require('gulp-istanbul');
-var duration = require('gulp-duration')
-var sourcemaps = require('gulp-sourcemaps');
 var sequence = require('gulp-sequence');
-var bump = require('gulp-bump');
-var debug = require('gulp-debug');
-var Chimp = require('chimp');
-var fs = require('fs');
-
+var ts = require('gulp-typescript');
+var sourcemaps = require('gulp-sourcemaps');
+var del = require('del');
+var istanbul = require('gulp-istanbul');
 var tsPath = 'src/**/*.ts';
+var mocha = require('gulp-mocha');
+var bump = require('gulp-bump');
+var fs = require('fs');
+var chimp = require('gulp-chimp');
 
 gulp.task('default', sequence('compile', 'unit-tests'));
 
-gulp.task('clean-build', function () {
-
-    return del('build/');
-
+gulp.task('clean-coverage', function () {
+    return del(['coverage/**/*']);
 });
 
-gulp.task('clean-coverage', function () {
-    return del('coverage/');
+gulp.task('clean-build', function () {
+    return del(['build/**/*']);
 });
 
 gulp.task('compile', ['clean-build'], function () {
@@ -39,12 +33,6 @@ gulp.task('compile', ['clean-build'], function () {
     return compilePipeline;
 });
 
-gulp.task('pre-test', function () {
-    return gulp.src(['build/**/*.js', '!build/src/features/**/*'])
-        .pipe(istanbul({ includeUntested: true }))
-        .pipe(istanbul.hookRequire());
-});
-
 gulp.task('unit-tests', ['clean-coverage', 'pre-test'], function () {
     return gulp.src(['build/src/**/*.spec.js'])
         .pipe(mocha({ reporter: 'spec' }))
@@ -56,6 +44,12 @@ gulp.task('unit-tests', ['clean-coverage', 'pre-test'], function () {
             reporters: ['text-summary', 'html']
         }))
         .pipe(istanbul.enforceThresholds({ thresholds: { global: 80 } }));
+});
+
+gulp.task('pre-test', function () {
+    return gulp.src(['build/**/*.js', '!build/src/features/**/*'])
+        .pipe(istanbul({ includeUntested: true }))
+        .pipe(istanbul.hookRequire());
 });
 
 gulp.task('bump', function () {
@@ -77,6 +71,7 @@ gulp.task('run-chimp', function (done) {
         console.log(stdout);
         done();
     });
+
 });
 
 gulp.task('convert-steps', ['compile'], function (done) {
