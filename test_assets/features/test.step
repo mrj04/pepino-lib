@@ -55,3 +55,15 @@ I should be logged in with my profile
     Click <=Account>
     Wait 1 second
     Verify "dtest12312312@gmail.com" is in a <b> element
+
+I toggle the "$checkboxElement" checkbox
+	ToggleCheckbox <$checkboxElement>
+
+"$checkboxElement" should be "$attribute"
+	Verify <$checkboxElement> to have attribute "$attribute"
+
+I untoggle the "$checkboxElement" checkbox
+	ToggleCheckbox <$checkboxElement>
+
+"$checkboxElement" should not be "$attribute"
+	Verify <$checkboxElement> to not have attribute "$attribute"

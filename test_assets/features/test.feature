@@ -35,3 +35,14 @@ Scenario: Logging in with google single-signon
     Given I visit "https://www.udemy.com/"
     When I attempt to log in using my google account
     Then I should be logged in with my profile
+
+Scenario: Toggle a Checkbox
+	Given I visit "http://html.com/input-type-checkbox/"
+	When I toggle the "#love" checkbox
+	Then "#love" should be "checked"
+
+Scenario: Untoggle a Checkbox
+	Given I visit "http://html.com/input-type-checkbox/"
+	And I toggle the "#love" checkbox
+	When I untoggle the "#love" checkbox
+	Then "#love" should not be "checked"

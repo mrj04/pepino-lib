@@ -24,6 +24,11 @@ describe("when converting pepino-lang instructions to a jasmine-style expect not
             var similar_instructions = "Verify \"something\" is in <#results> element";    
             expect(strategy.canGenerate(similar_instructions)).to.be.false;    
         });
+
+		it("should pass on unrecognized instructions with attribute", () => {
+            var similar_instructions = "Verify <#results> to have attribute \"something\"";    
+            expect(strategy.canGenerate(similar_instructions)).to.be.false;    
+        });
         
         it("should convert the assert to jasmine expect code", () => {
             expect(strategy.generate(instructions))
