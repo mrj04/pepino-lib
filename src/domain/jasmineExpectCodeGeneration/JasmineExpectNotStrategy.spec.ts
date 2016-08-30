@@ -25,8 +25,8 @@ describe("when converting pepino-lang instructions to a jasmine-style expect not
             expect(strategy.canGenerate(similar_instructions)).to.be.false;    
         });
 
-		it("should pass on unrecognized instructions with attribute", () => {
-            var similar_instructions = "Verify <#results> to have attribute \"something\"";    
+		it("should pass on unrecognized instructions with checked", () => {
+            var similar_instructions = "Verify <#results> to be checked";    
             expect(strategy.canGenerate(similar_instructions)).to.be.false;    
         });
         

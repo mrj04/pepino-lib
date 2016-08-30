@@ -9,9 +9,8 @@ export class JasmineExpectStrategy implements ICodeGenerationStrategy {
         var lowercase = text.toLowerCase();
         var hasNegator = lowercase.indexOf(" not ") > -1;
         var isVerifyingOption = lowercase.indexOf("selected in") > -1;
-		var isAttribute = lowercase.indexOf(" attribute ") > -1;
-
-        return lowercase.startsWith("verify ") && !hasNegator && !isVerifyingOption && !isAttribute;
+		var isChecked = lowercase.indexOf("checked") > -1;
+        return lowercase.startsWith("verify ") && !hasNegator && !isVerifyingOption && !isChecked;
     }
 
     generate(text: string): string {

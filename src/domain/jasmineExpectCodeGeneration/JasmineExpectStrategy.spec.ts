@@ -28,8 +28,8 @@ describe("when converting pepino-lang instructions to a jasmine-style expect ass
             expect(strategy.canGenerate(similar_instructions)).to.be.false;    
         });
 
-		it("should pass on attribute instructions", () => {
-            var similar_instructions = "Verify <#results> to not have attribute \"something\"";    
+		it("should pass on checked instructions", () => {
+            var similar_instructions = "Verify <#results> to not be checked";    
             expect(strategy.canGenerate(similar_instructions)).to.be.false;    
         });
         

@@ -3,18 +3,17 @@ import {ICodeGenerationStrategy} from "../ICodeGenerationStrategy";
 import {StringHelper} from "../helpers/StringHelper";
 import {VariableHelper} from "../helpers/VariableHelper";
 
-export class JasmineExpectElementAttributeNotStrategy implements ICodeGenerationStrategy {
+export class JasmineExpectElementIsNotSelectedStrategy implements ICodeGenerationStrategy {
 
     canGenerate(text: string): boolean {
         const lowercase = text.toLowerCase();
-        const isVerifyingAttribute = StringHelper.containsNonTokenText(lowercase, " have attribute ");
+        const isChecked = lowercase.indexOf("checked") > -1;
 		const hasNegator = lowercase.indexOf(" not ") > -1;
-        return lowercase.startsWith("verify ") && isVerifyingAttribute && hasNegator;
+        return lowercase.startsWith("verify ") && isChecked && hasNegator;
     }
 
     generate(text: string): string {
         const element = VariableHelper.getString(StringHelper.extractTextInGreaterThanLessThan(text)[0]);
-        const contents = VariableHelper.getString(StringHelper.extractTextInQuotes(text)[0]);
-        return "expect(browser.getHTML(" + element + ")).toNotContain(" + contents + ");";
+        return "expect(browser.element(" + element + ").isSelected()).toBe(false);";
     }
 }
