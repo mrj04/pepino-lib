@@ -62,8 +62,8 @@ gulp.task('bump', function () {
 gulp.task('run', sequence('convert-steps', 'run-chimp'));
 
 gulp.task('run-chimp', function (done) {
-    const execFile = require('child_process').execFile;
-    execFile('chimp', ["--path=./test_assets/features", "--watch"], (error, stdout, stderr) => {
+    const spawn = require('child_process').spawn;
+    spawn('npm', ["run", "chimp"], {shell: true, stdio: 'inherit'}, (error, stdout, stderr) => {
         if (error) {
             console.log(stderr);
             throw error;
