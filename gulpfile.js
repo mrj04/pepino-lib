@@ -9,7 +9,6 @@ var tsPath = 'src/**/*.ts';
 var mocha = require('gulp-mocha');
 var bump = require('gulp-bump');
 var fs = require('fs');
-var chimp = require('gulp-chimp');
 
 gulp.task('default', sequence('compile', 'unit-tests'));
 

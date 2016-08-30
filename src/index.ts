@@ -21,6 +21,9 @@ import {DismissAlertStrategy} from './domain/codeGenerationStrategies/DismissAle
 import {AcceptAlertStrategy} from './domain/codeGenerationStrategies/AcceptAlertStrategy';
 import {SwitchTabStrategy} from './domain/codeGenerationStrategies/SwitchTabStrategy';
 import {ScrollToSelectorStrategy} from './domain/codeGenerationStrategies/ScrollToSelectorStrategy';
+import {ToggleCheckboxStrategy} from './domain/codeGenerationStrategies/ToggleCheckboxStrategy';
+import {JasmineExpectElementIsSelectedStrategy} from './domain/jasmineExpectCodeGeneration/JasmineExpectElementIsSelectedStrategy';
+import {JasmineExpectElementIsNotSelectedStrategy} from './domain/jasmineExpectCodeGeneration/JasmineExpectElementIsNotSelectedStrategy';
 
 import * as PepinoModule from "./domain/services/IStepFunctionGenerator";
 
@@ -39,7 +42,10 @@ var codeGenerator = new g.Pepino.CucumberStepFunctionGenerator(new Array<ICodeGe
     new DismissAlertStrategy(),
     new AcceptAlertStrategy(),
     new SwitchTabStrategy(),
-    new ScrollToSelectorStrategy()
+    new ScrollToSelectorStrategy(),
+    new ToggleCheckboxStrategy(),
+    new JasmineExpectElementIsSelectedStrategy(),
+    new JasmineExpectElementIsNotSelectedStrategy()
 ));
 var stepFileGenerator = new fileGen.Pepino.CommonJsCucumberStepFileGenerator();
 

@@ -31,6 +31,18 @@ Scenario: Accepting a js alert
     Then I should be able to do other things on the site
 
 @focus
+Scenario: Toggle a Checkbox
+	Given I visit "http://www.javascript-coder.com/files/javascript-get-form/javascript-get-form-example.html"
+	When I toggle the "#chl_recruiter_contact" checkbox
+	Then "#chl_recruiter_contact" should be checked
+
+@focus
+Scenario: Untoggle a Checkbox
+	Given I visit "http://www.javascript-coder.com/files/javascript-get-form/javascript-get-form-example.html"
+	When I untoggle the "#chk_email_alerts" checkbox
+	Then "#chk_email_alerts" should not be checked
+
+@focus
 Scenario: Logging in with google single-signon
     Given I visit "https://www.udemy.com/"
     When I attempt to log in using my google account

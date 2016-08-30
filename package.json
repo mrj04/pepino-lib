@@ -20,7 +20,6 @@
     "node": ">= 0.10"
   },
   "dependencies": {
-    "gulp-chimp": "^1.1.0",
     "underscore": "^1.8.3"
   },
   "files": [
@@ -28,8 +27,8 @@
     "README.md"
   ],
   "devDependencies": {
-    "chimp": "^0.40.4",
     "chai": "^3.5.0",
+    "chimp": "^0.38.0",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
     "gulp-bump": "^2.0.1",

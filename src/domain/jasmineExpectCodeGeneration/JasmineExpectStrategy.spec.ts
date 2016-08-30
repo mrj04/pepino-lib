@@ -27,6 +27,11 @@ describe("when converting pepino-lang instructions to a jasmine-style expect ass
             var similar_instructions = "Verify \"something\" is selected in <#results> element";    
             expect(strategy.canGenerate(similar_instructions)).to.be.false;    
         });
+
+		it("should pass on checked instructions", () => {
+            var similar_instructions = "Verify <#results> to not be checked";    
+            expect(strategy.canGenerate(similar_instructions)).to.be.false;    
+        });
         
         it("should convert the assert to jasmine expect code", () => {
             expect(strategy.generate(instructions))
