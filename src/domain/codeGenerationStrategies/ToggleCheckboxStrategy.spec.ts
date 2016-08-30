@@ -7,7 +7,7 @@ import {ToggleCheckboxStrategy} from "./ToggleCheckboxStrategy";
 describe("when converting pepino-lang instructions to toggle a checkbox", () => {
 	describe('without variables', () => {
 		var strategy = new ToggleCheckboxStrategy();
-		var instructions = "ToggleCheckbox <#checkboxElement>";
+		var instructions = "Toggle the <#element> checkbox";
 
 		it("should be able to generate typing instructions", () => {
 			expect(strategy.canGenerate(instructions)).to.be.true;
@@ -19,17 +19,17 @@ describe("when converting pepino-lang instructions to toggle a checkbox", () => 
 	
 		it("should convert the step to cucumberjs code", () => {
 			expect(strategy.generate(instructions))
-				.to.equal("this.browser.click(\"#checkboxElement\");");
+				.to.equal("this.browser.click(\"#element\");");
 		});
 	});
 
 	describe('with variables', () => {
 		var strategy = new ToggleCheckboxStrategy();
-		var instructions = "ToggleCheckbox <#checkboxElement>";
+		var instructions = "Toggle the <#element> checkbox";
 
 		it("should convert the assert to jasmine expect code with correct variable element", () => {
             expect(strategy.generate(instructions))
-                .to.equal("this.browser.click(\"#checkboxElement\");");
+                .to.equal("this.browser.click(\"#element\");");
         });  
 	});
 });
