@@ -9,6 +9,7 @@ var tsPath = 'src/**/*.ts';
 var mocha = require('gulp-mocha');
 var bump = require('gulp-bump');
 var fs = require('fs');
+var shell = require('gulp-shell');
 
 gulp.task('default', sequence('compile', 'unit-tests'));
 
@@ -60,18 +61,9 @@ gulp.task('bump', function () {
 
 gulp.task('run', sequence('convert-steps', 'run-chimp'));
 
-gulp.task('run-chimp', function (done) {
-    const spawn = require('child_process').spawn;
-    spawn('npm', ["run", "chimp"], {shell: true, stdio: 'inherit'}, (error, stdout, stderr) => {
-        if (error) {
-            console.log(stderr);
-            throw error;
-        }
-        console.log(stdout);
-        done();
-    });
-
-});
+gulp.task('run-chimp', shell.task([
+  'chimp --path=./test_assets/features --watch'
+]))
 
 gulp.task('convert-steps', ['compile'], function (done) {
     var folder = "./test_assets/features/";
