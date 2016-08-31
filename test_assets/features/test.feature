@@ -43,6 +43,11 @@ Scenario: Untoggle a Checkbox
 	Then "#chk_email_alerts" should not be checked
 
 @focus
+Scenario: Visiting a website and checking its title
+	Given I visit "https://www.google.com"
+	Then the title should be "Google"
+
+@focus
 Scenario: Logging in with google single-signon
     Given I visit "https://www.udemy.com/"
     When I attempt to log in using my google account
