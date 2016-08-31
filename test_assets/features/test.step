@@ -50,16 +50,16 @@ I attempt to log in using my google account
     Wait 1 second
 
 I toggle the "$checkboxElement" checkbox
-	ToggleCheckbox <$checkboxElement>
+	Toggle the <$checkboxElement> checkbox
 
 "$checkboxElement" should be checked
 	Verify <$checkboxElement> to be checked
 
 I untoggle the "$checkboxElement" checkbox
-	ToggleCheckbox <$checkboxElement>
+	Toggle the <$checkboxElement> checkbox
 
 "$checkboxElement" should not be checked
-	Verify <$checkboxElement> not to to be checked
+	Verify <$checkboxElement> not to be checked
 
 I should be logged in with my profile
     Click <img.dropdown__avatar>
