@@ -9,7 +9,15 @@ var tsPath = 'src/**/*.ts';
 var mocha = require('gulp-mocha');
 var bump = require('gulp-bump');
 var fs = require('fs');
+var minimist = require('minimist');
 var shell = require('gulp-shell');
+
+var knownOptions = {
+  string: 'browser',
+  default: { browser: 'chrome' }
+};
+
+var options = minimist(process.argv.slice(2), knownOptions);
 
 gulp.task('default', sequence('compile', 'unit-tests'));
 
@@ -62,7 +70,7 @@ gulp.task('bump', function () {
 gulp.task('run', sequence('convert-steps', 'run-chimp'));
 
 gulp.task('run-chimp', shell.task([
-  'chimp --path=./test_assets/features --watch'
+  `chimp --path=./test_assets/features --watch --browser=${options.browser}`
 ]))
 
 gulp.task('convert-steps', ['compile'], function (done) {
