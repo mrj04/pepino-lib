@@ -61,6 +61,9 @@ I untoggle the "$checkboxElement" checkbox
 "$checkboxElement" should not be checked
 	Verify <$checkboxElement> not to be checked
 
+the text in the alert should be "$something"
+	Verify alert text to be "$something"
+
 I should be logged in with my profile
     Click <img.dropdown__avatar>
     Wait 2 second

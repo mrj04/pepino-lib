@@ -48,6 +48,12 @@ Scenario: Visiting a website and checking its title
 	Then the title should be "Google"
 
 @focus
+Scenario: Valid alert text
+    Given I visit "http://www.javascripter.net/faq/alert.htm"
+    And there is an alert box waiting for input
+	Then the text in the alert should be "something"
+
+@focus
 Scenario: Logging in with google single-signon
     Given I visit "https://www.udemy.com/"
     When I attempt to log in using my google account
