@@ -67,3 +67,6 @@ I should be logged in with my profile
     Click <=Account>
     Wait 1 second
     Verify "dtest12312312@gmail.com" is in a <b> element
+
+the title should be "$title"
+    Verify title to be "$title"
