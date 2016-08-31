@@ -63,6 +63,7 @@ I untoggle the "$checkboxElement" checkbox
 
 the text in the alert should be "$something"
 	Verify alert text to be "$something"
+	Accept alert
 
 I should be logged in with my profile
     Click <img.dropdown__avatar>
