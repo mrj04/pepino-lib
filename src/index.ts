@@ -48,8 +48,8 @@ var codeGenerator = new g.Pepino.CucumberStepFunctionGenerator(new Array<ICodeGe
     new ToggleCheckboxStrategy(),
     new JasmineExpectElementIsSelectedStrategy(),
     new JasmineExpectElementIsNotSelectedStrategy(),
-	new JasmineExpectTitleStrategy()
-	new JasmineExpectAlertTextStrategy()
+    new JasmineExpectTitleStrategy(),
+    new JasmineExpectAlertTextStrategy()
 ));
 var stepFileGenerator = new fileGen.Pepino.CommonJsCucumberStepFileGenerator();
 
