@@ -51,7 +51,7 @@ Scenario: Visiting a website and checking its title
 Scenario: Valid alert text
     Given I visit "http://www.javascripter.net/faq/alert.htm"
     And there is an alert box waiting for input
-	Then the text in the alert should be "something"
+	Then the text in the alert should be "Hello from JavaScript!"
 
 @focus
 Scenario: Logging in with google single-signon
