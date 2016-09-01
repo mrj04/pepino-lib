@@ -3,13 +3,14 @@ import {ICodeGenerationStrategy} from "../ICodeGenerationStrategy";
 import {StringHelper} from "../helpers/StringHelper";
 import {VariableHelper} from "../helpers/VariableHelper";
 
-export class JasmineExpectCssPropertyStrategy implements ICodeGenerationStrategy {
+export class JasmineExpectCssPropertyEqualStrategy implements ICodeGenerationStrategy {
 
     canGenerate(text: string): boolean {
         const lowercase = text.toLowerCase();
         const hasCss = lowercase.indexOf("css") > -1;
+        const hasEqual = lowercase.indexOf("equal") > -1;
         const hasProperty = lowercase.indexOf("property") > -1;
-        return lowercase.startsWith("verify ") && hasProperty && hasCss;
+        return lowercase.startsWith("verify ") && hasProperty && hasCss && hasEqual;
     }
 
     generate(text: string): string {
@@ -19,6 +20,6 @@ export class JasmineExpectCssPropertyStrategy implements ICodeGenerationStrategy
         text = text.substring(text.indexOf(property) + property.length + 1);
         const value = VariableHelper.getString(StringHelper.extractTextInQuotes(text)[0]);
 
-        return `expect(JSON.stringify(browser.getCssProperty(${object}, ${property})).toUpperCase()).toContain(${value}.toUpperCase());`;
+        return `expect(browser.getCssProperty(${object}, ${property}).value).toEqual(${value});`;
     }
 }

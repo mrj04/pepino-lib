@@ -59,9 +59,14 @@ Scenario: Visiting a website and checking its url
 	Then the url must be "http://acklenavenue.com/"
 
 @focus
-Scenario: Visiting a website and checking an object's css property
+Scenario: Visiting a website and checking an object's css property similar value
 	Given I visit "http://acklenavenue.com/"
-	Then the object "#team-toggler" should have the css property "color" as "#72C02C"
+	Then the object "#team-toggler" should have the css property "color" similar to "#72C02C"
+
+@focus
+Scenario: Visiting a website and checking an object's css property equal value
+	Given I visit "http://acklenavenue.com/"
+	Then the object "#team-toggler" should have the css property "color" equal to "rgba(114,192,44,1)"
 
 @focus
 Scenario: Logging in with google single-signon
