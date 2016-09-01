@@ -77,3 +77,6 @@ the title should be "$title"
 
 the url must be "$url"
 	Verify current url to be "$url"
+
+the object "$selector" should have the css property "$style" as "$value"
+	Verify that object "$selector" has css property "$style" with value "$value"

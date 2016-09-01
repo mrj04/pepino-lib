@@ -28,26 +28,6 @@ describe("when converting pepino-lang instructions to a jasmine-style expect ass
             expect(strategy.canGenerate(similar_instructions)).to.be.false;
         });
 
-        it("should pass on checked instructions", () => {
-            var similar_instructions = "Verify <#results> to not be checked";
-            expect(strategy.canGenerate(similar_instructions)).to.be.false;
-        });
-
-        it("should pass on alert text instructions", () => {
-            var similar_instructions = "Verify alert text to be \"something\"";
-            expect(strategy.canGenerate(similar_instructions)).to.be.false;
-        });
-
-        it("should pass on title instructions", () => {
-            var similar_instructions = "Verify title to be \"something\"";
-            expect(strategy.canGenerate(similar_instructions)).to.be.false;
-        });
-
-        it("should pass on url instructions", () => {
-            var similar_instructions = "Verify current url to be \"something\"";
-            expect(strategy.canGenerate(similar_instructions)).to.be.false;
-        });
-
         it("should convert the assert to jasmine expect code", () => {
             expect(strategy.generate(instructions))
                 .to.equal("expect(browser.getText(\"#results\").join()).toContain(\"something\");");
