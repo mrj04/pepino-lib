@@ -74,3 +74,6 @@ I should be logged in with my profile
 
 the title should be "$title"
     Verify title to be "$title"
+
+the url must be "$url"
+	Verify current url to be "$url"
