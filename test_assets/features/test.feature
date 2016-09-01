@@ -54,6 +54,11 @@ Scenario: Valid alert text
 	Then the text in the alert should be "Hello from JavaScript!"
 
 @focus
+Scenario: Visiting a website and checking its url
+	Given I visit "http://acklenavenue.com/"
+	Then the url must be "http://acklenavenue.com/"
+
+@focus
 Scenario: Logging in with google single-signon
     Given I visit "https://www.udemy.com/"
     When I attempt to log in using my google account
