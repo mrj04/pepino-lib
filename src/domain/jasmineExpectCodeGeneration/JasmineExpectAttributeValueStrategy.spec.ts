@@ -7,7 +7,7 @@ import {JasmineExpectAttributeValueStrategy} from "./JasmineExpectAttributeValue
 describe("when converting pepino-lang instructions to a jasmine-style expect assertion", () => {
     describe("without variables", () => {
         const strategy = new JasmineExpectAttributeValueStrategy();
-        const instructions = "Verify that object \"object\" has attribute \"attribute\" with value \"value\"";
+        const instructions = "Verify that object <#object> has attribute \"attribute\" with value \"value\"";
 
         it("should be able to generate css property instructions", () => {
             expect(strategy.canGenerate(instructions)).to.be.true;
@@ -19,13 +19,13 @@ describe("when converting pepino-lang instructions to a jasmine-style expect ass
 
         it("should convert the assert to jasmine expect code", () => {
             expect(strategy.generate(instructions))
-                .to.equal("expect(browser.getAttribute(\"object\", \"attribute\")).toEqual(\"value\");");
+                .to.equal("expect(browser.getAttribute(\"#object\", \"attribute\")).toEqual(\"value\");");
         });
     });
 
     describe("with variable in the object", () => {
         const strategy = new JasmineExpectAttributeValueStrategy();
-        const instructions = "Verify that object \"$object\" has css property \"attribute\" equal to \"value\"";
+        const instructions = "Verify that object <$object> has css property \"attribute\" equal to \"value\"";
 
         it("should convert the assert to jasmine expect code with correct variable object", () => {
             expect(strategy.generate(instructions))
@@ -35,21 +35,21 @@ describe("when converting pepino-lang instructions to a jasmine-style expect ass
 
     describe("with variable in the property", () => {
         const strategy = new JasmineExpectAttributeValueStrategy();
-        const instructions = "Verify that object \"object\" has css property \"$attribute\" equal to \"value\"";
+        const instructions = "Verify that object <#object> has css property \"$attribute\" equal to \"value\"";
 
         it("should convert the assert to jasmine expect code with correct variable property", () => {
             expect(strategy.generate(instructions))
-                .to.equal("expect(browser.getAttribute(\"object\", attribute)).toEqual(\"value\");");
+                .to.equal("expect(browser.getAttribute(\"#object\", attribute)).toEqual(\"value\");");
         });
     });
 
     describe("with variable in the value", () => {
         const strategy = new JasmineExpectAttributeValueStrategy();
-        const instructions = "Verify that object \"object\" has css property \"attribute\" equal to \"$value\"";
+        const instructions = "Verify that object <#object> has css property \"attribute\" equal to \"$value\"";
 
         it("should convert the assert to jasmine expect code with correct variable value", () => {
             expect(strategy.generate(instructions))
-                .to.equal("expect(browser.getAttribute(\"object\", \"attribute\")).toEqual(value);");
+                .to.equal("expect(browser.getAttribute(\"#object\", \"attribute\")).toEqual(value);");
         });
     });
 });
