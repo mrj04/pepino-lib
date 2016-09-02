@@ -29,6 +29,7 @@ import {JasmineExpectAlertTextStrategy} from './domain/jasmineExpectCodeGenerati
 import {JasmineExpectUrlStrategy} from './domain/jasmineExpectCodeGeneration/JasmineExpectUrlStrategy';
 import {JasmineExpectCssPropertySimilarStrategy} from './domain/jasmineExpectCodeGeneration/JasmineExpectCssPropertySimilarStrategy';
 import {JasmineExpectCssPropertyEqualStrategy} from './domain/jasmineExpectCodeGeneration/JasmineExpectCssPropertyEqualStrategy';
+import {JasmineExpectAttributeValueStrategy} from './domain/jasmineExpectCodeGeneration/JasmineExpectAttributeValueStrategy';
 
 import * as PepinoModule from "./domain/services/IStepFunctionGenerator";
 
@@ -55,7 +56,8 @@ var codeGenerator = new g.Pepino.CucumberStepFunctionGenerator(new Array<ICodeGe
     new JasmineExpectAlertTextStrategy(),
     new JasmineExpectUrlStrategy(),
     new JasmineExpectCssPropertySimilarStrategy(),
-    new JasmineExpectCssPropertyEqualStrategy()
+    new JasmineExpectCssPropertyEqualStrategy(),
+    new JasmineExpectAttributeValueStrategy()
 ));
 var stepFileGenerator = new fileGen.Pepino.CommonJsCucumberStepFileGenerator();
 
