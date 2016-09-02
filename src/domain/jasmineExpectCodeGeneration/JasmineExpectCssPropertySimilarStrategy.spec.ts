@@ -7,7 +7,7 @@ import {JasmineExpectCssPropertySimilarStrategy} from "./JasmineExpectCssPropert
 describe("when converting pepino-lang instructions to a jasmine-style expect assertion", () => {
     describe("without variables", () => {
         const strategy = new JasmineExpectCssPropertySimilarStrategy();
-        const instructions = "Verify that object \"selector\" has css property \"color\" similar to \"value\"";
+        const instructions = "Verify that object <#selector> has css property \"color\" similar to \"value\"";
 
         it("should be able to generate css property instructions", () => {
             expect(strategy.canGenerate(instructions)).to.be.true;
@@ -23,13 +23,13 @@ describe("when converting pepino-lang instructions to a jasmine-style expect ass
 
         it("should convert the assert to jasmine expect code", () => {
             expect(strategy.generate(instructions))
-                .to.equal("expect(JSON.stringify(browser.getCssProperty(\"selector\", \"color\")).toUpperCase()).toContain(\"value\".toUpperCase());");
+                .to.equal("expect(JSON.stringify(browser.getCssProperty(\"#selector\", \"color\")).toUpperCase()).toContain(\"value\".toUpperCase());");
         });
     });
 
     describe("with variable in the object", () => {
         const strategy = new JasmineExpectCssPropertySimilarStrategy();
-        const instructions = "Verify that object \"$selector\" has css property \"color\" similar to \"value\"";
+        const instructions = "Verify that object <$selector> has css property \"color\" similar to \"value\"";
 
         it("should convert the assert to jasmine expect code with correct variable object", () => {
             expect(strategy.generate(instructions))
@@ -39,21 +39,21 @@ describe("when converting pepino-lang instructions to a jasmine-style expect ass
 
     describe("with variable in the property", () => {
         const strategy = new JasmineExpectCssPropertySimilarStrategy();
-        const instructions = "Verify that object \"selector\" has css property \"$color\" similar to \"value\"";
+        const instructions = "Verify that object <#selector> has css property \"$color\" similar to \"value\"";
 
         it("should convert the assert to jasmine expect code with correct variable property", () => {
             expect(strategy.generate(instructions))
-                .to.equal("expect(JSON.stringify(browser.getCssProperty(\"selector\", color)).toUpperCase()).toContain(\"value\".toUpperCase());");
+                .to.equal("expect(JSON.stringify(browser.getCssProperty(\"#selector\", color)).toUpperCase()).toContain(\"value\".toUpperCase());");
         });
     });
 
     describe("with variable in the value", () => {
         const strategy = new JasmineExpectCssPropertySimilarStrategy();
-        const instructions = "Verify that object \"selector\" has css property \"color\" similar to \"$value\"";
+        const instructions = "Verify that object <#selector> has css property \"color\" similar to \"$value\"";
 
         it("should convert the assert to jasmine expect code with correct variable value", () => {
             expect(strategy.generate(instructions))
-                .to.equal("expect(JSON.stringify(browser.getCssProperty(\"selector\", \"color\")).toUpperCase()).toContain(value.toUpperCase());");
+                .to.equal("expect(JSON.stringify(browser.getCssProperty(\"#selector\", \"color\")).toUpperCase()).toContain(value.toUpperCase());");
         });
     });
 });

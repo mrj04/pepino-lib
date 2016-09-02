@@ -13,10 +13,10 @@ export class JasmineExpectAttributeStrategy implements ICodeGenerationStrategy {
     }
 
     generate(text: string): string {
-        const object = VariableHelper.getString(StringHelper.extractTextInQuotes(text)[0]);
-        text = text.substring(text.lastIndexOf(object) + object.length + 1);
+        let element = VariableHelper.getString(StringHelper.extractTextInGreaterThanLessThan(text)[0]);
+        text = text.substring(text.lastIndexOf(element) + element.length + 1);
         const attribute = VariableHelper.getString(StringHelper.extractTextInQuotes(text)[0]);
 
-        return `expect(browser.getAttribute(${object}, ${attribute})).not.toBeNull();`;
+        return `expect(browser.getAttribute(${element}, ${attribute})).not.toBeNull();`;
     }
 }

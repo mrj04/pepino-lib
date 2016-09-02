@@ -14,12 +14,12 @@ export class JasmineExpectCssPropertySimilarStrategy implements ICodeGenerationS
     }
 
     generate(text: string): string {
-        const object = VariableHelper.getString(StringHelper.extractTextInQuotes(text)[0]);
-        text = text.substring(text.indexOf(object) + object.length + 1);
+        const element = VariableHelper.getString(StringHelper.extractTextInGreaterThanLessThan(text)[0]);
+        text = text.substring(text.indexOf(element) + element.length + 1);
         const property = VariableHelper.getString(StringHelper.extractTextInQuotes(text)[0]);
         text = text.substring(text.indexOf(property) + property.length + 1);
         const value = VariableHelper.getString(StringHelper.extractTextInQuotes(text)[0]);
 
-        return `expect(JSON.stringify(browser.getCssProperty(${object}, ${property})).toUpperCase()).toContain(${value}.toUpperCase());`;
+        return `expect(JSON.stringify(browser.getCssProperty(${element}, ${property})).toUpperCase()).toContain(${value}.toUpperCase());`;
     }
 }

@@ -14,12 +14,12 @@ export class JasmineExpectCssPropertyEqualStrategy implements ICodeGenerationStr
     }
 
     generate(text: string): string {
-        const object = VariableHelper.getString(StringHelper.extractTextInQuotes(text)[0]);
-        text = text.substring(text.indexOf(object) + object.length + 1);
+        const element = VariableHelper.getString(StringHelper.extractTextInGreaterThanLessThan(text)[0]);
+        text = text.substring(text.indexOf(element) + element.length + 1);
         const property = VariableHelper.getString(StringHelper.extractTextInQuotes(text)[0]);
         text = text.substring(text.indexOf(property) + property.length + 1);
         const value = VariableHelper.getString(StringHelper.extractTextInQuotes(text)[0]);
 
-        return `expect(browser.getCssProperty(${object}, ${property}).value).toEqual(${value});`;
+        return `expect(browser.getCssProperty(${element}, ${property}).value).toEqual(${value});`;
     }
 }
