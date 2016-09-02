@@ -86,3 +86,6 @@ the object "$selector" should have the css property "$style" equal to "$value"
 
 the object "$object" should have attribute "$attribute" with value "$value"
 	Verify that object "$object" has attribute "$attribute" with value "$value"
+
+the object "$object" should have attribute "$attribute"
+	Verify that object "$object" has attribute "$attribute"

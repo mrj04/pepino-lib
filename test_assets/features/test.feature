@@ -69,6 +69,11 @@ Scenario: Visiting a website and checking an object's css property equal value
 	Then the object "#team-toggler" should have the css property "color" equal to "rgba(114,192,44,1)"
 
 @focus
+Scenario: Visiting a website and checking an object's attribute
+	Given I visit "http://www.javascript-coder.com/files/javascript-get-form/javascript-get-form-example.html"
+	Then the object "#chk_email_alerts" should have attribute "checked"
+
+@focus
 Scenario: Visiting a website and checking an object's attribute with value
 	Given I visit "http://acklenavenue.com/"
 	Then the object "#web-service" should have attribute "class" with value "service"
