@@ -1,6 +1,6 @@
 # Pepino App
 
-[![Build Status](https://travis-ci.org/AcklenAvenue/pepino-lib.svg?branch=develop)](https://travis-ci.org/AcklenAvenue/pepino-app) [![Code Climate](https://codeclimate.com/github/AcklenAvenue/pepino-lib/badges/gpa.svg)](https://codeclimate.com/github/AcklenAvenue/pepino-app) [![Test Coverage](https://codeclimate.com/github/AcklenAvenue/pepino-lib/badges/coverage.svg)](https://codeclimate.com/github/AcklenAvenue/pepino-app/coverage)
+[![Build status](https://badge.buildkite.com/78eeb1af4d4253c61cfffafae432113c987bd7f790772ee8cb.svg)](https://buildkite.com/acklen-avenue/pepino-lib)
 
 pepino-lib translates plain english UI steps from the [Pepino Language](https://github.com/AcklenAvenue/pepino-language) into UI automation instructions.
 
