@@ -79,6 +79,12 @@ Scenario: Visiting a website and checking an object's attribute with value
 	Then the object "#web-service" should have attribute "class" with value "service"
 
 @focus
+Scenario: Switching to iframe
+    Given I visit "http://javascript.info/tutorial/frames-and-iframes"
+    When I switch to "iframe[src='http://javascript.info']" iframe
+    Then I should find "JavaScript Tutorial" in the results
+
+@focus
 Scenario: Logging in with google single-signon
     Given I visit "https://www.udemy.com/"
     When I attempt to log in using my google account
