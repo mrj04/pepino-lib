@@ -90,8 +90,11 @@ the object "$object" should have attribute "$attribute" with value "$value"
 the object "$object" should have attribute "$attribute"
 	Verify that object <$object> has attribute "$attribute"
 
-I switch to "$selector" iframe
+I switch to "$selector" iframe 
     Switch to iframe <$selector>
 
-Then I should find "$text" in the results
-    Verify "$text" is in <h1> element
+
+I should find "$text" in the alert
+   Double Click <a>
+   Verify alert text to be "$text"
+   Accept alert

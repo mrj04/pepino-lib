@@ -1,3 +1,4 @@
+
 Feature: The Webdriver.io Documentation
     As a developer
     I can search the API documentation
@@ -89,3 +90,7 @@ Scenario: Logging in with google single-signon
     Given I visit "https://www.udemy.com/"
     When I attempt to log in using my google account
     Then I should be logged in with my profile
+@focus
+Scenario:  Double clicking in a text 
+    Given I visit "http://www.quackit.com/html/html_editors/scratchpad/preview.cfm?example=/javascript/tutorial/javascript_void_0"
+    Then I should find "Well done" in the alert
