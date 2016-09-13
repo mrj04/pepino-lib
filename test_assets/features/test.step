@@ -93,8 +93,13 @@ the object "$object" should have attribute "$attribute"
 I switch to "$selector" iframe 
     Switch to iframe <$selector>
 
-
 I should find "$text" in the alert
    Double Click <a>
    Verify alert text to be "$text"
    Accept alert
+
+the alert should display "$text" after clicking menu-item
+    Right Click <span.context-menu-one>
+    Click <li.context-menu-icon-edit>
+    Verify alert text to be "$text"
+    Accept alert

@@ -90,7 +90,13 @@ Scenario: Logging in with google single-signon
     Given I visit "https://www.udemy.com/"
     When I attempt to log in using my google account
     Then I should be logged in with my profile
+
 @focus
 Scenario:  Double clicking in a text 
     Given I visit "http://www.quackit.com/html/html_editors/scratchpad/preview.cfm?example=/javascript/tutorial/javascript_void_0"
     Then I should find "Well done" in the alert
+
+@focus
+Scenario: clicking a menu item that shows up when right clicking a button that displays the menu
+    Given I visit "http://swisnl.github.io/jQuery-contextMenu/demo.html"
+    Then the alert should display "clicked: edit" after clicking menu-item
