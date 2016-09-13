@@ -100,3 +100,9 @@ Scenario:  Double clicking in a text
 Scenario: clicking a menu item that shows up when right clicking a button that displays the menu
     Given I visit "http://swisnl.github.io/jQuery-contextMenu/demo.html"
     Then the alert should display "clicked: edit" after clicking menu-item
+
+@focus
+Scenario: clearing input that contained text
+    Given I visit "http://www.ask.com/"
+    When I type "Alexander"
+    Then the input <input#search-box> should be empty

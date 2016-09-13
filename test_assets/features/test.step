@@ -103,3 +103,10 @@ the alert should display "$text" after clicking menu-item
     Click <li.context-menu-icon-edit>
     Verify alert text to be "$text"
     Accept alert
+
+I type "$searchText"
+    Type "$searchText" into <input#search-box>
+
+the input <input#search-box> should be empty
+    Clear <input#search-box>
+    Verify <input#search-box> is empty
