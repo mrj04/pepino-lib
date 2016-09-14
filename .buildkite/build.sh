@@ -6,9 +6,28 @@ echo "--- Set Node Version"
 . "$NVM_DIR/nvm.sh"
 nvm current
 nvm use 4
+echo "--- NPM Login"
+npm login <<!
+$NPM_USERNAME
+$NPM_PASSWORD
+$NPM_EMAIL
+!
 echo "--- Install Dependencies"
 npm install -g gulp
 npm install
 npm update
 echo "--- Build And Test"
+gulp bump
 gulp
+if [[ "$BUILDKITE_BRANCH" == "develop"  ]]; then
+  echo "--- deploy to develop"
+  npm publish
+fi
+if [[ "$BUILDKITE_BRANCH" == "staging"  ]]; then
+  echo "--- deploy to staging"
+  npm publish
+fi
+if [[ "$BUILDKITE_BRANCH" == "master"  ]]; then
+  echo "--- deploy to production"
+  npm publish
+fi
