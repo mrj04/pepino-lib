@@ -6,7 +6,7 @@ echo "--- Set Node Version"
 . "$NVM_DIR/nvm.sh"
 nvm current
 nvm use 4
-echo "-- NPM Login"
+echo "--- NPM Login"
 npm login <<!
 $NPM_USERNAME
 $NPM_PASSWORD
