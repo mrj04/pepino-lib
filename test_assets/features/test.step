@@ -110,3 +110,7 @@ I type "$searchText"
 the input <input#search-box> should be empty
     Clear <input#search-box>
     Verify <input#search-box> is empty
+
+
+I should find "$text" in the dropdown
+    Add "$text" to <select.js-states>
