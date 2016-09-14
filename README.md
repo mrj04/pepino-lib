@@ -4,4 +4,5 @@
 
 pepino-lib translates plain english UI steps from the [Pepino Language](https://github.com/AcklenAvenue/pepino-language) into UI automation instructions.
 
-Try Pepino out for yourself: http://pepino-demo.herokuapp.com/
+Try Pepino out for yourself: 
+http://pepino-demo.herokuapp.com/
