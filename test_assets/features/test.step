@@ -112,5 +112,5 @@ the input <input#search-box> should be empty
     Verify <input#search-box> is empty
 
 
-I should find "$text" in the dropdown
-    Add "$text" to <select.js-states>
+I should see "$text" in the dropdown
+    Add "$text" to <dropdown>

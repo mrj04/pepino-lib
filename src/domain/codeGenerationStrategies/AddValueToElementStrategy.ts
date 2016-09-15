@@ -12,8 +12,18 @@ export class AddValueToElementStrategy implements ICodeGenerationStrategy {
     }
 
     generate(text: string): string {
+        var keys = StringHelper.extractTextInQuotes(text);
         var element = StringHelper.extractTextInGreaterThanLessThan(text);
-        var values = VariableHelper.getString(StringHelper.extractTextInQuotes(text)[0]);
-        return "this.browser.addValue(\"" + element + "\", " + values + ");";
+        var value = VariableHelper.getString(keys[0]);
+        
+        var jsCommand = "function(b){\n\t\
+           var option = document.createElement('option');\n\t\
+           option.setAttribute('value', b);\n\t\
+           var textnode = document.createTextNode(b);\n\t\
+           option.appendChild(textnode);\n\t\
+           document.getElementsByName('"+element+"')[0].appendChild(option);\n\t\
+        }";
+        
+        return "this.browser.execute("+ jsCommand + "," + value + ");";
     }
 }
