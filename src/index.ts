@@ -36,7 +36,9 @@ import {DoubleClickElementStrategy} from './domain/codeGenerationStrategies/Doub
 import {RightClickElementStrategy} from './domain/codeGenerationStrategies/RightClickElementStrategy';
 import {ClearTextStrategy} from './domain/codeGenerationStrategies/ClearTextStrategy';
 import {JasmineExpectEmptyValueStrategy} from './domain/jasmineExpectCodeGeneration/JasmineExpectEmptyValueStrategy';
-import {AddValueToElementStrategy} from './domain/codeGenerationStrategies/AddValueToElementStrategy';
+import {AddValueToDropdownByNameStrategy} from './domain/codeGenerationStrategies/AddValueToDropdownByNameStrategy';
+import {AddValueToDropdownByClassNameStrategy} from './domain/codeGenerationStrategies/AddValueToDropdownByClassNameStrategy';
+import {AddValueToDropdownByIdentifierStrategy} from './domain/codeGenerationStrategies/AddValueToDropdownByIdentifierStrategy';
 
 import * as PepinoModule from "./domain/services/IStepFunctionGenerator";
 
@@ -71,7 +73,9 @@ var codeGenerator = new g.Pepino.CucumberStepFunctionGenerator(new Array<ICodeGe
     new RightClickElementStrategy(),
     new ClearTextStrategy(),
     new JasmineExpectEmptyValueStrategy(),
-    new AddValueToElementStrategy()
+    new AddValueToDropdownByNameStrategy(),
+    new AddValueToDropdownByClassNameStrategy(),
+    new AddValueToDropdownByIdentifierStrategy()
 ));
 var stepFileGenerator = new fileGen.Pepino.CommonJsCucumberStepFileGenerator();
 

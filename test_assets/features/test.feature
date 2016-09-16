@@ -8,5 +8,5 @@ Feature: The Webdriver.io Documentation
 
 @focus
 Scenario: Adding a value to a dropdown 
-    Given I visit "http://www.tutorialspoint.com/html/html_select_tag.htm"
-    Then I should see "testValue" in the dropdown
+    Given I visit "https://select2.github.io/examples.html"
+    Then I should see "testValue" in the dropdown named "js-states"

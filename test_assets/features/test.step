@@ -111,6 +111,5 @@ the input <input#search-box> should be empty
     Clear <input#search-box>
     Verify <input#search-box> is empty
 
-
-I should see "$text" in the dropdown
-    Add "$text" to <dropdown>
+I should see "$text" in the dropdown named "$name"
+    Add "$text" to dropdown that has class name "$name"
