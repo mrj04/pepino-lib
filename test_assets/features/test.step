@@ -110,3 +110,9 @@ I type "$searchText"
 the input <input#search-box> should be empty
     Clear <input#search-box>
     Verify <input#search-box> is empty
+
+I should see "$text" in the dropdown named "$name"
+    Add "$text" to dropdown that has class name "$name"
+
+I should see "$text" in the dropdown with identifier "$id"
+    Add "$text" to dropdown that has identifier "$id"

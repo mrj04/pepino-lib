@@ -1,4 +1,3 @@
-
 Feature: The Webdriver.io Documentation
     As a developer
     I can search the API documentation
@@ -106,3 +105,8 @@ Scenario: clearing input that contained text
     Given I visit "http://www.ask.com/"
     When I type "Alexander"
     Then the input <input#search-box> should be empty
+    
+@focus
+Scenario: Adding a value to a dropdown 
+    Given I visit "https://output.jsbin.com/lofidabafu"
+    Then I should see "testValue" in the dropdown with identifier "test"
