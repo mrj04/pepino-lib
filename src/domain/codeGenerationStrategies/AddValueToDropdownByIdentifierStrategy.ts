@@ -2,6 +2,7 @@
 import {ICodeGenerationStrategy} from "../ICodeGenerationStrategy";
 import {StringHelper} from "../helpers/StringHelper";
 import {VariableHelper} from "../helpers/VariableHelper";
+import {StepHelper} from "../helpers/StepHelper";
 
 export class AddValueToDropdownByIdentifierStrategy implements ICodeGenerationStrategy {
 
@@ -15,7 +16,7 @@ export class AddValueToDropdownByIdentifierStrategy implements ICodeGenerationSt
     generate(text: string): string {
         var keys = StringHelper.extractTextInQuotes(text);
         var value = VariableHelper.getString(keys[0]);
-        var element = VariableHelper.getString(keys[1]);
+        var element = StepHelper.extractSelectorById(keys[0], 0);
 
         var jsCommand = "var value = " + value + ";\n\
             var element = " + element + ";\n\n\

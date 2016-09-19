@@ -35,4 +35,12 @@ export class StringHelper {
         var textWithoutTokens = text.replace(this.textInQuotes, "");
         return textWithoutTokens.toLowerCase().indexOf(contents.toLowerCase()) > -1;
     }
+
+    static extractId(str: string): string {
+        return str.substring(str.indexOf("#") + 1, str.length);
+    }
+
+    static extractClassname(str: string): string {
+        return str.substring(str.indexOf(".") + 1, str.length);
+    }
 }

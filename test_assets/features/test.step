@@ -115,4 +115,4 @@ I should see "$text" in the dropdown named "$name"
     Add "$text" to dropdown that has class name "$name"
 
 I should see "$text" in the dropdown with identifier "$id"
-    Add "$text" to dropdown that has identifier "$id"
+    Add "$text" to dropdown that has identifier <#test>
