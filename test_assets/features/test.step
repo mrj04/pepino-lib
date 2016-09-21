@@ -93,13 +93,13 @@ the object "$object" should have attribute "$attribute"
 I switch to "$selector" iframe 
     Switch to iframe <$selector>
 
-I should find "$text" in the alert
-   Double Click <a>
+I should find "$text" in the alert "$id"
+   Double Click <#link>
    Verify alert text to be "$text"
    Accept alert
 
-the alert should display "$text" after clicking menu-item
-    Right Click <span.context-menu-one>
+the alert should display "$text" after clicking menu-item "$item"
+    Right Click <$item>
     Click <li.context-menu-icon-edit>
     Verify alert text to be "$text"
     Accept alert
@@ -111,8 +111,11 @@ the input <input#search-box> should be empty
     Clear <input#search-box>
     Verify <input#search-box> is empty
 
-I should see "$text" in the dropdown named "$name"
-    Add "$text" to dropdown that has class name "$name"
+I should see a new time zone in the dropdown
+    Add "New Time Zone" to dropdown with class <.js-states>
 
-I should see "$text" in the dropdown with identifier "$id"
-    Add "$text" to dropdown that has identifier "$id"
+I should see a new value in the dropdown
+    Add "new value" to dropdown with id <#test>
+
+I should see "$text" in the dropdown
+    Add "$text" to dropdown with name "dropdown"

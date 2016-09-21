@@ -105,8 +105,18 @@ Scenario: clearing input that contained text
     Given I visit "http://www.ask.com/"
     When I type "Alexander"
     Then the input <input#search-box> should be empty
-    
+
 @focus
-Scenario: Adding a value to a dropdown 
-    Given I visit "https://output.jsbin.com/lofidabafu"
-    Then I should see "testValue" in the dropdown with identifier "test"
+Scenario: Adding value to a dropdown identified by its classname
+    Given I visit "https://select2.github.io/examples.html"
+    Then I should see a new time zone in the dropdown
+
+@focus
+Scenario: Adding value to a dropdown identified by its id
+    Given I visit "https://jsbin.com/sasunok"
+    Then I should see a new value in the dropdown
+
+@focus
+Scenario: Adding value to a dropdown identified by its name
+    Given I visit "https://www.tutorialspoint.com/html/html_select_tag.htm"
+    Then I should see "newValue" in the dropdown

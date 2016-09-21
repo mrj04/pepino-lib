@@ -87,4 +87,24 @@ describe("The String Helper",  () => {
                 expect(StringHelper.extractTextInQuotes("no quotes").length).to.equal(0);
         });
     });
+
+    describe('When extracting id from text', () => {
+        it('Should be able to extract one word', () => {
+            expect(StringHelper.extractId('#id')).to.be.equal('id');
+        });
+
+        it('Should not be able to extract anything if no number sign was found', () => {
+            expect(StringHelper.extractId('id')).to.be.equal('');
+        });
+    });
+
+    describe('When extracting classname from text', () => {
+        it('Should be able to extract one word', () => {
+            expect(StringHelper.extractClassname('.classname')).to.be.equal('classname');
+        });
+
+        it('Should not be able to extract anything if no number sign was found', () => {
+            expect(StringHelper.extractClassname('classname')).to.be.equal('');
+        });
+    });
 });
