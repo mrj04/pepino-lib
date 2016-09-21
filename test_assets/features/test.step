@@ -93,13 +93,13 @@ the object "$object" should have attribute "$attribute"
 I switch to "$selector" iframe 
     Switch to iframe <$selector>
 
-I should find "$text" in the alert
-   Double Click <a>
+I should find "$text" in the alert "$id"
+   Double Click <#link>
    Verify alert text to be "$text"
    Accept alert
 
-the alert should display "$text" after clicking menu-item
-    Right Click <span.context-menu-one>
+the alert should display "$text" after clicking menu-item "$item"
+    Right Click <$item>
     Click <li.context-menu-icon-edit>
     Verify alert text to be "$text"
     Accept alert
@@ -113,7 +113,3 @@ the input <input#search-box> should be empty
 
 I should see "$text" in the dropdown with name "$name"
     Add "$text" to dropdown with name "dropdown"
-
-I should be redirected to a page with title "$title" "$tag"
-    Click <$tag>
-    Verify title to be "$title"

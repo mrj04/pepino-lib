@@ -1,6 +1,5 @@
 "use strict";
 import {ICodeGenerationStrategy} from "../ICodeGenerationStrategy";
-import {StringHelper} from "../helpers/StringHelper";
 import {StepHelper} from "../helpers/StepHelper";
 
 export class ClickElementStrategy implements ICodeGenerationStrategy {

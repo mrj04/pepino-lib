@@ -4,6 +4,6 @@ Feature: The Webdriver.io Documentation
     So that I can develop using the right syntax
     
 @focus
-Scenario: Clicking a link
-    Given I visit "http://javascript.info/tutorial/hello-world"
-    Then I should be redirected to a page with title "Variables and statements | JavaScript Tutorial" ".page-next"
+Scenario: clicking a menu item that shows up when right clicking a button that displays the menu
+    Given I visit "http://swisnl.github.io/jQuery-contextMenu/demo.html"
+    Then the alert should display "clicked: edit" after clicking menu-item "span.context-menu-one"

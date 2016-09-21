@@ -77,4 +77,24 @@ describe('The Step Helper', () => {
             expect(element).to.be.equal('nameOne');
         });
     });
+
+    describe('When extracting the selector from the step when it comes as a variable', () => {
+        var step: string = 'Step example <$nameOne>';
+        
+        it('Should return the name without dollar symbol', () => {
+            var element: string = StepHelper.extractSelector(step, 0);
+
+            expect(element).to.be.equal('nameOne');
+        });
+    });
+
+    describe('When extracting the selector from the step when it comes as a hardcoded value', () => {
+        var step: string = 'Step example <input#nameOne>';
+        
+        it('Should return the name without dollar symbol', () => {
+            var element: string = StepHelper.extractSelector(step, 0);
+
+            expect(element).to.be.equal('"input#nameOne"');
+        });
+    });
 });
