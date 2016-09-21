@@ -8,7 +8,7 @@ export class AddValueToDropdownByNameStrategy implements ICodeGenerationStrategy
     canGenerate(text: string): boolean {
         var lowercase = text.toLowerCase();
         var hasAddAtTheBeginning = lowercase.startsWith("add ");
-        var hasInstructionContextInTheMiddle = lowercase.indexOf(" to dropdown that has name ") > -1;
+        var hasInstructionContextInTheMiddle = lowercase.indexOf(" to dropdown with name ") > -1;
         return hasAddAtTheBeginning && hasInstructionContextInTheMiddle;
     }
 
@@ -31,7 +31,7 @@ export class AddValueToDropdownByNameStrategy implements ICodeGenerationStrategy
                     option.appendChild(textnode);\n\
                     objectsFound[index].appendChild(option);\n\
                 }\n\
-            },value, element);";
+            }, value, element);";
         
          return jsCommand;
     }

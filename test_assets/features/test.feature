@@ -5,5 +5,5 @@ Feature: The Webdriver.io Documentation
     
 @focus
 Scenario: Adding a value to a dropdown 
-    Given I visit "https://output.jsbin.com/lofidabafu"
-    Then I should see "testValue" in the dropdown with identifier "test"
+    Given I visit "https://www.tutorialspoint.com/html/html_select_tag.htm"
+    Then I should see "testValue" in the dropdown with name "dropdown"

@@ -37,10 +37,16 @@ export class StringHelper {
     }
 
     static extractId(str: string): string {
-        return str.substring(str.indexOf("#") + 1, str.length);
+        if (str.indexOf("#") !== -1) {
+            return str.substring(str.indexOf("#") + 1, str.length);
+        }
+        return '';
     }
 
     static extractClassname(str: string): string {
-        return str.substring(str.indexOf(".") + 1, str.length);
+        if (str.indexOf(".") !== -1) {
+            return str.substring(str.indexOf(".") + 1, str.length);
+        }
+        return '';
     }
 }

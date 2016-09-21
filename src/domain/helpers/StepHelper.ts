@@ -30,4 +30,17 @@ export class StepHelper {
 
         return selector;
     }
+
+    static extractSelectorByName(instruction: string, index: number): string {
+        var selector = "";
+        var elementsArray = StringHelper.extractTextInQuotes(instruction);
+
+        if (elementsArray[index].indexOf(this.characterIndicatorForVariables) > -1) {
+            selector = VariableHelper.getString(elementsArray[index]);
+        } else {
+            selector = "\"" + elementsArray[index] + "\"";
+        }
+
+        return selector;
+    }
 }
