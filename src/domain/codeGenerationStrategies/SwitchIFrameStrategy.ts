@@ -1,7 +1,7 @@
 "use strict";
 import {ICodeGenerationStrategy} from "../ICodeGenerationStrategy";
 import {StringHelper} from "../helpers/StringHelper";
-import {VariableHelper} from "../helpers/VariableHelper";
+import {StepHelper} from "../helpers/StepHelper";
 
 export class SwitchIFrameStrategy implements ICodeGenerationStrategy {
 
@@ -11,7 +11,7 @@ export class SwitchIFrameStrategy implements ICodeGenerationStrategy {
     }
 
     generate(text: string): string {
-        const element = VariableHelper.getString(StringHelper.extractTextInGreaterThanLessThan(text)[0]);
-        return `this.browser.frame(browser.element(${element}).value);`;
+        const element = StepHelper.extractSelector(text, 0);
+        return "this.browser.frame(browser.element("+element+").value);";
     }
 }
