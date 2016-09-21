@@ -1,6 +1,6 @@
 "use strict";
 import {ICodeGenerationStrategy} from "../ICodeGenerationStrategy";
-import {StringHelper} from "../helpers/StringHelper";
+import {StepHelper} from "../helpers/StepHelper";
 
 export class ClearTextStrategy implements ICodeGenerationStrategy {
 
@@ -10,7 +10,7 @@ export class ClearTextStrategy implements ICodeGenerationStrategy {
     }
 
     generate(text: string): string {
-        var element = StringHelper.extractTextInGreaterThanLessThan(text);
-        return "this.browser.clearElement(\"" + element + "\");";
+        var element = StepHelper.extractSelector(text, 0);
+        return "this.browser.clearElement(" + element + ");";
     }
 }

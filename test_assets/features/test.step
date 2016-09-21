@@ -111,5 +111,11 @@ the input <input#search-box> should be empty
     Clear <input#search-box>
     Verify <input#search-box> is empty
 
-I should see "$text" in the dropdown with name "$name"
+I should see a new time zone in the dropdown
+    Add "New Time Zone" to dropdown with class <.js-states>
+
+I should see a new value in the dropdown
+    Add "new value" to dropdown with id <#test>
+
+I should see "$text" in the dropdown
     Add "$text" to dropdown with name "dropdown"
