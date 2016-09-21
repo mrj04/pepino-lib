@@ -91,7 +91,7 @@ the object "$object" should have attribute "$attribute"
 	Verify that object <$object> has attribute "$attribute"
 
 I switch to "$selector" iframe 
-    Switch to iframe <iframe[src='http://javascript.info']>
+    Switch to iframe <$selector>
 
 I should find "$text" in the alert "$id"
    Double Click <#link>
