@@ -1,6 +1,7 @@
 "use strict";
 import {ICodeGenerationStrategy} from "../ICodeGenerationStrategy";
 import {StringHelper} from "../helpers/StringHelper";
+import {StepHelper} from "../helpers/StepHelper";
 
 export class ClickElementStrategy implements ICodeGenerationStrategy {
 
@@ -10,7 +11,7 @@ export class ClickElementStrategy implements ICodeGenerationStrategy {
     }
 
     generate(text: string): string {
-        var element = StringHelper.extractTextInGreaterThanLessThan(text);
-        return "this.browser.click(\"" + element + "\");";
+        var element = StepHelper.extractSelector(text, 0);
+        return "this.browser.click(" + element + ");";
     }
 }

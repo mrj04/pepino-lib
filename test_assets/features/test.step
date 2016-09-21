@@ -113,3 +113,7 @@ the input <input#search-box> should be empty
 
 I should see "$text" in the dropdown with name "$name"
     Add "$text" to dropdown with name "dropdown"
+
+I should be redirected to a page with title "$title" "$tag"
+    Click <$tag>
+    Verify title to be "$title"

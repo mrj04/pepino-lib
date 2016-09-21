@@ -4,6 +4,6 @@ Feature: The Webdriver.io Documentation
     So that I can develop using the right syntax
     
 @focus
-Scenario: Adding a value to a dropdown 
-    Given I visit "https://www.tutorialspoint.com/html/html_select_tag.htm"
-    Then I should see "testValue" in the dropdown with name "dropdown"
+Scenario: Clicking a link
+    Given I visit "http://javascript.info/tutorial/hello-world"
+    Then I should be redirected to a page with title "Variables and statements | JavaScript Tutorial" ".page-next"
