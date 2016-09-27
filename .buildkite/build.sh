@@ -24,6 +24,7 @@ if [[ "$BUILDKITE_BRANCH" == "develop"  ]]; then
   npm publish
   cd ..
   cd pepino-demo
+  git commit --allow-empty -m "empty commit"
   git push heroku develop:master
 fi
 if [[ "$BUILDKITE_BRANCH" == "staging"  ]]; then
