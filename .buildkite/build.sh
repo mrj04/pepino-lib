@@ -22,6 +22,9 @@ gulp
 if [[ "$BUILDKITE_BRANCH" == "develop"  ]]; then
   echo "--- deploy to develop"
   npm publish
+  cd ..
+  cd pepino-demo
+  git push heroku develop:master
 fi
 if [[ "$BUILDKITE_BRANCH" == "staging"  ]]; then
   echo "--- deploy to staging"
