@@ -119,3 +119,6 @@ I should see a new value in the dropdown
 
 I should see "$text" in the dropdown
     Add "$text" to dropdown with name "dropdown"
+
+I drag an image into a container
+    Drag <img.document> and drop it to <div.trash>
