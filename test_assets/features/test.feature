@@ -113,7 +113,7 @@ Scenario: Adding value to a dropdown identified by its classname
 
 @focus
 Scenario: Adding value to a dropdown identified by its id
-    Given I visit "https://jsbin.com/sasunok"
+    Given I visit "https://jsbin.com/sasunok/2"
     Then I should see a new value in the dropdown
 
 @focus

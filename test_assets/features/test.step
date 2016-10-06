@@ -119,3 +119,6 @@ I should see a new value in the dropdown
 
 I should see "$text" in the dropdown
     Add "$text" to dropdown with name "dropdown"
+
+I should see the div container has a paragraph with "$style" set as "$value"
+    Click <div#container>button#myButton>
