@@ -39,8 +39,8 @@ import {JasmineExpectEmptyValueStrategy} from './domain/jasmineExpectCodeGenerat
 import {AddValueToDropdownByNameStrategy} from './domain/codeGenerationStrategies/AddValueToDropdownByNameStrategy';
 import {AddValueToDropdownByClassNameStrategy} from './domain/codeGenerationStrategies/AddValueToDropdownByClassNameStrategy';
 import {AddValueToDropdownByIdentifierStrategy} from './domain/codeGenerationStrategies/AddValueToDropdownByIdentifierStrategy';
-import {JasmineExpectContainerHasElementStrategy} from './domain/jasmineExpectCodeGeneration/JasmineExpectContainerHasElementStrategy';
 import {DragAndDropStrategy} from './domain/codeGenerationStrategies/DragAndDropStrategy';
+import {JasmineExpectContainerHasElementStrategy} from './domain/jasmineExpectCodeGeneration/JasmineExpectContainerHasElementStrategy';
 
 import * as PepinoModule from "./domain/services/IStepFunctionGenerator";
 
