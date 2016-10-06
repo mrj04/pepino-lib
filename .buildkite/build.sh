@@ -13,6 +13,7 @@ $NPM_PASSWORD
 $NPM_EMAIL
 !
 echo "--- Install Dependencies"
+pm -g install npm@1
 npm install -g gulp
 npm install
 npm update
