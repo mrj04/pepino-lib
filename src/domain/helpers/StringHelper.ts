@@ -10,7 +10,7 @@ export class StringHelper {
     }
 
     static extractTextInGreaterThanLessThan(str: string): Array<string> {
-        return this.getArrayOfMatches(str, /\<(.*?)\>/g);
+        return this.getArrayOfMatchesForLessThanGreaterThan(str);
     }
 
     static escapeQuotes(str: string): string {
@@ -24,6 +24,21 @@ export class StringHelper {
             matches.push(match[1]);
             match = exp.exec(str);
         }
+        return _.map(matches, (m) => { return this.escapeQuotes(m); });
+    }
+
+    private static getArrayOfMatchesForLessThanGreaterThan(str: string): Array<string> {
+        var matches = new Array<string>();
+        var parts = new Array<string>();
+        parts = str.split(' ');
+
+        var elements = _.filter(parts, (part: string) => {
+            return part.charAt(0) === '<' && part.charAt(part.length - 1) === '>';
+        });
+
+        matches = _.map(elements, (element: string) => {
+            return element.substr(1, element.length - 2);
+        });
         return _.map(matches, (m) => { return this.escapeQuotes(m); });
     }
 

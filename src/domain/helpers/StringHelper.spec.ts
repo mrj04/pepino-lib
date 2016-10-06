@@ -56,11 +56,11 @@ describe("The String Helper",  () => {
         });
 
         it("should be able to extract multiple words", () => {
-            expect(StringHelper.extractTextInGreaterThanLessThan("this text is <in brackets>")[0]).to.equal("in brackets");
+            expect(StringHelper.extractTextInGreaterThanLessThan("this text is <in.brackets>")[0]).to.equal("in.brackets");
         });
 
         it("should be able to extract multiple bracketed words", () => {
-            expect(StringHelper.extractTextInGreaterThanLessThan("this text is <in brackets>")[0]).to.equal("in brackets");
+            expect(StringHelper.extractTextInGreaterThanLessThan("this text is <in[brackets]>")[0]).to.equal("in[brackets]");
         });
 
         it("should return an empty array when no symbols exist", () => {
