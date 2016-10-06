@@ -120,3 +120,9 @@ Scenario: Adding value to a dropdown identified by its id
 Scenario: Adding value to a dropdown identified by its name
     Given I visit "https://www.tutorialspoint.com/html/html_select_tag.htm"
     Then I should see "newValue" in the dropdown
+    
+@focus
+Scenario: Dragging an image to a container
+    Given I visit "http://marcojakob.github.io/dart-dnd/basic/web/"
+    Then I drag an image into a container
+    

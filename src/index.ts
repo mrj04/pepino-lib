@@ -39,6 +39,8 @@ import {JasmineExpectEmptyValueStrategy} from './domain/jasmineExpectCodeGenerat
 import {AddValueToDropdownByNameStrategy} from './domain/codeGenerationStrategies/AddValueToDropdownByNameStrategy';
 import {AddValueToDropdownByClassNameStrategy} from './domain/codeGenerationStrategies/AddValueToDropdownByClassNameStrategy';
 import {AddValueToDropdownByIdentifierStrategy} from './domain/codeGenerationStrategies/AddValueToDropdownByIdentifierStrategy';
+import {DragAndDropStrategy} from './domain/codeGenerationStrategies/DragAndDropStrategy';
+import {JasmineExpectContainerHasElementStrategy} from './domain/jasmineExpectCodeGeneration/JasmineExpectContainerHasElementStrategy';
 
 import * as PepinoModule from "./domain/services/IStepFunctionGenerator";
 
@@ -75,7 +77,9 @@ var codeGenerator = new g.Pepino.CucumberStepFunctionGenerator(new Array<ICodeGe
     new JasmineExpectEmptyValueStrategy(),
     new AddValueToDropdownByNameStrategy(),
     new AddValueToDropdownByClassNameStrategy(),
-    new AddValueToDropdownByIdentifierStrategy()
+    new AddValueToDropdownByIdentifierStrategy(),
+    new JasmineExpectContainerHasElementStrategy(),
+    new DragAndDropStrategy()
 ));
 var stepFileGenerator = new fileGen.Pepino.CommonJsCucumberStepFileGenerator();
 
