@@ -17,20 +17,6 @@ Scenario: Selecting options from a dropdown
     And the value of "article#wikiArticle p select" should be "value3"
 
 @focus
-Scenario: Dismissing a js alert
-    Given I visit "http://www.javascripter.net/faq/alert.htm"
-    And there is an alert box waiting for input
-    When I dismiss the alert
-    Then I should be able to do other things on the site
-
-@focus
-Scenario: Accepting a js alert
-    Given I visit "http://www.javascripter.net/faq/alert.htm"
-    And there is an alert box waiting for input
-    When I accept the alert 
-    Then I should be able to do other things on the site
-
-@focus
 Scenario: Toggle a Checkbox
 	Given I visit "http://www.javascript-coder.com/files/javascript-get-form/javascript-get-form-example.html"
 	When I toggle the "#chl_recruiter_contact" checkbox
@@ -46,12 +32,6 @@ Scenario: Untoggle a Checkbox
 Scenario: Visiting a website and checking its title
 	Given I visit "https://www.google.com"
 	Then the title should be "Google"
-
-@focus
-Scenario: Valid alert text
-    Given I visit "http://www.javascripter.net/faq/alert.htm"
-    And there is an alert box waiting for input
-	Then the text in the alert should be "Hello from JavaScript!"
 
 @focus
 Scenario: Visiting a website and checking its url
@@ -91,14 +71,9 @@ Scenario: Logging in with google single-signon
     Then I should be logged in with my profile
 
 @focus
-Scenario:  Double clicking in a text 
-    Given I visit "http://www.quackit.com/html/html_editors/scratchpad/preview.cfm?example=/javascript/tutorial/javascript_void_0"
-    Then I should find "Well done" in the alert
-
-@focus
 Scenario: clicking a menu item that shows up when right clicking a button that displays the menu
     Given I visit "http://swisnl.github.io/jQuery-contextMenu/demo.html"
-    Then the alert should display "clicked: edit" after clicking menu-item
+    Then the alert should display "clicked: edit" after clicking menu-item ".context-menu-one"
 
 @focus
 Scenario: clearing input that contained text
@@ -113,7 +88,7 @@ Scenario: Adding value to a dropdown identified by its classname
 
 @focus
 Scenario: Adding value to a dropdown identified by its id
-    Given I visit "https://jsbin.com/sasunok/2"
+    Given I visit "https://jsbin.com/sasunok/5"
     Then I should see a new value in the dropdown
 
 @focus
