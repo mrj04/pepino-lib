@@ -17,20 +17,6 @@ Scenario: Selecting options from a dropdown
     And the value of "article#wikiArticle p select" should be "value3"
 
 @focus
-Scenario: Dismissing a js alert
-    Given I visit "http://www.javascripter.net/faq/alert.htm"
-    And there is an alert box waiting for input
-    When I dismiss the alert
-    Then I should be able to do other things on the site
-
-@focus
-Scenario: Accepting a js alert
-    Given I visit "http://www.javascripter.net/faq/alert.htm"
-    And there is an alert box waiting for input
-    When I accept the alert 
-    Then I should be able to do other things on the site
-
-@focus
 Scenario: Toggle a Checkbox
 	Given I visit "http://www.javascript-coder.com/files/javascript-get-form/javascript-get-form-example.html"
 	When I toggle the "#chl_recruiter_contact" checkbox
@@ -113,7 +99,7 @@ Scenario: Adding value to a dropdown identified by its classname
 
 @focus
 Scenario: Adding value to a dropdown identified by its id
-    Given I visit "https://jsbin.com/sasunok/2"
+    Given I visit "https://jsbin.com/sasunok/5"
     Then I should see a new value in the dropdown
 
 @focus
