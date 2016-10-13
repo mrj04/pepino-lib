@@ -34,12 +34,6 @@ Scenario: Visiting a website and checking its title
 	Then the title should be "Google"
 
 @focus
-Scenario: Valid alert text
-    Given I visit "http://www.javascripter.net/faq/alert.htm"
-    And there is an alert box waiting for input
-	Then the text in the alert should be "Hello from JavaScript!"
-
-@focus
 Scenario: Visiting a website and checking its url
 	Given I visit "http://acklenavenue.com/"
 	Then the url must be "http://acklenavenue.com/"
@@ -77,14 +71,9 @@ Scenario: Logging in with google single-signon
     Then I should be logged in with my profile
 
 @focus
-Scenario:  Double clicking in a text 
-    Given I visit "http://www.quackit.com/html/html_editors/scratchpad/preview.cfm?example=/javascript/tutorial/javascript_void_0"
-    Then I should find "Well done" in the alert
-
-@focus
 Scenario: clicking a menu item that shows up when right clicking a button that displays the menu
     Given I visit "http://swisnl.github.io/jQuery-contextMenu/demo.html"
-    Then the alert should display "clicked: edit" after clicking menu-item
+    Then the alert should display "clicked: edit" after clicking menu-item ".context-menu-one"
 
 @focus
 Scenario: clearing input that contained text

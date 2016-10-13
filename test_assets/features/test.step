@@ -57,7 +57,7 @@ the object "$object" should have attribute "$attribute"
 I switch to "$selector" iframe 
     Switch to iframe <$selector>
 
-I should find "$text" in the alert "$id"
+I should find "$text" in the alert
    Double Click <#link>
    Verify alert text to be "$text"
    Accept alert
