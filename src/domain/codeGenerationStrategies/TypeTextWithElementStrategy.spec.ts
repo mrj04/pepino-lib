@@ -4,7 +4,7 @@ var expect = chai.expect;
 import {ICodeGenerationStrategy} from "../ICodeGenerationStrategy";
 import {TypeTextWithElementStrategy} from "./TypeTextWithElementStrategy";
 
-describe("when converting pepino-lang instructions to type text with no target element", () => {
+describe("Type Text With Element Strategy", () => {
 
     var strategy = new TypeTextWithElementStrategy();
 
@@ -43,6 +43,22 @@ describe("when converting pepino-lang instructions to type text with no target e
         it("should convert the step to cucumberjs code", () => {
             expect(strategy.generate(instructions))
                 .to.equal("this.browser.setValue(\"#element\", someText);");
+        });
+    });
+
+    describe('When instruction has generator date', () => {
+        it('should not generate code because of invalid generator type', () => {
+            expect(strategy.canGenerate('type $gen:email3 into <element>')).to.be.false;
+        });
+
+        it('should generate code with valid generator type', () => {
+            expect(strategy.canGenerate('type $gen:email into <element>')).to.be.true;
+        });
+
+        it('should convert the step to cucumberjs code', () => {
+            var code = strategy.generate('type $gen:email into <element>');
+            console.log(code);
+            expect(code.length).to.not.equal(0);
         });
     });
 

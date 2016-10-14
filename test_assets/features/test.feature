@@ -65,12 +65,6 @@ Scenario: Switching to iframe
     Then I should find "JavaScript Tutorial" in the results
 
 @focus
-Scenario: Logging in with google single-signon
-    Given I visit "https://www.udemy.com/"
-    When I attempt to log in using my google account
-    Then I should be logged in with my profile
-
-@focus
 Scenario: clicking a menu item that shows up when right clicking a button that displays the menu
     Given I visit "http://swisnl.github.io/jQuery-contextMenu/demo.html"
     Then the alert should display "clicked: edit" after clicking menu-item ".context-menu-one"
