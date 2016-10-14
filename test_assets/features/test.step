@@ -3,7 +3,44 @@ I visit the API page
     Click <=API>
 
 I search for "$searchText"
+    Type $gen:bool into <input[name='search']>
+    Wait 3 seconds
+    Type $gen:float into <input[name='search']>
+    Wait 3 seconds
+    Type $gen:int into <input[name='search']>
+    Wait 3 seconds
+    Type $gen:string into <input[name='search']>
+    Wait 3 seconds
+    Type $gen:age into <input[name='search']>
+    Wait 3 seconds
+    Type $gen:email into <input[name='search']>
+    Wait 3 seconds
+    Type $gen:firstname into <input[name='search']>
+    Wait 3 seconds
+    Type $gen:lastname into <input[name='search']>
+    Wait 3 seconds
+    Type $gen:completeName into <input[name='search']>
+    Wait 3 seconds
+    Type $gen:domain into <input[name='search']>
+    Wait 3 seconds
+    Type $gen:address into <input[name='search']>
+    Wait 3 seconds
+    Type $gen:city into <input[name='search']>
+    Wait 3 seconds
+    Type $gen:country into <input[name='search']>
+    Wait 3 seconds
+    Type $gen:coordinates into <input[name='search']>
+    Wait 3 seconds
+    Type $gen:phone into <input[name='search']>
+    Wait 3 seconds
+    Type $gen:zip into <input[name='search']>
+    Wait 3 seconds
+    Type $gen:datetime into <input[name='search']>
+    Wait 3 seconds
+    Type $gen:normalDate into <input[name='search']>
+    Wait 3 seconds
     Type "$searchText" into <input[name='search']>
+    Wait 3 seconds
 
 I should find "$text" in the results
     Verify "$text" is in an <a> element
@@ -93,7 +130,7 @@ the object "$object" should have attribute "$attribute"
 I switch to "$selector" iframe 
     Switch to iframe <$selector>
 
-I should find "$text" in the alert "$id"
+I should find "$text" in the alert
    Double Click <#link>
    Verify alert text to be "$text"
    Accept alert
@@ -122,3 +159,8 @@ I should see "$text" in the dropdown
 
 I drag an image into a container
     Drag <img.document> and drop it to <div.trash>
+
+I type something
+    Wait 5 seconds
+    Type $gen:email into <#search-box>
+    Wait 5 seconds

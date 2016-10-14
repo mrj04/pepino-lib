@@ -32,7 +32,8 @@ gulp.task('clean-build', function () {
 gulp.task('compile', ['clean-build'], function () {
     var tsProject = ts.createProject('tsconfig.json');
     var compilePipeline =
-        gulp.src(['src/index.ts', 'src/**/*.ts', 'typings/main/**/*', 'typings/main.d.ts', 'typings/custom/**/*.ts'])
+        gulp.src(['src/index.ts', 'src/**/*.ts', 'typings/main/**/*', 'typings/main.d.ts',
+            'typings/custom/**/*.ts', 'typings/globals/**/*.ts', 'typings/modules/**/*.ts'])
             .pipe(sourcemaps.init())
             .pipe(ts(tsProject)).js
             .pipe(sourcemaps.write({ sourceRoot: '/src', includeContent: false }))

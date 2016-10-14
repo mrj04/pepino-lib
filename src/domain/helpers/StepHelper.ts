@@ -56,4 +56,18 @@ export class StepHelper {
 
         return selector;
     }
+
+    static extractGeneratorType(instruction: string): string {
+        var instructionParts: string[] = instruction.split(' ');
+
+        var generatorPart = _.find(instructionParts, (part: string) => {
+            return part.startsWith('$gen:');
+        });
+
+        if (generatorPart) {
+            return generatorPart.substr(5, generatorPart.length - 5);
+        } else {
+            return '';
+        }
+    }
 }

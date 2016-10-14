@@ -1,20 +1,43 @@
 "use strict";
+import chance = require('chance');
+import * as _ from "underscore";
 import {ICodeGenerationStrategy} from "../ICodeGenerationStrategy";
 import {StringHelper} from "../helpers/StringHelper";
 import {VariableHelper} from "../helpers/VariableHelper";
+import {StepHelper} from "../helpers/StepHelper";
+import {GeneratorDataHelper} from "../helpers/GeneratorDataHelper";
 
 export class TypeTextWithElementStrategy implements ICodeGenerationStrategy {
 
+    private validGeneratorTypes: string[] = ['bool', 'float',
+        'int', 'string', 'char', 'age', 'email', 'first', 'last', 'name',
+        'gender', 'domain', 'address', 'city', 'country', 'coordinates',
+        'phone', 'zip', 'datetime', 'normalDate'];
+
     canGenerate(text: string): boolean {
         var lowercase = text.toLowerCase();
+        var isGeneratorTypeValid = true;
+
+        if (text.indexOf('$gen:') !== -1) {
+            var content = StepHelper.extractGeneratorType(text);
+            isGeneratorTypeValid = GeneratorDataHelper.isGeneratorTypeValid(content);
+        }
+
         return lowercase.startsWith("type ")
-            && lowercase.indexOf("into") > -1;
+            && lowercase.indexOf("into") > -1 && isGeneratorTypeValid;
     }
 
     generate(text: string): string {
-        var keys = StringHelper.extractTextInQuotes(text);
+        var contents = '';
+        if (text.indexOf('$gen:') !== -1) {
+            var type = StepHelper.extractGeneratorType(text);
+            contents = '\"' + GeneratorDataHelper.generateRandomData(type).toString() + '\"';
+        } else {
+            var keys = StringHelper.extractTextInQuotes(text);
+            contents = VariableHelper.getString(keys[0]);
+        }
+
         var element = StringHelper.extractTextInGreaterThanLessThan(text)[0];
-        var contents = VariableHelper.getString(keys[0]);
 
         return "this.browser.setValue(\"" + element + "\", " + contents + ");";
     }
