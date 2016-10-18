@@ -5,40 +5,6 @@ I visit the API page
 I search for "$searchText"
     Type $gen:bool into <input[name='search']>
     Wait 3 seconds
-    Type $gen:float into <input[name='search']>
-    Wait 3 seconds
-    Type $gen:int into <input[name='search']>
-    Wait 3 seconds
-    Type $gen:string into <input[name='search']>
-    Wait 3 seconds
-    Type $gen:age into <input[name='search']>
-    Wait 3 seconds
-    Type $gen:email into <input[name='search']>
-    Wait 3 seconds
-    Type $gen:firstname into <input[name='search']>
-    Wait 3 seconds
-    Type $gen:lastname into <input[name='search']>
-    Wait 3 seconds
-    Type $gen:completeName into <input[name='search']>
-    Wait 3 seconds
-    Type $gen:domain into <input[name='search']>
-    Wait 3 seconds
-    Type $gen:address into <input[name='search']>
-    Wait 3 seconds
-    Type $gen:city into <input[name='search']>
-    Wait 3 seconds
-    Type $gen:country into <input[name='search']>
-    Wait 3 seconds
-    Type $gen:coordinates into <input[name='search']>
-    Wait 3 seconds
-    Type $gen:phone into <input[name='search']>
-    Wait 3 seconds
-    Type $gen:zip into <input[name='search']>
-    Wait 3 seconds
-    Type $gen:datetime into <input[name='search']>
-    Wait 3 seconds
-    Type $gen:normalDate into <input[name='search']>
-    Wait 3 seconds
     Type "$searchText" into <input[name='search']>
     Wait 3 seconds
 
@@ -128,3 +94,7 @@ I type something
     Wait 5 seconds
     Type $gen:email into <#search-box>
     Wait 5 seconds
+
+correct text must be seen
+    Switch to iframe <iframe[src='//fiddle.jshell.net/6yhft2kj/3/show/light/']>
+    Verify "Testing" is in an <h1.header-test2> element

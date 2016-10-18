@@ -95,3 +95,7 @@ Scenario: Dragging an image to a container
     Given I visit "http://marcojakob.github.io/dart-dnd/basic/web/"
     Then I drag an image into a container
     
+@focus
+Scenario: Verify header contains text
+    Given I visit "http://fiddle.jshell.net/6yhft2kj/3/show/light/"
+    Then correct text must be seen

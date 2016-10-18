@@ -16,6 +16,14 @@ export class JasmineExpectStrategy implements ICodeGenerationStrategy {
     generate(text: string): string {
         var element = VariableHelper.getString(StringHelper.extractTextInGreaterThanLessThan(text)[0]);
         var contents = VariableHelper.getString(StringHelper.extractTextInQuotes(text)[0]);
-        return "expect(browser.getText(" + element + ").join()).toContain(" + contents + ");";
+
+        var jsCommand = "var content = this.browser.getText(" + element + ");\n\n\
+        if(Object.prototype.toString.call(content) === '[object Array]') {\n\
+            expect(content.join()).toContain(" + contents + ");\n\
+        } else {\n\
+            expect(content).toContain(" + contents + ");\n\
+        }";
+
+        return jsCommand;
     }
 }

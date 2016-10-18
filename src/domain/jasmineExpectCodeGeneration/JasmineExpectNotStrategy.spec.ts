@@ -31,8 +31,16 @@ describe("when converting pepino-lang instructions to a jasmine-style expect not
         });
         
         it("should convert the assert to jasmine expect code", () => {
-            expect(strategy.generate(instructions))
-                .to.equal("expect(browser.getText(\"#results\").join()).toNotContain(\"something\");");
+            var expectedJSCommand = "var content = this.browser.getText(\"#results\");\n\n\
+            if(Object.prototype.toString.call(content) === '[object Array]') {\n\
+                expect(content.join()).toNotContain(\"something\");\n\
+            } else {\n\
+                expect(content).toNotContain(\"something\");\n\
+            }";           
+            var cleanedExpectedJSCommand = expectedJSCommand.replace(/\s+/g," ");
+            var results = strategy.generate(instructions).replace(/\s+/g," ");
+
+            expect(results).to.equal(cleanedExpectedJSCommand);
         });               
     });
 
@@ -41,8 +49,16 @@ describe("when converting pepino-lang instructions to a jasmine-style expect not
         var instructions = "Verify \"$someString\" is not in <#results> element";
         
         it("should convert the assert to jasmine expect code with correct variable name", () => {
-            expect(strategy.generate(instructions))
-                .to.equal("expect(browser.getText(\"#results\").join()).toNotContain(someString);");
+            var expectedJSCommand = "var content = this.browser.getText(\"#results\");\n\n\
+            if(Object.prototype.toString.call(content) === '[object Array]') {\n\
+                expect(content.join()).toNotContain(someString);\n\
+            } else {\n\
+                expect(content).toNotContain(someString);\n\
+            }";           
+            var cleanedExpectedJSCommand = expectedJSCommand.replace(/\s+/g," ");   
+            var results = strategy.generate(instructions).replace(/\s+/g," ");
+
+            expect(results).to.equal(cleanedExpectedJSCommand);
         });  
     });
     
@@ -50,8 +66,16 @@ describe("when converting pepino-lang instructions to a jasmine-style expect not
         var instructions = "Verify \"someString\" is in <$someElement> element";
         
         it("should convert the assert to jasmine expect code with correct variable element", () => {
-            expect(strategy.generate(instructions))
-                .to.equal("expect(browser.getText(someElement).join()).toNotContain(\"someString\");");
+            var expectedJSCommand = "var content = this.browser.getText(someElement);\n\n\
+            if(Object.prototype.toString.call(content) === '[object Array]') {\n\
+                expect(content.join()).toNotContain(\"someString\");\n\
+            } else {\n\
+                expect(content).toNotContain(\"someString\");\n\
+            }";  
+            var cleanedExpectedJSCommand = expectedJSCommand.replace(/\s+/g," ");
+            var results = strategy.generate(instructions).replace(/\s+/g," ");
+
+            expect(results).to.equal(cleanedExpectedJSCommand);
         });  
     });
 });
