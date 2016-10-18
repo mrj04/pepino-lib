@@ -13,8 +13,6 @@ $NPM_PASSWORD
 $NPM_EMAIL
 !
 echo "--- Install Dependencies"
-npm install -g gulp
-npm install
 npm update
 echo "--- Build And Test"
 gulp bump
@@ -23,6 +21,8 @@ if [[ "$BUILDKITE_BRANCH" == "develop"  ]]; then
   echo "--- deploy to develop"
   npm publish
   cd ..
+  rm -rf pepino-demo
+  git clone git@github.com:AcklenAvenue/pepino-demo.git
   cd pepino-demo
   git commit --allow-empty -m "empty commit"
   git push heroku develop:master
