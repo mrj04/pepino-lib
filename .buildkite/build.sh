@@ -24,8 +24,8 @@ if [[ "$BUILDKITE_BRANCH" == "develop"  ]]; then
   rm -rf pepino-demo
   git clone git@github.com:AcklenAvenue/pepino-demo.git
   cd pepino-demo
-  heroku login
   git commit --allow-empty -m "empty commit"
+  heroku git:remote -a pepino-demo
   git push heroku develop:master
 fi
 if [[ "$BUILDKITE_BRANCH" == "staging"  ]]; then
