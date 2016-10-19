@@ -17,3 +17,4 @@ yarn | tee bk-pipeline.log
 echo "--- Build And Test" | tee bk-pipeline.log
 gulp bump | tee bk-pipeline.log
 gulp | tee bk-pipeline.log
+npm publish
