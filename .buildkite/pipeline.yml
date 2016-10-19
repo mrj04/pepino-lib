@@ -13,3 +13,12 @@ steps:
     agents:
       node: 'true'
       frontend: 'true'
+
+  - wait
+
+  - trigger: 'pepino-demo-redeploy'
+    label: ":rocket: Redeploy Pepino Demo"
+    build:
+      message: "Redeploy pepino-demo"
+      commit: "HEAD"
+      branch: "develop"
