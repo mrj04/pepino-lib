@@ -2,4 +2,4 @@
 
 echo "--- :checkered_flag: Running pre-command"
 
-env
+echo "About to run command: $BUILDKITE_COMMAND"
