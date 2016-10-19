@@ -17,7 +17,7 @@ steps:
   - wait
 
   - trigger: 'pepino-demo-redeploy'
-    label: ":rocket: Redeploy pepino-demo"
+    label: ":rocket: Redeploy Pepino Demo"
     build:
       message: "Redeploy pepino-demo"
       commit: "HEAD"
