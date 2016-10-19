@@ -1,5 +1,0 @@
-#!/bin/bash
-
-echo "--- :checkered_flag: Running pre-command"
-
-echo "About to run command: $BUILDKITE_COMMAND"
