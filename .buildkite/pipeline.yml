@@ -17,14 +17,14 @@ steps:
   - wait
 
   - name: ':rocket: ReDeploy Pepino-Demo'
-    command: '/.buildkite/deploy.sh'
+    command: '/.buildkite/rebuild.sh'
     branches: 'develop'
     agents:
       node: 'true'
       frontend: 'true'
     env:
-      TRIGGER_ORG_SLUG: "acklen-avenue",
-      TRIGGER_PIPELINE_SLUG: "pepino-demo-redeploy",
-      TRIGGER_COMMIT: "HEAD",
-      TRIGGER_BRANCH: "develop",
-      TRIGGER_MESSAGE: "Oh hai :wave:"
+      TRIGGER_ORG_SLUG: 'acklen-avenue'
+      TRIGGER_PIPELINE_SLUG: 'pepino-demo-redeploy'
+      TRIGGER_COMMIT: 'HEAD'
+      TRIGGER_BRANCH: 'develop'
+      TRIGGER_MESSAGE: 'Oh hai :wave:'
