@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo "--- :checkered_flag: Running pre-command"
+
+export BUILDKITE_BUILD_CREATOR_EMAIL=developer@acklenavenue.com
