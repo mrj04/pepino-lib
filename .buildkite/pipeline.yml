@@ -22,3 +22,5 @@ steps:
       message: "Redeploy pepino-demo"
       commit: "HEAD"
       branch: "develop"
+      env:
+        BUILDKITE_BUILD_CREATOR_EMAIL: "developer@acklenavenue.com"
