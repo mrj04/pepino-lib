@@ -1,3 +1,6 @@
+#!/bin/bash
+
+set -eo pipefail
 echo "--- deploy to $BUILDKITE_BRANCH" | tee bk-pipeline.log
 npm publish | tee bk-pipeline.log
 cd .. | tee bk-pipeline.log
