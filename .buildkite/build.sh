@@ -11,7 +11,7 @@ npm login <<!
 $NPM_USERNAME
 $NPM_PASSWORD
 $NPM_EMAIL
-! | tee bk-pipeline.log
+!
 echo "--- Install Dependencies" | tee bk-pipeline.log
 yarn | tee bk-pipeline.log
 echo "--- Build And Test" | tee bk-pipeline.log
