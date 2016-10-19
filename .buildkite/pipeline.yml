@@ -16,11 +16,15 @@ steps:
 
   - wait
 
-  - trigger: 'pepino-demo-redeploy'
-    label: ":rocket: Redeploy Pepino Demo"
-    build:
-      message: "Redeploy pepino-demo"
-      commit: "HEAD"
-      branch: "develop"
-      env:
-        BUILDKITE_BUILD_CREATOR_EMAIL: "developers@acklenavenue.com"
+  - name: ':rocket: ReDeploy Pepino-Demo'
+    command: '/.buildkite/deploy.sh'
+    branches: 'develop'
+    agents:
+      node: 'true'
+      frontend: 'true'
+    env:
+      TRIGGER_ORG_SLUG: "acklen-avenue",
+      TRIGGER_PIPELINE_SLUG: "pepino-demo-redeploy",
+      TRIGGER_COMMIT: "HEAD",
+      TRIGGER_BRANCH: "develop",
+      TRIGGER_MESSAGE: "Oh hai :wave:"
