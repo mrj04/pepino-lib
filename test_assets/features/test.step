@@ -3,7 +3,13 @@ I visit the API page
     Click <=API>
 
 I search for "$searchText"
-    Type $gen:bool into <input[name='search']>
+    Type random:bool into <input[name='search']>
+    Wait 3 seconds
+    Type random:americanExpress into <input[name='search']>
+    Wait 3 seconds
+    Type random:visa into <input[name='search']>
+    Wait 3 seconds
+    Type random:masterCard into <input[name='search']>
     Wait 3 seconds
     Type "$searchText" into <input[name='search']>
     Wait 3 seconds
@@ -92,7 +98,7 @@ I drag an image into a container
 
 I type something
     Wait 5 seconds
-    Type $gen:email into <#search-box>
+    Type random:email into <#search-box>
     Wait 5 seconds
 
 correct text must be seen

@@ -90,14 +90,14 @@ describe('The Step Helper', () => {
     describe('extractGeneratorType', () => {
         describe('When extracting generator type', () => {
             it('Should return the type', () => {
-                var type: string = StepHelper.extractGeneratorType('command command $gen:email command command');
+                var type: string = StepHelper.extractGeneratorType('command command ' + StepHelper.randomGeneratorRestrictedWord + ':email command command');
                 expect(type).to.be.equal('email');
             });
         });
 
         describe('When generator part of the instruction only has the prefix', () => {
             it('Should return an empty string', () => {
-                var type: string = StepHelper.extractGeneratorType('command command $gen: command command');
+                var type: string = StepHelper.extractGeneratorType('command command ' + StepHelper.randomGeneratorRestrictedWord + ': command command');
                 expect(type).to.be.equal('');
             });
         });
