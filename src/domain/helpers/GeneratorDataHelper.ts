@@ -60,6 +60,15 @@ export class GeneratorDataHelper {
         },
         'normalDate': () => {
             return chance().date({string: true});
+        },
+        'visa': () => {
+            return chance().cc({type: 'visa'});
+        },
+        'masterCard': () => {
+            return chance().cc({type: 'mc'});
+        },
+        'americanExpress': () => {
+            return chance().cc({type: 'amex'});
         }
     }
 

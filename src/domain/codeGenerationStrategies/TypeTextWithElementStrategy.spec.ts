@@ -48,15 +48,15 @@ describe("Type Text With Element Strategy", () => {
 
     describe('When instruction has generator date', () => {
         it('should not generate code because of invalid generator type', () => {
-            expect(strategy.canGenerate('type $gen:email3 into <element>')).to.be.false;
+            expect(strategy.canGenerate('type random:email3 into <element>')).to.be.false;
         });
 
         it('should generate code with valid generator type', () => {
-            expect(strategy.canGenerate('type $gen:email into <element>')).to.be.true;
+            expect(strategy.canGenerate('type random:email into <element>')).to.be.true;
         });
 
         it('should convert the step to cucumberjs code', () => {
-            var code = strategy.generate('type $gen:email into <element>');
+            var code = strategy.generate('type random:email into <element>');
             console.log(code);
             expect(code.length).to.not.equal(0);
         });

@@ -9,16 +9,11 @@ import {GeneratorDataHelper} from "../helpers/GeneratorDataHelper";
 
 export class TypeTextWithElementStrategy implements ICodeGenerationStrategy {
 
-    private validGeneratorTypes: string[] = ['bool', 'float',
-        'int', 'string', 'char', 'age', 'email', 'first', 'last', 'name',
-        'gender', 'domain', 'address', 'city', 'country', 'coordinates',
-        'phone', 'zip', 'datetime', 'normalDate'];
-
     canGenerate(text: string): boolean {
         var lowercase = text.toLowerCase();
         var isGeneratorTypeValid = true;
 
-        if (text.indexOf('$gen:') !== -1) {
+        if (text.indexOf(StepHelper.randomGeneratorRestrictedWord) !== -1) {
             var content = StepHelper.extractGeneratorType(text);
             isGeneratorTypeValid = GeneratorDataHelper.isGeneratorTypeValid(content);
         }
@@ -29,7 +24,7 @@ export class TypeTextWithElementStrategy implements ICodeGenerationStrategy {
 
     generate(text: string): string {
         var contents = '';
-        if (text.indexOf('$gen:') !== -1) {
+        if (text.indexOf(StepHelper.randomGeneratorRestrictedWord) !== -1) {
             var type = StepHelper.extractGeneratorType(text);
             contents = '\"' + GeneratorDataHelper.generateRandomData(type).toString() + '\"';
         } else {

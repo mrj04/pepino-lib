@@ -5,6 +5,8 @@ import {VariableHelper} from "../helpers/VariableHelper";
 
 export class StepHelper {
     private static characterIndicatorForVariables: string = '$';
+    static randomGeneratorRestrictedWord: string = 'random';
+
     static extractSelectorById(instruction: string, index: number): string {
         var selector = "";
         var elementsArray = StringHelper.extractTextInGreaterThanLessThan(instruction);
@@ -61,11 +63,11 @@ export class StepHelper {
         var instructionParts: string[] = instruction.split(' ');
 
         var generatorPart = _.find(instructionParts, (part: string) => {
-            return part.startsWith('$gen:');
+            return part.startsWith(this.randomGeneratorRestrictedWord);
         });
 
         if (generatorPart) {
-            return generatorPart.substr(5, generatorPart.length - 5);
+            return generatorPart.substr(7, generatorPart.length - 5);
         } else {
             return '';
         }
