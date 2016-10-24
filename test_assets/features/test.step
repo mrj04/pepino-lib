@@ -104,3 +104,8 @@ I type something
 correct text must be seen
     Switch to iframe <iframe[src='//fiddle.jshell.net/6yhft2kj/3/show/light/']>
     Verify "Testing" is in an <h1.header-test2> element
+
+    scroll down must be seen
+    press key "Page Down"
+    Wait 3 seconds
+

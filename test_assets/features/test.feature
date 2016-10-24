@@ -99,3 +99,8 @@ Scenario: Dragging an image to a container
 Scenario: Verify header contains text
     Given I visit "http://fiddle.jshell.net/6yhft2kj/3/show/light/"
     Then correct text must be seen
+
+@focus
+Scenario: Verify key press
+    Given I visit "http://acklenavenue.com/"
+    Then scroll down must be seen
