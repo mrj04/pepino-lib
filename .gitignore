@@ -5,3 +5,4 @@ build
 test_assets/features/*.js
 bk-*.log
 .DS_Store
+.idea
