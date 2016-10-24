@@ -11,6 +11,6 @@ export class PressKeyStrategy implements ICodeGenerationStrategy {
 
     generate(text: string): string {
         var paramKeys = StringHelper.extractTextInQuotes(text);
-        return "this.browser.keys(" + paramKeys + ");";
+        return "this.browser.keys(\""  + paramKeys + "\");";
     }
 }
