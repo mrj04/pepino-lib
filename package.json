@@ -30,7 +30,7 @@
   ],
   "devDependencies": {
     "chai": "^3.5.0",
-    "chimp": "^0.38.0",
+    "chimp": "^0.41.2",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
     "gulp-bump": "^2.0.1",

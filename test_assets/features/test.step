@@ -105,7 +105,61 @@ correct text must be seen
     Switch to iframe <iframe[src='//fiddle.jshell.net/6yhft2kj/3/show/light/']>
     Verify "Testing" is in an <h1.header-test2> element
 
-    scroll down must be seen
+scroll down must be seen
     press key "Page Down"
-    Wait 3 seconds
-
+    Wait 1 seconds 
+    press key "Page Down"
+    Wait 1 seconds 
+    press key "Page Up"
+    Wait 1 seconds            
+    press key "Home"
+    Wait 1 seconds        
+    press key "End"
+    Wait 1 seconds
+    Type random:firstname into <#contact-name>
+    Wait 1 seconds
+    press key "Tab"
+    Wait 1 seconds
+    press key "Tab"
+    Wait 1 seconds
+    press key "Tab"
+    Wait 1 seconds
+    Type random:firstname into <#contact-message>
+    Wait 1 seconds
+    press key "Shift"
+    press key "Arrow Left"
+    press key "Arrow Left"
+    press key "Arrow Left"
+    press key "Arrow Left"
+    press key "Shift"
+    Wait 1 seconds
+    press key "Control"
+    press key "Arrow Left"
+    Wait 1 seconds
+    press key "Arrow Right"
+    press key "Control"
+    Wait 1 seconds
+    press key "Back space"
+    press key "Back space"
+    press key "Back space"    
+    Wait 1 seconds
+    press key "Enter"
+    press key "Enter"
+    press key "Enter"
+    Wait 1 seconds
+    press key "Arrow Left"
+    press key "Arrow Left"
+    press key "Arrow Left"
+    press key "Arrow Left"
+    press key "Arrow Left"
+    Wait 1 seconds
+    press key "Delete"
+    press key "Delete"
+    Wait 1 seconds
+    Navigate to "https://www.google.hn/search?q=busqueda+en+google+de+una+imagen&espv=2&biw=1920&bih=974&source=lnms&tbm=isch&sa=X&ved=0ahUKEwj42qz39PjPAhVJFT4KHR0aAvQQ_AUIBigB#tbm=isch&q=search+image+in+google"
+    Wait 2 seconds
+    Click <#rg_s>div:nth-child(1)>a>img>
+    Wait 1 seconds
+    press key "Escape"
+    Wait 1 seconds
+    
