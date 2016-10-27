@@ -1,5 +1,6 @@
 I visit the API page
     Navigate to "http://webdriver.io"
+    Window Size "Maximize"
     Click <=API>
 
 I search for "$searchText"
@@ -19,6 +20,7 @@ I should find "$text" in the results
 
 I visit "$url"
     Navigate to "$url"
+    Window Size "1024x768"
 
 I select "$optionLabel" from "$selectElement"
     Select option named "$optionLabel" from <$selectElement>
