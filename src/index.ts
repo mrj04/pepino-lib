@@ -42,6 +42,7 @@ import {AddValueToDropdownByIdentifierStrategy} from './domain/codeGenerationStr
 import {DragAndDropStrategy} from './domain/codeGenerationStrategies/DragAndDropStrategy';
 import {JasmineExpectContainerHasElementStrategy} from './domain/jasmineExpectCodeGeneration/JasmineExpectContainerHasElementStrategy';
 import {PressKeyStrategy} from './domain/codeGenerationStrategies/PressKeyStrategy';
+import {WindowSizeStrategy} from './domain/codeGenerationStrategies/WindowSizeStrategy';
 
 import * as PepinoModule from "./domain/services/IStepFunctionGenerator";
 
@@ -49,6 +50,7 @@ var stepParser = new p.Pepino.PepinoLangStepParser();
 var codeGenerator = new g.Pepino.CucumberStepFunctionGenerator(new Array<ICodeGenerationStrategy>(
     new ClickElementStrategy(),
     new PressKeyStrategy(),
+    new WindowSizeStrategy(),
     new NavigateStrategy(),
     new TypeTextWithElementStrategy(),
     new TypeTextWithoutElementStrategy(),
