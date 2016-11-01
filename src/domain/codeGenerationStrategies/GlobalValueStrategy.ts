@@ -1,22 +1,31 @@
 "use strict";
+import {ICodeGenerationStrategy} from "../ICodeGenerationStrategy";
 import {StringHelper} from "../helpers/StringHelper";
+import {StepHelper} from "../helpers/StepHelper";
+import {GeneratorDataHelper} from "../helpers/GeneratorDataHelper";
 
-export class GlobalValueStrategy {
-    public static canGenerate(text: string): boolean {
+export class GlobalValueStrategy implements ICodeGenerationStrategy{
+    canGenerate(text: string): boolean {
         var lowercase = text.toLowerCase();
-        var containsGlobalValue = lowercase.indexOf("globalvalue") > -1;
-        return containsGlobalValue;
+        var containsGlobalValue = lowercase.indexOf("globalvalue ") !== -1;
+        var containsEquals = lowercase.indexOf(" equals ") !== -1;
+        return containsGlobalValue && containsEquals;
     }
 
-    public static generate(text: string): string {
+    generate(text: string): string {
         var paramKeys: any = StringHelper.extractTextInQuotes(text);
         var field: string = paramKeys[0].toLowerCase().trim();
-        var value: string = paramKeys[1];
 
-        if (field && value) {
-            return "globalValues['" + field + "'] = '" + value + "';";
+
+        var value: string = '';
+
+        if (text.indexOf(StepHelper.randomGeneratorRestrictedWord) !== -1) {
+            var type = StepHelper.extractGeneratorType(text);
+            value = GeneratorDataHelper.generateRandomData(type).toString();
         } else {
-            return "globalValues['" + field + "']";
+            value = paramKeys[1];
         }
+
+        return "globalValues['" + field + "'] = '" + value + "';";
     }
 }
