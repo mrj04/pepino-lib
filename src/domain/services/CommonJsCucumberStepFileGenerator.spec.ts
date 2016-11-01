@@ -20,9 +20,9 @@ describe("The CommonJs Step File Generator", () => {
         });
         
         it("should include the functions in the file with a blank line between each", () => {
-           expect(lines[1].trim()).to.equal("one");
-           expect(lines[3].trim()).to.equal("two");
-           expect(lines[5].trim()).to.equal("three");
+           expect(lines[3].trim()).to.equal("one");
+           expect(lines[5].trim()).to.equal("two");
+           expect(lines[7].trim()).to.equal("three");
         });        
     });
 });

@@ -57,8 +57,14 @@ describe("Type Text With Element Strategy", () => {
 
         it('should convert the step to cucumberjs code', () => {
             var code = strategy.generate('type random:email into <element>');
-            console.log(code);
             expect(code.length).to.not.equal(0);
+        });
+    });
+
+    describe('When instruction has global value', () => {
+        it('should convert the step to cucumberjs code', () => {
+            var code = strategy.generate('type globalvalue "variable" into <element>');
+            expect(code).to.equal('this.browser.setValue("element", globalValues[\'variable\']);');
         });
     });
 

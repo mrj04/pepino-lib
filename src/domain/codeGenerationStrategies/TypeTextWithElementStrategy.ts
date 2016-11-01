@@ -6,10 +6,11 @@ import {StringHelper} from "../helpers/StringHelper";
 import {VariableHelper} from "../helpers/VariableHelper";
 import {StepHelper} from "../helpers/StepHelper";
 import {GeneratorDataHelper} from "../helpers/GeneratorDataHelper";
+import {GlobalValueHelper} from "../helpers/GlobalValueHelper";
 
 export class TypeTextWithElementStrategy implements ICodeGenerationStrategy {
 
-    canGenerate(text: string): boolean {
+    canGenerate(text: string): boolean {        
         var lowercase = text.toLowerCase();
         var isGeneratorTypeValid = true;
 
@@ -27,6 +28,8 @@ export class TypeTextWithElementStrategy implements ICodeGenerationStrategy {
         if (text.indexOf(StepHelper.randomGeneratorRestrictedWord) !== -1) {
             var type = StepHelper.extractGeneratorType(text);
             contents = '\"' + GeneratorDataHelper.generateRandomData(type).toString() + '\"';
+        } else if (text.toLowerCase().indexOf("globalvalue") !== -1) {
+            contents = GlobalValueHelper.generate(text);
         } else {
             var keys = StringHelper.extractTextInQuotes(text);
             contents = VariableHelper.getString(keys[0]);
