@@ -43,7 +43,6 @@ import {DragAndDropStrategy} from './domain/codeGenerationStrategies/DragAndDrop
 import {JasmineExpectContainerHasElementStrategy} from './domain/jasmineExpectCodeGeneration/JasmineExpectContainerHasElementStrategy';
 import {PressKeyStrategy} from './domain/codeGenerationStrategies/PressKeyStrategy';
 import {WindowSizeStrategy} from './domain/codeGenerationStrategies/WindowSizeStrategy';
-import {GlobalValueStrategy} from './domain/codeGenerationStrategies/GlobalValueStrategy';
 
 import * as PepinoModule from "./domain/services/IStepFunctionGenerator";
 
@@ -52,7 +51,6 @@ var codeGenerator = new g.Pepino.CucumberStepFunctionGenerator(new Array<ICodeGe
     new ClickElementStrategy(),
     new PressKeyStrategy(),
     new WindowSizeStrategy(),
-    new GlobalValueStrategy(),
     new NavigateStrategy(),
     new TypeTextWithElementStrategy(),
     new TypeTextWithoutElementStrategy(),

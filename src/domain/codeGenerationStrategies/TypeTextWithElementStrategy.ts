@@ -10,7 +10,7 @@ import {GlobalValueStrategy} from "./GlobalValueStrategy";
 
 export class TypeTextWithElementStrategy implements ICodeGenerationStrategy {
 
-    canGenerate(text: string): boolean {
+    canGenerate(text: string): boolean {        
         var lowercase = text.toLowerCase();
         var isGeneratorTypeValid = true;
         var isGlobalValueStrategy = true;
@@ -21,9 +21,7 @@ export class TypeTextWithElementStrategy implements ICodeGenerationStrategy {
         }
 
         if (text.toLowerCase().indexOf("globalvalue") !== -1) {
-            var globalValue = new GlobalValueStrategy();
-            isGlobalValueStrategy = globalValue.canGenerate(text);
-            console.log(isGlobalValueStrategy);
+            isGlobalValueStrategy = GlobalValueStrategy.canGenerate(text);
         }
 
         return lowercase.startsWith("type ")
@@ -37,8 +35,7 @@ export class TypeTextWithElementStrategy implements ICodeGenerationStrategy {
             contents = '\"' + GeneratorDataHelper.generateRandomData(type).toString() + '\"';
         } else {
             if (text.toLowerCase().indexOf("globalvalue") !== -1) {
-                console.log('globalvalue..');
-                contents = new GlobalValueStrategy().generate(text);
+                contents = GlobalValueStrategy.generate(text);
             } else {
                 var keys = StringHelper.extractTextInQuotes(text);
                 contents = VariableHelper.getString(keys[0]);
