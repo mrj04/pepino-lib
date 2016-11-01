@@ -1,9 +1,12 @@
 I visit the API page
+    GlobalValue "Name" equals "Jacob"
     Navigate to "http://webdriver.io"
     Window Size "Maximize"
     Click <=API>
 
 I search for "$searchText"
+    Type GlobalValue "Name" into <input[name='search']>
+    Wait 20 seconds
     Type random:bool into <input[name='search']>
     Wait 3 seconds
     Type random:americanExpress into <input[name='search']>

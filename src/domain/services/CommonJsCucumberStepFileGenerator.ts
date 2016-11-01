@@ -7,7 +7,10 @@ export module Pepino {
 
     export class CommonJsCucumberStepFileGenerator implements IStepFileGenerator {
         generate(functions: Array<string>): string {
-            return "module.exports = function() {\n" + functions.join("\n\n") + "\n };";
+            return "module.exports = function() {\n\
+            var _this = this;\n\
+            var globalValues = {};\n\n"
+            + functions.join("\n\n") + "\n };";
         }
     }
 }
