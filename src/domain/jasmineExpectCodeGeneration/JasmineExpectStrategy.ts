@@ -2,6 +2,7 @@
 import {ICodeGenerationStrategy} from "../ICodeGenerationStrategy";
 import {StringHelper} from "../helpers/StringHelper";
 import {VariableHelper} from "../helpers/VariableHelper";
+import {GlobalValueHelper} from "../helpers/GlobalValueHelper";
 
 export class JasmineExpectStrategy implements ICodeGenerationStrategy {
 
@@ -15,8 +16,14 @@ export class JasmineExpectStrategy implements ICodeGenerationStrategy {
 
     generate(text: string): string {
         var element = VariableHelper.getString(StringHelper.extractTextInGreaterThanLessThan(text)[0]);
-        var contents = VariableHelper.getString(StringHelper.extractTextInQuotes(text)[0]);
+        var contents = '';
 
+        if (text.toLowerCase().indexOf("globalvalue") !== -1) {
+            contents = GlobalValueHelper.generate(text);    
+        } else {
+            contents = VariableHelper.getString(StringHelper.extractTextInQuotes(text)[0]);
+        }
+        
         var jsCommand = "var content = this.browser.getText(" + element + ");\n\n\
         if(Object.prototype.toString.call(content) === '[object Array]') {\n\
             expect(content.join()).toContain(" + contents + ");\n\
