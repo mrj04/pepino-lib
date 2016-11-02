@@ -78,4 +78,21 @@ describe("when converting pepino-lang instructions to a jasmine-style expect not
             expect(results).to.equal(cleanedExpectedJSCommand);
         });  
     });
+
+    describe('When instruction has global value', () => {
+        var instructions = "Verify globalvalue \"someString\" is in <$someElement> element";
+
+        it('should convert the step to cucumberjs code', () => {
+            var expectedJSCommand = "var content = this.browser.getText(someElement);\n\n\
+            if(Object.prototype.toString.call(content) === '[object Array]') {\n\
+                expect(content.join()).toNotContain(globalValues[\'somestring\']);\n\
+            } else {\n\
+                expect(content).toNotContain(globalValues[\'somestring\']);\n\
+            }";  
+            var cleanedExpectedJSCommand = expectedJSCommand.replace(/\s+/g," ");
+            var results = strategy.generate(instructions).replace(/\s+/g," ");
+
+            expect(results).to.equal(cleanedExpectedJSCommand);
+        });
+    });     
 });

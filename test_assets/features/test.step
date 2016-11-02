@@ -1,8 +1,21 @@
+I visit the w3schools
+    GlobalValue "Name" equals random:completeName
+    GlobalValue "Developer" equals "Billy"
+    Navigate to "http://www.w3schools.com/angular/tryit.asp?filename=try_ng_intro"
+    Window Size "Maximize"
+
+I type a random value into an input    
+    Switch to iframe <#iframeResult>
+    Type GlobalValue "Name" into <body>div>p:nth-child(2)>input>
+
+I should find that random value in a p element    
+    Verify GlobalValue "Name" is in an <body>div>p.ng-binding> element    
+    Wait 2 seconds
+
 I visit the API page
     GlobalValue "Name" equals random:completeName
     GlobalValue "Developer" equals "Billy"
     Navigate to "http://webdriver.io"
-    Window Size "Maximize"
     Click <=API>
 
 I search for "$searchText"

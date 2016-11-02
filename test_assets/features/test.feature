@@ -4,6 +4,12 @@ Feature: The Webdriver.io Documentation
     So that I can develop using the right syntax
 
 @focus
+Scenario: Verify Global Value
+    Given I visit the w3schools
+    When I type a random value into an input
+    Then I should find that random value in a p element
+
+@focus
 Scenario: Valid search
     Given I visit the API page
     When I search for "waitForVisi"
