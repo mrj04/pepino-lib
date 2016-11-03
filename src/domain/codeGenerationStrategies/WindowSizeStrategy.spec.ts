@@ -27,6 +27,7 @@ describe("when converting pepino-lang instructions to resize the window browser 
 
     var strategy = new WindowSizeStrategy();
     var instructions = "Window Size \"1024x768\"";
+    var instructionsWithIncorrectResolution = "Window Size \"1024*768\"";
 
     it("should be able to generate typing instructions", () => {
         expect(strategy.canGenerate(instructions)).to.be.true;
@@ -40,4 +41,10 @@ describe("when converting pepino-lang instructions to resize the window browser 
         expect(strategy.generate(instructions))
             .to.equal("this.browser.windowHandleSize({width:1024,height:768});");
     });
+
+    it("should convert the step to cucumberjs code but return an empty string " +
+        "when the resolution is incorrectly formatted", () => {
+        expect(strategy.generate(instructionsWithIncorrectResolution))
+            .to.equal("");
+    });    
 });
