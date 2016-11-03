@@ -13,6 +13,14 @@ describe("when converting pepino-lang instructions to set global variable values
         expect(strategy.canGenerate(instructions)).to.be.true;
     });
 
+    it("should be able to generate typing instructions when lowercase is included", () => {
+        expect(strategy.canGenerate(instructions + " lowercase")).to.be.true;
+    });
+
+    it("should be able to generate typing instructions when uppercase is included", () => {
+        expect(strategy.canGenerate(instructions + " uppercase")).to.be.true;
+    });
+
     it("should pass on unrecognized instructions", () => {
         expect(strategy.canGenerate("unrecognized instructions")).to.be.false;
     });
@@ -28,4 +36,20 @@ describe("when converting pepino-lang instructions to set global variable values
         expect(code.indexOf("globalValues['variable'] = '"))
             .to.not.equal(-1);
     });
+    
+    it("should convert the step to cucumberjs code when value is random and lowercase " +
+       "command is included", () => {
+        var code: string = strategy.generate(instructions + " lowercase");
+
+        expect(code.indexOf("globalValues['variable'] = '"))
+            .to.not.equal(-1);
+    });   
+
+    it("should convert the step to cucumberjs code when value is random and uppercase " +
+       "command is included", () => {
+        var code: string = strategy.generate(instructions + " uppercase");
+
+        expect(code.indexOf("globalValues['variable'] = '"))
+            .to.not.equal(-1);
+    });        
 });
