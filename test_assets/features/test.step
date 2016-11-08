@@ -1,3 +1,28 @@
+I visit Acklen Avenue website
+    Navigate to "http://acklenavenue.com"
+
+I should see the mouse cursor on each menu link
+    Move Mouse To <#fixednavbar>nav>ul>li:nth-child(1)>a> 
+    Wait 2 seconds
+    Move Mouse To <#fixednavbar>nav>ul>li:nth-child(2)>a>
+    Wait 2 seconds
+    Move Mouse To <#fixednavbar>nav>ul>li:nth-child(3)>a>
+    Wait 2 seconds
+    Move Mouse To <#fixednavbar>nav>ul>li:nth-child(4)>a>
+    Wait 2 seconds
+    Move Mouse To <#fixednavbar>nav>ul>li:nth-child(5)>a>
+    Wait 2 seconds
+    Move Mouse To <#fixednavbar>nav>ul>li:nth-child(6)>a>
+    Wait 2 seconds                
+
+I move the mouse to View Project Button    
+    Move Mouse To <#clients>div>div>div>div>a>button>
+    Wait 3 seconds
+
+I see the scroll move down to the button and hover color changes    
+    Move Mouse To <#clients>div>div>div>img>
+    Wait 2 seconds
+
 I visit the w3schools
     GlobalValue "Name" equals random:completeName uppercase
     GlobalValue "Developer" equals "Billy"
