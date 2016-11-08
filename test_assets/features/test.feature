@@ -4,6 +4,16 @@ Feature: The Webdriver.io Documentation
     So that I can develop using the right syntax
 
 @focus
+Scenario: Move mouse cursor to each menu elements
+    Given I visit Acklen Avenue website
+    Then I should see the mouse cursor on each menu link
+
+@focus
+Scenario: Move mouse cursor to a button
+    Given I move the mouse to View Project Button
+    Then I see the scroll move down to the button and hover color changes
+
+@focus    
 Scenario: Verify Global Value
     Given I visit the w3schools
     When I type a random value into an input
