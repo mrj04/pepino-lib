@@ -20,7 +20,9 @@ I should see the element has been completed
     Double Click <body>section>div>section>ul>li:nth-child(2)> Where content GlobalValue "Task2"
     Wait 2 seconds
     Double Click <body>section>div>section>ul> Where content "Eat Pizza"
-    Wait 2 seconds
+    Wait 1 seconds
+    Press Key "Escape"
+    Wait 1 Seconds
     Double Click <body>section>div>section>ul>li:nth-child(2)> Where content GlobalValue "Task2" for next element
     Wait 2 seconds    
     Double Click <body>section>div>section>ul> Where content "Eat Pizza" for previous element
@@ -28,9 +30,34 @@ I should see the element has been completed
     Double Click <body>section>div>section>ul>li:nth-child(3)>div>label>
     Wait 2 seconds
 
+I visit Acklen Avenue website
+    Navigate to "http://acklenavenue.com"
+
+I should see the mouse cursor on each menu link
+    Move Mouse To <#fixednavbar>nav>ul>li:nth-child(1)>a> 
+    Wait 2 seconds
+    Move Mouse To <#fixednavbar>nav>ul>li:nth-child(2)>a>
+    Wait 2 seconds
+    Move Mouse To <#fixednavbar>nav>ul>li:nth-child(3)>a>
+    Wait 2 seconds
+    Move Mouse To <#fixednavbar>nav>ul>li:nth-child(4)>a>
+    Wait 2 seconds
+    Move Mouse To <#fixednavbar>nav>ul>li:nth-child(5)>a>
+    Wait 2 seconds
+    Move Mouse To <#fixednavbar>nav>ul>li:nth-child(6)>a>
+    Wait 2 seconds                
+
+I move the mouse to View Project Button    
+    Move Mouse To <#clients>div>div>div>div>a>button>
+    Wait 3 seconds
+
+I see the scroll move down to the button and hover color changes    
+    Move Mouse To <#clients>div>div>div>img>
+    Wait 2 seconds
+
 I visit the w3schools
     GlobalValue "Name" equals random:completeName uppercase
-    GlobalValue "Developer" equals "Bily"
+    GlobalValue "Developer" equals "Billy"
     Navigate to "http://www.w3schools.com/angular/tryit.asp?filename=try_ng_intro"
     Window Size "Maximize"
 
@@ -44,7 +71,7 @@ I should find that random value in a p element
 
 I visit the API page
     GlobalValue "Name" equals random:completeName
-    GlobalValue "Developer" equals "Bily"
+    GlobalValue "Developer" equals "Billy"
     Navigate to "http://webdriver.io"
     Click <=API>
 
