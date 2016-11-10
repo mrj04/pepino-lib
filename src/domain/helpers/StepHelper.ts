@@ -2,6 +2,7 @@
 import * as _ from "underscore";
 import {StringHelper} from "../helpers/StringHelper";
 import {VariableHelper} from "../helpers/VariableHelper";
+import {GlobalValueHelper} from "../helpers/GlobalValueHelper";
 
 export class StepHelper {
     private static characterIndicatorForVariables: string = '$';
@@ -49,12 +50,35 @@ export class StepHelper {
     static extractSelector(instruction: string, index: number): string {
         var selector = "";
         var elementsArray = StringHelper.extractTextInGreaterThanLessThan(instruction);
+        var instructionLowerCase = instruction.toLowerCase();
 
         if (elementsArray[index].indexOf(this.characterIndicatorForVariables) > -1) {
             selector = VariableHelper.getString(elementsArray[index]);
         } else {
             selector = "\"" + elementsArray[index] + "\"";
         }
+
+        if (instructionLowerCase.indexOf(" where content ") > -1) {
+            var content;
+            var nextPrev;
+
+            if (instructionLowerCase.indexOf(" globalvalue ") > -1) {
+                 content = GlobalValueHelper.generate(instruction);
+            } else {
+                var keys = StringHelper.extractTextInQuotes(instruction);
+                content = VariableHelper.getString(keys[0]);            
+            }
+
+            if (instructionLowerCase.indexOf("for next element") > -1) {
+                selector = "getSelectorByContent(this.browser, " + selector +  ", "
+                + content + ", 'nextElement')"                
+            } else if (instructionLowerCase.indexOf("for previous element") > -1) {
+                selector = "getSelectorByContent(this.browser, " + selector +  ", "
+                + content + ", 'previousElement')"
+            } else {
+                selector = "getSelectorByContent(this.browser, " + selector +  ", " + content + ")"
+            }
+        }        
 
         return selector;
     }

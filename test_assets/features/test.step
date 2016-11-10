@@ -1,6 +1,36 @@
+I visit todomvc.com
+    GlobalValue "Task1" equals random:string
+    GlobalValue "Task2" equals random:string
+    GlobalValue "Task3" equals random:string
+    Navigate to "http://todomvc.com/examples/react/#/"
+    
+
+I add a todo list with 3 elements and mark one of them as completed
+    Type GlobalValue "Task1" into <body>section>div>header>input>
+    press key "Enter"
+    Type GlobalValue "Task2" into <body>section>div>header>input>
+    press key "Enter"
+    Type GlobalValue "Task3" into <body>section>div>header>input>
+    press key "Enter" 
+    Type "Eat Pizza" into <body>section>div>header>input>
+    press key "Enter"    
+    Wait 2 seconds
+
+I should see the element has been completed
+    Double Click <body>section>div>section>ul>li:nth-child(2)> Where content GlobalValue "Task2"
+    Wait 2 seconds
+    Double Click <body>section>div>section>ul> Where content "Eat Pizza"
+    Wait 2 seconds
+    Double Click <body>section>div>section>ul>li:nth-child(2)> Where content GlobalValue "Task2" for next element
+    Wait 2 seconds    
+    Double Click <body>section>div>section>ul> Where content "Eat Pizza" for previous element
+    Wait 2 seconds    
+    Double Click <body>section>div>section>ul>li:nth-child(3)>div>label>
+    Wait 2 seconds
+
 I visit the w3schools
     GlobalValue "Name" equals random:completeName uppercase
-    GlobalValue "Developer" equals "Billy"
+    GlobalValue "Developer" equals "Bily"
     Navigate to "http://www.w3schools.com/angular/tryit.asp?filename=try_ng_intro"
     Window Size "Maximize"
 
@@ -14,7 +44,7 @@ I should find that random value in a p element
 
 I visit the API page
     GlobalValue "Name" equals random:completeName
-    GlobalValue "Developer" equals "Billy"
+    GlobalValue "Developer" equals "Bily"
     Navigate to "http://webdriver.io"
     Click <=API>
 
