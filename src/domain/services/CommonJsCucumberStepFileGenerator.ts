@@ -8,8 +8,8 @@ export module Pepino {
     export class CommonJsCucumberStepFileGenerator implements IStepFileGenerator {
 
         private GetCssPathFunction(): string {
-            return "function getCssPath(browser, element, content, nextPrev) {\n\
-                return browser.execute(function(element, content, nextPrev) {\n\
+            return "function getCssPath(browser, element, content) {\n\
+                return browser.execute(function(element, content) {\n\
                     var treeObject = {};\n\
                     var elementFound = {};\n\
                     if (typeof element === 'string') {\n\
@@ -56,7 +56,7 @@ export module Pepino {
                     }\n\
                     treeHTML(element, treeObject, elementFound);\n\
                     return elementFound;\n\
-                }, element, content, nextPrev);\n\
+                }, element, content);\n\
             }\n\n\
             ";
         }
@@ -76,26 +76,41 @@ export module Pepino {
             return "function getSelectorByContent(browser, selector, content, nextPrev) {\n\
                 var html = browser.getHTML(selector, true);\n\
                 html = cleanHtml(html);\n\
-                var element = getCssPath(browser, html, content, nextPrev);\n\
+                var element = getCssPath(browser, html, content);\n\
                 var cssPath = '';\n\
                 if (element.value.cssPath) {\n\
-                    console.log(element.value);\n\
                     var elementsArray = element.value.cssPath.split(' > ');\n\
                     if (elementsArray.length > 0) {\n\
                         elementsArray[0] = selector;\n\
                         cssPath = elementsArray.join('>');\n\
-						console.log('cssPath');\n\
-						console.log(cssPath);\n\
 						if (nextPrev === 'nextElement' || nextPrev === 'previousElement') {\n\
 							elementsArray = elementsArray.slice(0,-1);\n\
 							var parentSelector  = elementsArray.join('>');\n\
 							var elements = browser.elements(parentSelector + '>*');\n\
 							if(elements.value.length > 1) {\n\
+								var nextCssPath = '';\n\
+								var previousCssPath = '';\n\
 								for (var index = 0; index < elements.value.length; index++) {\n\
-									console.log(browser\n\
-									.getHTML(parentSelector + '>*:nth-child(' + (index + 1) + ')', true));\n\
+									var childHtml = browser\n\
+									.getHTML(parentSelector + '>*:nth-child(' + (index + 1) + ')', true);\n\
+									childHtml = cleanHtml(childHtml);\n\
+									var childElement = getCssPath(browser, childHtml, content);\n\
+									if (childElement.value.cssPath) {\n\
+										if (index > 0 && index < elements.value.length) {\n\
+											previousCssPath = parentSelector + '>*:nth-child(' + index + ')';\n\
+										}\n\
+										if(index + 2 <= elements.value.length) {\n\
+											nextCssPath = parentSelector + '>*:nth-child(' + (index + 2) + ')';\n\
+										}\n\
+										break;\n\
+									}\n\
 								}\n\
-                            }\n\
+								if (nextPrev === 'nextElement') {\n\
+									cssPath = nextCssPath;\n\
+								} else {\n\
+									cssPath = previousCssPath;\n\
+								}\n\
+							}\n\
 						}\n\
                     }\n\
                 }\n\

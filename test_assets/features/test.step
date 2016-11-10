@@ -23,11 +23,11 @@ I should see the element has been completed
     Wait 1 seconds
     Press Key "Escape"
     Wait 1 Seconds
-    Double Click <body>section>div>section>ul>li:nth-child(2)> Where content GlobalValue "Task2" for next element
+    Move Mouse To <body>section>div>section>ul>li:nth-child(2)> Where content GlobalValue "Task2" for next element
+    Wait 1 Seconds
+    Click <body>section>div>section>ul>li:nth-child(2)> Where content GlobalValue "Task2" for next element
     Wait 2 seconds    
-    Double Click <body>section>div>section>ul> Where content "Eat Pizza" for previous element
-    Wait 2 seconds    
-    Double Click <body>section>div>section>ul>li:nth-child(3)>div>label>
+    Click <body>section>div>section>ul> Where content "Eat Pizza" for previous element
     Wait 2 seconds
 
 I visit Acklen Avenue website
