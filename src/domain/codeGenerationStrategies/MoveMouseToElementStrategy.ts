@@ -1,6 +1,6 @@
 "use strict";
 import {ICodeGenerationStrategy} from "../ICodeGenerationStrategy";
-import {StringHelper} from "../helpers/StringHelper";
+import {StepHelper} from "../helpers/StepHelper";
 import {VariableHelper} from "../helpers/VariableHelper";
 
 export class MoveMouseToElementStrategy implements ICodeGenerationStrategy {
@@ -10,7 +10,7 @@ export class MoveMouseToElementStrategy implements ICodeGenerationStrategy {
     }
 
     generate(text: string): string {
-        const element = VariableHelper.getString(StringHelper.extractTextInGreaterThanLessThan(text)[0]);
+        const element = StepHelper.extractSelector(text, 0);
 
         return "client.moveToObject(" + element + ");";
     }

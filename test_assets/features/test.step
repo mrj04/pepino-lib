@@ -17,17 +17,17 @@ I add a todo list with 3 elements and mark one of them as completed
     Wait 2 seconds
 
 I should see the element has been completed
-    Double Click <body>section>div>section>ul>li:nth-child(2)> Where content GlobalValue "Task2"
+    Double Click <body>section>div>section>ul>li> Where it has GlobalValue "Task2"
     Wait 2 seconds
-    Double Click <body>section>div>section>ul> Where content "Eat Pizza"
+    Double Click <body>section>div>section>ul>li> Where it has "Eat Pizza" in <label>
     Wait 1 seconds
     Press Key "Escape"
-    Wait 1 Seconds
-    Move Mouse To <body>section>div>section>ul>li:nth-child(2)> Where content GlobalValue "Task2" for next element
-    Wait 1 Seconds
-    Click <body>section>div>section>ul>li:nth-child(2)> Where content GlobalValue "Task2" for next element
+    Wait 1 seconds
+    Move Mouse To <body>section>div>section>ul>li> Where it has GlobalValue "Task2" in <label>
+    Click <body>section>div>section>ul>li> Where it has GlobalValue "Task2"  in <label> for next element
     Wait 2 seconds    
-    Click <body>section>div>section>ul> Where content "Eat Pizza" for previous element
+    Click <body>section>div>section>ul>li> Where it has "Eat Pizza"  in <label> for previous element    
+    Verify that object <body>section>div>section>ul>li> has attribute "class" with value "completed" Where it has "Eat Pizza" in <label> for parent element
     Wait 2 seconds
 
 I visit Acklen Avenue website
