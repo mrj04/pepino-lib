@@ -4,6 +4,12 @@ Feature: The Webdriver.io Documentation
     So that I can develop using the right syntax
 
 @focus
+Scenario: Verify element by content
+    Given I visit todomvc.com
+    When I add a todo list with 3 elements and mark one of them as completed
+    Then I should see the element has been completed 
+
+@focus
 Scenario: Move mouse cursor to each menu elements
     Given I visit Acklen Avenue website
     Then I should see the mouse cursor on each menu link

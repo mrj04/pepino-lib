@@ -1,3 +1,35 @@
+I visit todomvc.com
+    GlobalValue "Task1" equals random:string
+    GlobalValue "Task2" equals random:string
+    GlobalValue "Task3" equals random:string
+    Navigate to "http://todomvc.com/examples/react/#/"
+    
+
+I add a todo list with 3 elements and mark one of them as completed
+    Type GlobalValue "Task1" into <body>section>div>header>input>
+    press key "Enter"
+    Type GlobalValue "Task2" into <body>section>div>header>input>
+    press key "Enter"
+    Type GlobalValue "Task3" into <body>section>div>header>input>
+    press key "Enter" 
+    Type "Eat Pizza" into <body>section>div>header>input>
+    press key "Enter"    
+    Wait 2 seconds
+
+I should see the element has been completed
+    Double Click <body>section>div>section>ul>li> Where it has GlobalValue "Task2"
+    Wait 2 seconds
+    Double Click <body>section>div>section>ul>li> Where it has "Eat Pizza" in <label>
+    Wait 1 seconds
+    Press Key "Escape"
+    Wait 1 seconds
+    Move Mouse To <body>section>div>section>ul>li> Where it has GlobalValue "Task2" in <label>
+    Click <body>section>div>section>ul>li> Where it has GlobalValue "Task2"  in <label> for next element
+    Wait 2 seconds    
+    Click <body>section>div>section>ul>li> Where it has "Eat Pizza"  in <label> for previous element    
+    Verify that object <body>section>div>section>ul>li> has attribute "class" with value "completed" Where it has "Eat Pizza" in <label> for parent element
+    Wait 2 seconds
+
 I visit Acklen Avenue website
     Navigate to "http://acklenavenue.com"
 

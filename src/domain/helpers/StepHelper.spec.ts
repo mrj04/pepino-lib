@@ -109,4 +109,43 @@ describe('The Step Helper', () => {
             });
         });
     });
+
+    describe('When the generator contains the suffix Where it has', () => {
+        var step: string = 'Step example <$idOne> Where it has "Sample" in <label>';
+        
+        it('Should return the function getSelectorByContent with inElement param equal null', () => {
+            var element: string = StepHelper.extractSelector(step, 0);
+            expect(element).to.be.equal("getSelectorByContent(this.browser, idOne, \"Sample\", null, 'label')");
+        });        
+
+        it('Should return the function getSelectorByContent with inElement param equal null and label equal empty string', () => {
+            step = 'Step example <$idOne> Where it has "Sample"';
+            var element: string = StepHelper.extractSelector(step, 0);
+            expect(element).to.be.equal("getSelectorByContent(this.browser, idOne, \"Sample\", null, '')");
+        });  
+
+        it('Should return the function getSelectorByContent with GlobalValue param', () => {
+            step = 'Step example <$idOne> Where it has GlobalValue "Sample"';
+            var element: string = StepHelper.extractSelector(step, 0);
+            expect(element).to.be.equal("getSelectorByContent(this.browser, idOne, globalValues['sample'], null, '')");
+        }); 
+
+        it('Should return the function getSelectorByContent with inElement param equal nextElement', () => {
+            step = 'Step example <$idOne> Where it has "Sample" in <label> for next element';
+            var element: string = StepHelper.extractSelector(step, 0);
+            expect(element).to.be.equal("getSelectorByContent(this.browser, idOne, \"Sample\", 'nextElement', 'label')");
+        }); 
+
+        it('Should return the function getSelectorByContent with inElement param equal previousElement', () => {
+            step = 'Step example <$idOne> Where it has "Sample" in <label> for previous element';
+            var element: string = StepHelper.extractSelector(step, 0);
+            expect(element).to.be.equal("getSelectorByContent(this.browser, idOne, \"Sample\", 'previousElement', 'label')");
+        });  
+
+        it('Should return the function getSelectorByContent with inElement param equal parentElement', () => {
+            step = 'Step example <$idOne> Where it has "Sample" in <label> for parent element';
+            var element: string = StepHelper.extractSelector(step, 0);
+            expect(element).to.be.equal("getSelectorByContent(this.browser, idOne, \"Sample\", 'parentElement', 'label')");
+        });                         
+    });    
 });
