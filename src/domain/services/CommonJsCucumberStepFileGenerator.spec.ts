@@ -11,18 +11,17 @@ describe("The CommonJs Step File Generator", () => {
 
         var generator = new PepinoModule.Pepino.CommonJsCucumberStepFileGenerator();
         var code = generator.generate(new Array<string>("one", "two", "three"));
-
         var lines = code.split("\n");
-        
+      
         it("should generate a commonjs module", () => {
             expect(lines[0].trim()).to.equal("module.exports = function() {");
             expect(lines[lines.length - 1].trim()).to.equal("};");
         });
         
         it("should include the functions in the file with a blank line between each", () => {
-           expect(lines[3].trim()).to.equal("one");
-           expect(lines[5].trim()).to.equal("two");
-           expect(lines[7].trim()).to.equal("three");
+           expect(lines[lines.length - 6].trim()).to.equal("one");
+           expect(lines[lines.length - 4].trim()).to.equal("two");
+           expect(lines[lines.length - 2].trim()).to.equal("three");
         });        
     });
 });
