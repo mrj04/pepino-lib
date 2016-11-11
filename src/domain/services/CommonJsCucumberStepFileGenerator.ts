@@ -67,7 +67,12 @@ export module Pepino {
 
         private CleanHtmlFunction(): string {
             return "function cleanHtml(html) {\n\
-                var sanitize = require('sanitize-html');\n\
+                var sanitize;\n\
+                try {\n\
+                    sanitize = require('pepino/node_modules/sanitize-html');\n\
+                } catch(e) {\n\
+                    sanitize = require('sanitize-html');\n\
+                }\n\
                 return sanitize(html, {\n\
                     allowedTags: false,\n\
                     allowedAttributes: false\n\
