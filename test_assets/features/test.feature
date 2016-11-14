@@ -4,8 +4,13 @@ Feature: The Webdriver.io Documentation
     So that I can develop using the right syntax
 
 @focus
-Scenario: Verify element by content
+Scenario: Verify element does not exist
     Given I visit todomvc.com
+    Then I verify custom element does not exist
+
+@focus
+Scenario: Verify element by content
+    Given I visit again todomvc.com
     When I add a todo list with 3 elements and mark one of them as completed
     Then I should see the element has been completed 
 
