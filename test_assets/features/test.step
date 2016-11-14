@@ -35,6 +35,8 @@ I should see the element has been completed
     Verify <body>section>div>section>ul>li> Where it has GlobalValue "Task2" in <label> does not exist
     Click <body>section>div>section>ul>li> Where it has "Eat Pizza"  in <label> for previous element    
     Verify that object <body>section>div>section>ul>li> has attribute "class" with value "completed" Where it has "Eat Pizza" in <label> for parent element
+    Click <body>section>div>section>ul>li> Where it has GlobalValue "Task3"  in <label> for previous element    
+    Verify that object <body>section>div>section>ul>li> has attribute "class" with value "completed" Where it has GlobalValue "Task3" in <label> for parent element
     Wait 2 seconds
 
 I visit Acklen Avenue website

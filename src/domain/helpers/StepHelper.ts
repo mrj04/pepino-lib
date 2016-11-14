@@ -66,7 +66,7 @@ export class StepHelper {
             var inElement = '';
 
             if (instructionLowerCase.indexOf(" globalvalue ") > -1) {
-                 content = GlobalValueHelper.generate(instruction);
+                content = GlobalValueHelper.generate(contentInstruction);
             } else {
                 var keys = StringHelper.extractTextInQuotes(contentInstruction);
                 content = VariableHelper.getString(keys[0]);            
