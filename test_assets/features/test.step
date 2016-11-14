@@ -1,4 +1,10 @@
 I visit todomvc.com
+    Navigate to "http://todomvc.com/examples/react/#/"
+
+I verify custom element does not exist
+    Verify <custom-html-tag> does not exist
+
+I visit again todomvc.com
     GlobalValue "Task1" equals random:string
     GlobalValue "Task2" equals random:string
     GlobalValue "Task3" equals random:string
@@ -24,8 +30,9 @@ I should see the element has been completed
     Press Key "Escape"
     Wait 1 seconds
     Move Mouse To <body>section>div>section>ul>li> Where it has GlobalValue "Task2" in <label>
-    Click <body>section>div>section>ul>li> Where it has GlobalValue "Task2"  in <label> for next element
+    Click <body>section>div>section>ul>li> Where it has GlobalValue "Task2" in <label> for next element
     Wait 2 seconds    
+    Verify <body>section>div>section>ul>li> Where it has GlobalValue "Task2" in <label> does not exist
     Click <body>section>div>section>ul>li> Where it has "Eat Pizza"  in <label> for previous element    
     Verify that object <body>section>div>section>ul>li> has attribute "class" with value "completed" Where it has "Eat Pizza" in <label> for parent element
     Wait 2 seconds
