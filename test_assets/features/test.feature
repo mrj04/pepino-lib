@@ -4,6 +4,12 @@ Feature: The Webdriver.io Documentation
     So that I can develop using the right syntax
 
 @focus
+Scenario: Resetting browser session
+    Given I sign in Google
+    When I reset the browser session
+    Then I should not have my google account opened
+
+@focus
 Scenario: Verify element does not exist
     Given I visit todomvc.com
     Then I verify custom element does not exist
@@ -131,4 +137,3 @@ Scenario: Verify header contains text
 Scenario: Verify key press
     Given I visit "http://acklenavenue.com/"
     Then scroll down must be seen
-    

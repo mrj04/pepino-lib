@@ -1,8 +1,35 @@
+I sign in Google
+    Navigate to "https://www.google.com/gmail/about/"
+    Wait 2 seconds
+    Click <body>nav>div>a.gmail-nav__nav-link.gmail-nav__nav-link__sign-in>
+    Wait 2 seconds
+    Type "acklen.developer@gmail.com" into <#Email>
+    Wait 2 seconds
+    Click <#next>
+    Wait 2 seconds
+    Type "0pO1nj34W107d_" into <#Passwd>
+    Wait 2 seconds
+    Click <#signIn>
+    Wait 6 seconds
+    Verify current url to be "https://mail.google.com/mail/u/0/#inbox"
+    Wait 2 seconds
+
+I reset the browser session
+    Reset browser
+    Wait 2 seconds
+
+I should not have my google account opened
+    Navigate to "https://www.google.com/gmail/about/"
+    Wait 2 seconds
+    Verify current url to be "https://www.google.com/gmail/about/"
+    Wait 2 seconds
+
 I visit todomvc.com
     Navigate to "http://todomvc.com/examples/react/#/"
 
 I verify custom element does not exist
     Verify <custom-html-tag> does not exist
+    Wait 3 seconds
 
 I visit again todomvc.com
     GlobalValue "Task1" equals random:string
