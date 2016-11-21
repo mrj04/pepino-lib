@@ -23,7 +23,7 @@ export class GeneratorDataHelper {
             return chance().age();
         },
         'email': () => {
-            return chance().email();
+            return chance().email().replace('@', Date.now() + '@');
         },
         'firstname': () => {
             return chance().first();
