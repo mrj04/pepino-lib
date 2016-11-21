@@ -32,7 +32,7 @@ I verify custom element does not exist
     Wait 3 seconds
 
 I visit again todomvc.com
-    GlobalValue "Task1" equals random:string
+    GlobalValue "Task1" equals random:email
     GlobalValue "Task2" equals random:string
     GlobalValue "Task3" equals random:string
     Navigate to "http://todomvc.com/examples/react/#/"
