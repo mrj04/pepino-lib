@@ -4,6 +4,13 @@ Feature: The Webdriver.io Documentation
     So that I can develop using the right syntax
 
 @focus
+Scenario: Clicking back button
+    Given I visit ask.com
+    When I visit facebook.com
+    And I click back button
+    Then I should be at ask.com
+
+@focus
 Scenario: Resetting browser session
     Given I sign in Google
     When I reset the browser session
@@ -51,45 +58,45 @@ Scenario: Selecting options from a dropdown
 
 @focus
 Scenario: Toggle a Checkbox
-	Given I visit "http://www.javascript-coder.com/files/javascript-get-form/javascript-get-form-example.html"
-	When I toggle the "#chl_recruiter_contact" checkbox
-	Then "#chl_recruiter_contact" should be checked
+    Given I visit "http://www.javascript-coder.com/files/javascript-get-form/javascript-get-form-example.html"
+    When I toggle the "#chl_recruiter_contact" checkbox
+    Then "#chl_recruiter_contact" should be checked
 
 @focus
 Scenario: Untoggle a Checkbox
-	Given I visit "http://www.javascript-coder.com/files/javascript-get-form/javascript-get-form-example.html"
-	When I untoggle the "#chk_email_alerts" checkbox
-	Then "#chk_email_alerts" should not be checked
+    Given I visit "http://www.javascript-coder.com/files/javascript-get-form/javascript-get-form-example.html"
+    When I untoggle the "#chk_email_alerts" checkbox
+    Then "#chk_email_alerts" should not be checked
 
 @focus
 Scenario: Visiting a website and checking its title
-	Given I visit "https://www.google.com"
-	Then the title should be "Google"
+    Given I visit "https://www.google.com"
+    Then the title should be "Google"
 
 @focus
 Scenario: Visiting a website and checking its url
-	Given I visit "http://acklenavenue.com/"
-	Then the url must be "http://acklenavenue.com/"
+    Given I visit "http://acklenavenue.com/"
+    Then the url must be "http://acklenavenue.com/"
 
 @focus
 Scenario: Visiting a website and checking an object's css property similar value
-	Given I visit "http://acklenavenue.com/"
-	Then the object "#team-toggler" should have the css property "color" similar to "#72C02C"
+    Given I visit "http://acklenavenue.com/"
+    Then the object "#team-toggler" should have the css property "color" similar to "#72C02C"
 
 @focus
 Scenario: Visiting a website and checking an object's css property equal value
-	Given I visit "http://acklenavenue.com/"
-	Then the object "#team-toggler" should have the css property "color" equal to "rgba(114,192,44,1)"
+    Given I visit "http://acklenavenue.com/"
+    Then the object "#team-toggler" should have the css property "color" equal to "rgba(114,192,44,1)"
 
 @focus
 Scenario: Visiting a website and checking an object's attribute
-	Given I visit "http://www.javascript-coder.com/files/javascript-get-form/javascript-get-form-example.html"
-	Then the object "#chk_email_alerts" should have attribute "checked"
+    Given I visit "http://www.javascript-coder.com/files/javascript-get-form/javascript-get-form-example.html"
+    Then the object "#chk_email_alerts" should have attribute "checked"
 
 @focus
 Scenario: Visiting a website and checking an object's attribute with value
-	Given I visit "http://acklenavenue.com/"
-	Then the object "#web-service" should have attribute "class" with value "service"
+    Given I visit "http://acklenavenue.com/"
+    Then the object "#web-service" should have attribute "class" with value "service"
 
 @focus
 Scenario: Switching to iframe

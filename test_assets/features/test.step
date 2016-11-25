@@ -1,3 +1,15 @@
+I visit ask.com
+    Navigate to "http://www.ask.com/"
+
+I visit facebook.com
+    Navigate to "https://www.facebook.com/"
+
+I click back button
+    Click back button
+
+I should be at ask.com
+    Verify current url to be "http://www.ask.com/"
+
 I sign in Google
     Navigate to "https://www.google.com/gmail/about/"
     Wait 2 seconds
