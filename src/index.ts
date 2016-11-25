@@ -47,6 +47,7 @@ import {GlobalValueStrategy} from './domain/codeGenerationStrategies/GlobalValue
 import {MoveMouseToElementStrategy} from './domain/codeGenerationStrategies/MoveMouseToElementStrategy';
 import {JasmineExpectSelectorDoesNotExistStrategy} from './domain/jasmineExpectCodeGeneration/JasmineExpectSelectorDoesNotExistStrategy';
 import {ResetBrowserStrategy} from './domain/codeGenerationStrategies/ResetBrowserStrategy';
+import {ClickBackButtonStrategy} from './domain/codeGenerationStrategies/ClickBackButtonStrategy';
 
 import * as PepinoModule from "./domain/services/IStepFunctionGenerator";
 
@@ -91,7 +92,8 @@ var codeGenerator = new g.Pepino.CucumberStepFunctionGenerator(new Array<ICodeGe
     new GlobalValueStrategy(),
     new MoveMouseToElementStrategy(),
     new JasmineExpectSelectorDoesNotExistStrategy(),
-    new ResetBrowserStrategy()
+    new ResetBrowserStrategy(),
+    new ClickBackButtonStrategy()
 ));
 var stepFileGenerator = new fileGen.Pepino.CommonJsCucumberStepFileGenerator();
 

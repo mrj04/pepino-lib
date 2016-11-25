@@ -17,6 +17,10 @@ describe("when converting pepino-lang instructions to click an element", () => {
         expect(strategy.canGenerate("unrecognized instructions")).to.be.false;
     });
 
+    it("should pass on unrecognized instructions", () => {
+        expect(strategy.canGenerate("click back button")).to.be.false;
+    });
+
     it("should convert the step to cucumberjs code", () => {
         expect(strategy.generate(instructions))
             .to.equal("this.browser.click(\"#element\");");
