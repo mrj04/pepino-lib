@@ -19,6 +19,6 @@ describe("when converting pepino-lang instructions to wait for an element", () =
     });
 
     it("should convert the step to cucumberjs code", () => {
-        expect(strategy.generate(validInstructions)).to.equal("this.browser.waitForText(\"#elm\", 5000);")
+        expect(strategy.generate(validInstructions)).to.equal("this.browser.waitForText(\"#elm\", 60000);")
     });
 });

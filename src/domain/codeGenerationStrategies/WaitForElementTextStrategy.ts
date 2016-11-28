@@ -10,6 +10,6 @@ export class WaitForElementTextStrategy implements ICodeGenerationStrategy {
 
     generate(text: string): string {
         var element = StepHelper.extractSelector(text, 0);
-        return "this.browser.waitForText(" + element + ", 5000);";
+        return "this.browser.waitForText(" + element + ", 60000);";
     }
 }
