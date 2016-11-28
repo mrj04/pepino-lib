@@ -10,6 +10,6 @@ export class WaitForElementStrategy implements ICodeGenerationStrategy {
 
     generate(text: string): string {
         var element = StepHelper.extractSelector(text, 0);
-        return "this.browser.waitForExist(" + element + ");";
+        return "this.browser.waitForExist(" + element + ", 60000);";
     }
 }

@@ -18,6 +18,6 @@ describe("when converting pepino-lang instructions to wait for an element", () =
     });
 
     it("should convert the step to cucumberjs code", () => {
-        expect(strategy.generate(text)).to.equal("this.browser.waitForExist(\"#elm\");")
+        expect(strategy.generate(text)).to.equal("this.browser.waitForExist(\"#elm\", 60000);")
     });
 });
