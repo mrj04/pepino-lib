@@ -12,7 +12,7 @@ import {NavigateStrategy} from './domain/codeGenerationStrategies/NavigateStrate
 import {TypeTextWithElementStrategy} from './domain/codeGenerationStrategies/TypeTextWithElementStrategy';
 import {SelectOptionByVisibleTextStrategy} from './domain/codeGenerationStrategies/SelectOptionByVisibleTextStrategy';
 import {TypeTextWithoutElementStrategy} from './domain/codeGenerationStrategies/TypeTextWithoutElementStrategy';
-import {WaitForElementStrategy} from './domain/codeGenerationStrategies/WaitForElementStrategy';
+import {WaitForElementVisibleStrategy} from './domain/codeGenerationStrategies/WaitForElementVisibleStrategy';
 import {JasmineExpectStrategy} from './domain/jasmineExpectCodeGeneration/JasmineExpectStrategy';
 import {JasmineExpectSelectionStrategy} from './domain/jasmineExpectCodeGeneration/JasmineExpectSelectionStrategy';
 import {JasmineExpectSelectionValueStrategy} from './domain/jasmineExpectCodeGeneration/JasmineExpectSelectionValueStrategy';
@@ -49,6 +49,7 @@ import {JasmineExpectSelectorDoesNotExistStrategy} from './domain/jasmineExpectC
 import {ResetBrowserStrategy} from './domain/codeGenerationStrategies/ResetBrowserStrategy';
 import {ClickBackButtonStrategy} from './domain/codeGenerationStrategies/ClickBackButtonStrategy';
 import {WaitForElementTextStrategy} from './domain/codeGenerationStrategies/WaitForElementTextStrategy';
+import {WaitForElementEnabledStrategy} from './domain/codeGenerationStrategies/WaitForElementEnabledStrategy';
 
 import * as PepinoModule from "./domain/services/IStepFunctionGenerator";
 
@@ -60,7 +61,7 @@ var codeGenerator = new g.Pepino.CucumberStepFunctionGenerator(new Array<ICodeGe
     new NavigateStrategy(),
     new TypeTextWithElementStrategy(),
     new TypeTextWithoutElementStrategy(),
-    new WaitForElementStrategy(),
+    new WaitForElementVisibleStrategy(),
     new SelectOptionByVisibleTextStrategy(),
     new JasmineExpectStrategy(),
     new JasmineExpectSelectionStrategy(),
@@ -95,7 +96,8 @@ var codeGenerator = new g.Pepino.CucumberStepFunctionGenerator(new Array<ICodeGe
     new JasmineExpectSelectorDoesNotExistStrategy(),
     new ResetBrowserStrategy(),
     new ClickBackButtonStrategy(),
-    new WaitForElementTextStrategy()
+    new WaitForElementTextStrategy(),
+    new WaitForElementEnabledStrategy()
 ));
 var stepFileGenerator = new fileGen.Pepino.CommonJsCucumberStepFileGenerator();
 
