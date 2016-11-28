@@ -1,3 +1,13 @@
+I visit acklenavenue.com
+    Navigate to "http://acklenavenue.com/"
+
+I wait for the header and its content
+    Wait for <div.tagline>h1> to be visible
+    Wait for <div.tagline>h1> to have content
+
+I verify the header's text
+    Verify "Custom Software Development with Heart" is in <div.tagline>h1>
+
 I visit ask.com
     Navigate to "http://www.ask.com/"
 
