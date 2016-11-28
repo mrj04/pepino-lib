@@ -4,9 +4,10 @@ Feature: The Webdriver.io Documentation
     So that I can develop using the right syntax
 
 @focus
-Scenario: Waiting for an element's content
+Scenario: Waiting for an element's content and being enabled
     Given I visit acklenavenue.com
     When I wait for the header and its content
+    And I wait for the header to be enabled
     Then I verify the header's text
 
 @focus

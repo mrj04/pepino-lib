@@ -5,6 +5,9 @@ I wait for the header and its content
     Wait for <div.tagline>h1> to be visible
     Wait for <div.tagline>h1> to have content
 
+I wait for the header to be enabled
+    Wait for <div.tagline>h1> to be enabled
+
 I verify the header's text
     Verify "Custom Software Development with Heart" is in <div.tagline>h1>
 
