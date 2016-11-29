@@ -50,6 +50,7 @@ import {ResetBrowserStrategy} from './domain/codeGenerationStrategies/ResetBrows
 import {ClickBackButtonStrategy} from './domain/codeGenerationStrategies/ClickBackButtonStrategy';
 import {WaitForElementTextStrategy} from './domain/codeGenerationStrategies/WaitForElementTextStrategy';
 import {WaitForElementEnabledStrategy} from './domain/codeGenerationStrategies/WaitForElementEnabledStrategy';
+import {WaitForElementInvisibleStrategy} from './domain/codeGenerationStrategies/WaitForElementInvisibleStrategy';
 
 import * as PepinoModule from "./domain/services/IStepFunctionGenerator";
 
@@ -97,7 +98,8 @@ var codeGenerator = new g.Pepino.CucumberStepFunctionGenerator(new Array<ICodeGe
     new ResetBrowserStrategy(),
     new ClickBackButtonStrategy(),
     new WaitForElementTextStrategy(),
-    new WaitForElementEnabledStrategy()
+    new WaitForElementEnabledStrategy(),
+    new WaitForElementInvisibleStrategy()
 ));
 var stepFileGenerator = new fileGen.Pepino.CommonJsCucumberStepFileGenerator();
 
