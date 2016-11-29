@@ -4,6 +4,12 @@ Feature: The Webdriver.io Documentation
     So that I can develop using the right syntax
 
 @focus
+Scenario: Scrolling until the element's in the viewport
+    Given I visit acklenavenue.com
+    When I scroll to the bottom of the page
+    Then I verify the footer's text
+
+@focus
 Scenario: Waiting for an element's content and being enabled
     Given I visit acklenavenue.com
     When I wait for the header and its content

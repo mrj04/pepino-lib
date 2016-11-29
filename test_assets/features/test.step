@@ -1,3 +1,9 @@
+I scroll to the bottom of the page
+    Scroll to <footer>.text-center>
+
+I verify the footer's text
+    Click <footer>.text-center>
+
 I visit acklenavenue.com
     Navigate to "http://acklenavenue.com/"
 
