@@ -4,6 +4,12 @@ Feature: The Webdriver.io Documentation
     So that I can develop using the right syntax
 
 @focus
+Scenario: Waiting for an element to be invisible
+    Given I visit acklenavenue.com
+    When  I go to the blog page
+    Then I verify the header is not visible
+
+@focus
 Scenario: Scrolling until the element's in the viewport
     Given I visit acklenavenue.com
     When I scroll to the bottom of the page
