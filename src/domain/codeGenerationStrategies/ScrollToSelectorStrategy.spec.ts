@@ -22,7 +22,11 @@ describe("The scroll to selector strategy", () => {
             });
 
             it("should convert the step to cucumberjs code", () => {
-                expect(strategy.generate(text)).to.equal("this.browser.scroll(\"#someSelector\");");
+                expect(strategy.generate(text).replace(/\s+/g, '')).to.equal(
+                    `this.browser.scroll(\"#someSelector\");
+                    this.browser.waitUntil(function(){
+                        return this.isVisibleWithinViewport(\"#someSelector\");
+                    });`.replace(/\s+/g, ''));
             });
         });
 
@@ -31,7 +35,11 @@ describe("The scroll to selector strategy", () => {
             const text = "Scroll to <$someSelector>";
 
             it("should convert the step to cucumberjs code", () => {
-                expect(strategy.generate(text)).to.equal("this.browser.scroll(someSelector);");
+                expect(strategy.generate(text).replace(/\s+/g, '')).to.equal(
+                    `this.browser.scroll(someSelector);
+                    this.browser.waitUntil(function(){
+                        return this.isVisibleWithinViewport(someSelector);
+                    });`.replace(/\s+/g, ''));
             });
         });
     });

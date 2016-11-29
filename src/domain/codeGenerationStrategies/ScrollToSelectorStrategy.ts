@@ -13,7 +13,10 @@ export class ScrollToSelectorStrategy implements ICodeGenerationStrategy {
         const selector = StringHelper.extractTextInGreaterThanLessThan(text);
         const contents = VariableHelper.getString(selector[0]);
 
-        const code = `this.browser.scroll(${contents});`;
+        const code = `this.browser.scroll(${contents});
+        this.browser.waitUntil(function(){
+            return this.isVisibleWithinViewport(${contents});
+        });`;
         return code;
     }
 }
