@@ -9,6 +9,7 @@ var tsPath = 'src/**/*.ts';
 var mocha = require('gulp-mocha');
 var bump = require('gulp-bump');
 var fs = require('fs');
+var cucumber = require('gulp-cucumber');
 var minimist = require('minimist');
 var shell = require('gulp-shell');
 
@@ -68,16 +69,32 @@ gulp.task('bump', function () {
         .pipe(gulp.dest('./'));
 });
 
-gulp.task('run', sequence('convert-steps', 'run-chimp'));
+gulp.task('run', sequence('convert-steps', 'convert-steps-backend', 'run-chimp'));
 
 gulp.task('run-chimp', shell.task([
-  `chimp --path=./test_assets/features --watch --browser=${options.browser}`
-]))
+  `chimp --path=./test/features --watch --browser=${options.browser}`
+]));
 
 gulp.task('convert-steps', ['compile'], function (done) {
-    var folder = "./test_assets/features/";
+    var folder = "./test/features/";
     var pepinoLang = fs.readFileSync(folder + "test.step", 'utf8');
     var js = require('./build/src/index').convert(pepinoLang);
     fs.writeFileSync(folder + "test.step.js", js);
     done();
+});
+
+gulp.task('convert-steps-backend', function (done) {
+    var folder = "./test/features/";
+    var pepinoLang = fs.readFileSync(folder + "myapi.step", 'utf8');
+    var js = require('./build/src/index').convert(pepinoLang);
+    fs.writeFileSync(folder + "myapi.step.js", js);
+    done();
+});
+
+gulp.task('test-api', function() {
+    return gulp.src('./test/features/myapi.feature')
+        .pipe(cucumber({
+            'steps': './test/features/step_definitions/*.js',
+            'format': 'pretty'
+        }));
 });

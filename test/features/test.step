@@ -74,7 +74,7 @@ I visit again todomvc.com
     GlobalValue "Task2" equals random:string
     GlobalValue "Task3" equals random:string
     Navigate to "http://todomvc.com/examples/react/#/"
-    
+
 
 I add a todo list with 3 elements and mark one of them as completed
     Type GlobalValue "Task1" into <body>section>div>header>input>
@@ -82,9 +82,9 @@ I add a todo list with 3 elements and mark one of them as completed
     Type GlobalValue "Task2" into <body>section>div>header>input>
     press key "Enter"
     Type GlobalValue "Task3" into <body>section>div>header>input>
-    press key "Enter" 
+    press key "Enter"
     Type "Eat Pizza" into <body>section>div>header>input>
-    press key "Enter"    
+    press key "Enter"
     Wait 2 seconds
 
 I should see the element has been completed
@@ -96,11 +96,11 @@ I should see the element has been completed
     Wait 1 seconds
     Move Mouse To <body>section>div>section>ul>li> Where it has GlobalValue "Task2" in <label>
     Click <body>section>div>section>ul>li> Where it has GlobalValue "Task2" in <label> for next element
-    Wait 2 seconds    
+    Wait 2 seconds
     Verify <body>section>div>section>ul>li> Where it has GlobalValue "Task2" in <label> does not exist
-    Click <body>section>div>section>ul>li> Where it has "Eat Pizza"  in <label> for previous element    
+    Click <body>section>div>section>ul>li> Where it has "Eat Pizza"  in <label> for previous element
     Verify that object <body>section>div>section>ul>li> has attribute "class" with value "completed" Where it has "Eat Pizza" in <label> for parent element
-    Click <body>section>div>section>ul>li> Where it has GlobalValue "Task3"  in <label> for previous element    
+    Click <body>section>div>section>ul>li> Where it has GlobalValue "Task3"  in <label> for previous element
     Verify that object <body>section>div>section>ul>li> has attribute "class" with value "completed" Where it has GlobalValue "Task3" in <label> for parent element
     Wait 2 seconds
 
@@ -108,7 +108,7 @@ I visit Acklen Avenue website
     Navigate to "http://acklenavenue.com"
 
 I should see the mouse cursor on each menu link
-    Move Mouse To <#fixednavbar>nav>ul>li:nth-child(1)>a> 
+    Move Mouse To <#fixednavbar>nav>ul>li:nth-child(1)>a>
     Wait 2 seconds
     Move Mouse To <#fixednavbar>nav>ul>li:nth-child(2)>a>
     Wait 2 seconds
@@ -119,13 +119,13 @@ I should see the mouse cursor on each menu link
     Move Mouse To <#fixednavbar>nav>ul>li:nth-child(5)>a>
     Wait 2 seconds
     Move Mouse To <#fixednavbar>nav>ul>li:nth-child(6)>a>
-    Wait 2 seconds                
+    Wait 2 seconds
 
-I move the mouse to View Project Button    
+I move the mouse to View Project Button
     Move Mouse To <#clients>div>div>div>div>a>button>
     Wait 3 seconds
 
-I see the scroll move down to the button and hover color changes    
+I see the scroll move down to the button and hover color changes
     Move Mouse To <#clients>div>div>div>img>
     Wait 2 seconds
 
@@ -135,12 +135,12 @@ I visit the w3schools
     Navigate to "http://www.w3schools.com/angular/tryit.asp?filename=try_ng_intro"
     Window Size "Maximize"
 
-I type a random value into an input    
+I type a random value into an input
     Switch to iframe <#iframeResult>
     Type GlobalValue "Name" lowercase into <body>div>p:nth-child(2)>input>
 
-I should find that random value in a p element    
-    Verify GlobalValue "Name" lowercase is in an <body>div>p.ng-binding> element    
+I should find that random value in a p element
+    Verify GlobalValue "Name" lowercase is in an <body>div>p.ng-binding> element
     Wait 2 seconds
 
 I visit the API page
@@ -216,7 +216,7 @@ the object "$object" should have attribute "$attribute" with value "$value"
 the object "$object" should have attribute "$attribute"
 	Verify that object <$object> has attribute "$attribute"
 
-I switch to "$selector" iframe 
+I switch to "$selector" iframe
     Switch to iframe <$selector>
 
 I should find "$text" in the alert
@@ -260,13 +260,13 @@ correct text must be seen
 
 scroll down must be seen
     press key "Page Down"
-    Wait 1 seconds 
+    Wait 1 seconds
     press key "Page Down"
-    Wait 1 seconds 
+    Wait 1 seconds
     press key "Page Up"
-    Wait 1 seconds            
+    Wait 1 seconds
     press key "Home"
-    Wait 1 seconds        
+    Wait 1 seconds
     press key "End"
     Wait 1 seconds
     Type random:firstname into <#contact-name>
@@ -294,7 +294,7 @@ scroll down must be seen
     Wait 1 seconds
     press key "Back space"
     press key "Back space"
-    press key "Back space"    
+    press key "Back space"
     Wait 1 seconds
     press key "Enter"
     press key "Enter"
@@ -315,4 +315,3 @@ scroll down must be seen
     Wait 1 seconds
     press key "Escape"
     Wait 1 seconds
-    

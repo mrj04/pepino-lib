@@ -1,7 +1,5 @@
 "use strict";
 import {Step} from '../Step';
-import * as _ from 'underscore';
-
 export module Pepino {
 
     export interface IStepParser {

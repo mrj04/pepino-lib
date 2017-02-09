@@ -51,11 +51,13 @@ import {ClickBackButtonStrategy} from './domain/codeGenerationStrategies/ClickBa
 import {WaitForElementTextStrategy} from './domain/codeGenerationStrategies/WaitForElementTextStrategy';
 import {WaitForElementEnabledStrategy} from './domain/codeGenerationStrategies/WaitForElementEnabledStrategy';
 import {WaitForElementInvisibleStrategy} from './domain/codeGenerationStrategies/WaitForElementInvisibleStrategy';
-
+import {HitApiStragedy} from './domain/codeGenerationStrategies/HitApiStragedy';
 import * as PepinoModule from "./domain/services/IStepFunctionGenerator";
+import * as fileFactory  from "./domain/IFileGeneratorFactory";
 
 var stepParser = new p.Pepino.PepinoLangStepParser();
 var codeGenerator = new g.Pepino.CucumberStepFunctionGenerator(new Array<ICodeGenerationStrategy>(
+    new HitApiStragedy(),
     new ClickElementStrategy(),
     new PressKeyStrategy(),
     new WindowSizeStrategy(),
@@ -101,11 +103,12 @@ var codeGenerator = new g.Pepino.CucumberStepFunctionGenerator(new Array<ICodeGe
     new WaitForElementEnabledStrategy(),
     new WaitForElementInvisibleStrategy()
 ));
-var stepFileGenerator = new fileGen.Pepino.CommonJsCucumberStepFileGenerator();
+
+var factory = new fileFactory.Pepino.FileGeneratorFactory();
 
 class converter {
 
-    constructor(private fileGenerator: fileGen.Pepino.IStepFileGenerator,
+    constructor(private fileGeneratorFactory: fileFactory.Pepino.IFileGeneratorFactory,
                 private parser: p.Pepino.IStepParser,
                 private stepGenerator: PepinoModule.Pepino.IStepFunctionGenerator){
     }
@@ -121,11 +124,12 @@ class converter {
             return this.stepGenerator.generate(stepsBySegment[key]);
         });
 
-        var commonJsFile = this.fileGenerator.generate(functions);
+        var fileGenerator = this.fileGeneratorFactory.create(pepinoStepFile);
+        var commonJsFile = fileGenerator.generate(functions);
 
         return commonJsFile;
     }
 
 }
 
-export = new converter(stepFileGenerator, stepParser, codeGenerator);
+export = new converter(factory, stepParser, codeGenerator);

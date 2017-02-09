@@ -7,4 +7,4 @@ ratings:
   - "**.ts"
 exclude_paths:
 - node_modules/**/*
-- test_assets/**/*
+- test/**/*

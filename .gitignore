@@ -2,7 +2,7 @@ node_modules/
 coverage
 .vscode
 build
-test_assets/features/*.js
+test/features/*.js
 bk-*.log
 .DS_Store
 .idea
